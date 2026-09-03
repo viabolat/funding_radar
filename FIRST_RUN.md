@@ -15,8 +15,8 @@ Read this before firing `funding-radar.yml` for the first time. The radar's firs
 | Issue labels exist | Fixed 2026-09-03 | `funding-radar`, `mipe-watch` created on the repo |
 | `web/` build at `BASE_PATH=/` | Confirmed working in CI | run `33748134678`, built in 6.89s |
 | cPanel upload | Never succeeded | blocked on secrets |
-| `funding_radar.py` on CI | **Untested against the network** | only ever run locally |
-| `mipe_watch.py` on CI | **Broken — fails silently green** | see below |
+| `mipe_watch.py` on CI | **Cannot work — host blocks GitHub IPs** | probe `33773493284`, §3 |
+| `funding_radar.py` on CI | Confirmed working | probe pulled 35 + 22 calls from a runner |
 
 ---
 
@@ -117,15 +117,31 @@ Run `33747227918` reported success at every step. It did no work at all:
 
 All five retries failed to connect, the only watched page was skipped, `mipe_page_hashes.json` was committed as `{}`, and the script exited 0.
 
-Two separate problems:
+Two separate problems. Connectivity probe run `33773493284` settled both.
 
-**a) mfe.gov.ro is not reachable from GitHub-hosted runners.** `Errno 101` is a routing failure at connect, not an HTTP error — the retry/backoff machinery cannot help with it. The host resolves to both `193.151.29.8` and `2a00:5dc2::8`, and it sits behind a WAF that already returns `403` to a plain request from here. So the cause is either the runner having no IPv6 route to the AAAA record, or the site blocking cloud IP ranges outright. **Which of the two has not been confirmed** and they need different fixes (force IPv4 vs. don't run this from Actions at all). Confirming it needs one throwaway `workflow_dispatch` connectivity probe.
+**a) mfe.gov.ro blocks GitHub's IP ranges. Confirmed, and not fixable in this repo.**
 
-**b) A total fetch failure exits 0 and reports "no pages changed."** Silence from this watcher is currently indistinguishable from success — which is exactly the failure mode the schedule is supposed to protect against. It should exit non-zero, or say something, when *every* watched page failed. This is worth fixing regardless of how (a) resolves.
+The probe connected to each resolved address separately, from a runner and from a developer machine:
 
-Until both are addressed, treat MIPE as unmonitored. The baseline-seeding behaviour itself is correct: a page that fails to fetch keeps its previous hash rather than resetting, so nothing is corrupted by these failed runs — there is simply no baseline yet.
+| | developer machine | GitHub runner |
+|---|---|---|
+| outbound IPv6 | none | none |
+| `mfe.gov.ro` `193.151.29.8` (A) | connected, 12ms | **timed out after 15s** |
+| `mfe.gov.ro` `2a00:5dc2::8` (AAAA) | ENETUNREACH | ENETUNREACH |
+| `adieuronest.ro` | connected | connected |
+| `api.tech.ec.europa.eu` | connected | connected |
 
-`adieuronest.ro` and `ec.europa.eu` both answer normally from here, but **neither has been tested from a GitHub runner**. If the radar's first CI run fails the same way, this is why.
+Neither machine has IPv6, so the unreachable AAAA is normal and is not the cause — it fails identically in both columns. The difference is the **IPv4** address: 12ms locally, a silent 15-second timeout from the runner. Dropped, not refused. That is a firewall filtering cloud IP ranges, and no amount of retrying, backoff or forcing IPv4 will get past it.
+
+**The original error message was actively misleading.** urllib3 walks the getaddrinfo list and reports only the last error, so the IPv6 `ENETUNREACH` masked the IPv4 timeout underneath it and made this look like an IPv6 problem. If you see `Network is unreachable` from a dual-stack host, check each address family separately before believing it.
+
+Fixing this means running `mipe_watch.py` from somewhere that is not a GitHub runner — the cPanel host is Romanian and already in the picture, so a cron job there is the obvious candidate; a self-hosted runner is the other. **Until then, treat MIPE as unmonitored.**
+
+**b) A total fetch failure exited 0. Fixed 2026-09-03.** The watcher now exits non-zero when *every* watched page fails, so CI shows red instead of a green quiet run. A partial failure still exits 0 — the pages that did fetch were genuinely checked, and failing the run on one dead page would mean noise on every run until it came back. State handling is unchanged: baselines are still kept for pages that failed, no Issue, no feed rows. Two regression tests cover both directions (suite is now 66 tests).
+
+The baseline-seeding behaviour was correct throughout: a page that fails to fetch keeps its previous hash rather than resetting, so nothing was corrupted by the failed runs — there is simply no baseline yet.
+
+**`adieuronest.ro` and the SEDIA API both work from a GitHub runner.** The probe pulled 35 and 22 calls from CI, matching the local numbers exactly. The Monday radar schedule is safe; only MIPE is affected.
 
 ---
 
@@ -157,8 +173,8 @@ Assuming a deploy succeeded and the radar has run once:
 
 ## 6. Open items
 
-1. Confirm why mfe.gov.ro is unreachable from Actions, and fix `mipe_watch.py` to fail loudly when every page fails.
-2. Verify `adieuronest.ro` and the SEDIA API are reachable from a GitHub runner before trusting the Monday schedule.
+1. Decide where `mipe_watch.py` runs, since GitHub-hosted runners are blocked: cron on the cPanel host, or a self-hosted runner.
+2. Delete `.github/workflows/connectivity-probe.yml` — it has answered its questions.
 3. Fire the first `funding-radar.yml` run manually and watch it.
 4. Complete the cPanel setup and get one green `deploy-staging` run.
 5. Replace the placeholder staff roster and `CURRENT_USER`.

@@ -7,6 +7,7 @@ what these tests pin.
 
 import json
 
+import pytest
 import requests
 
 import calls_store as cs
@@ -153,17 +154,58 @@ def test_failed_fetch_keeps_the_previous_baseline(
     posted = capture_post(mw)
     old_hash = mw.normalized_text_hash("<p>v1</p>")
 
+    # The only watched page fails, so the run also exits non-zero — but the
+    # baseline handling under test is unaffected by that.
+    with pytest.raises(SystemExit):
+        run_main(
+            monkeypatch,
+            tmp_path,
+            {"cal": "http://cal"},
+            {"http://cal": requests.RequestException("boom")},
+            previous={"cal": old_hash},
+            create_issue=True,
+        )
+
+    assert mw.load_hashes(str(tmp_path / "h.json")) == {"cal": old_hash}
+    assert posted == [], "a fetch failure is not a content change"
+
+
+def test_a_run_where_every_page_fails_exits_non_zero(
+    monkeypatch, tmp_path, fake_response
+):
+    """Regression: every page failing used to log errors and exit 0, so CI
+    reported a green, quiet run — indistinguishable from "nothing changed",
+    which is the one state this watcher exists to detect. mfe.gov.ro drops
+    packets from GitHub's IP ranges, so a scheduled run checked nothing and
+    said nothing."""
+    with pytest.raises(SystemExit) as exc:
+        run_main(
+            monkeypatch,
+            tmp_path,
+            {"a": "http://a", "b": "http://b"},
+            {
+                "http://a": requests.RequestException("boom"),
+                "http://b": requests.RequestException("boom"),
+            },
+        )
+
+    assert exc.value.code != 0
+
+
+def test_a_partial_failure_still_exits_zero(monkeypatch, tmp_path, fake_response):
+    """One dead page must not turn a run that did check something into a
+    failure — that would be noise on every run until the page came back."""
     stored = run_main(
         monkeypatch,
         tmp_path,
-        {"cal": "http://cal"},
-        {"http://cal": requests.RequestException("boom")},
-        previous={"cal": old_hash},
-        create_issue=True,
+        {"a": "http://a", "b": "http://b"},
+        {
+            "http://a": requests.RequestException("boom"),
+            "http://b": fake_response(text="<p>v1</p>"),
+        },
     )
 
-    assert stored == {"cal": old_hash}
-    assert posted == [], "a fetch failure is not a content change"
+    assert "b" in stored
 
 
 def test_page_removed_from_the_watch_list_is_pruned(

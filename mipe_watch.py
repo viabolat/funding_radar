@@ -205,6 +205,7 @@ def main() -> None:
         name: h for name, h in previous_hashes.items() if name in WATCHED_PAGES
     }
     changed_pages = []
+    failed_pages = []
 
     for name, url in WATCHED_PAGES.items():
         try:
@@ -212,6 +213,7 @@ def main() -> None:
             response.raise_for_status()
         except requests.RequestException as exc:
             log.error("Failed to fetch %s (%s): %s", name, url, exc)
+            failed_pages.append(name)
             continue
 
         new_hash = normalized_text_hash(response.text)
@@ -263,6 +265,20 @@ def main() -> None:
         log.info("Changed pages this run: %s", ", ".join(changed_pages))
     else:
         log.info("No pages changed this run.")
+
+    # reason: a run where every page failed to fetch used to log the errors and
+    # exit 0, so it was reported as a green, quiet run — indistinguishable from
+    # "nothing changed", which is exactly the state this watcher exists to
+    # detect. mfe.gov.ro drops packets from GitHub's IP ranges, so this went
+    # unnoticed for a full run. State handling above is unchanged (baselines are
+    # kept, no Issue, no feed rows); only the exit code now tells the truth.
+    # A partial failure stays green: the pages that did fetch were still checked.
+    if WATCHED_PAGES and len(failed_pages) == len(WATCHED_PAGES):
+        log.error(
+            "Every watched page failed to fetch (%s) — this run checked nothing.",
+            ", ".join(failed_pages),
+        )
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
