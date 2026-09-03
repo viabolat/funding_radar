@@ -46,3 +46,6 @@ python /path/to/funding_radar.py    # hits the live sources, opens no Issue
   calibrated against, and every source quirk that has cost a debugging cycle.
 - `web/README.md` — the dashboard, its two cross-language contracts, and what
   is still stubbed.
+- `FIRST_RUN.md` — what the first deploy and the first watcher run actually do,
+  the numbers to sanity-check them against, and the failures to expect. Read it
+  before firing `funding-radar.yml` for the first time.
