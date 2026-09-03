@@ -1,0 +1,96 @@
+# Save this file as: .github/workflows/deploy-staging.yml
+#
+# Builds web/ and uploads it to the cPanel staging subdomain over FTPS.
+# Runs whenever the app or the feed changes on main, so a watcher committing
+# calls.json refreshes the dashboard on its own.
+#
+# calls.json is copied out of the repo root into web/public/ before the build —
+# that is where the app fetches it from, and it overwrites the sample feed
+# checked in for local development.
+#
+# SECRETS REQUIRED (repo Settings -> Secrets and variables -> Actions):
+#   CPANEL_FTP_HOST  e.g. ftp.example.org
+#   CPANEL_FTP_USER  the cPanel or FTP account user
+#   CPANEL_FTP_PASS  that account's password
+# VARIABLES REQUIRED (same page, "Variables" tab):
+#   STAGING_REMOTE_DIR  docroot of the subdomain, e.g. /staging.example.org
+#   STAGING_BASE_PATH   "/" when served at the subdomain root
+#
+# This is the first time this project needs a secret other than the automatic
+# GITHUB_TOKEN. Give the FTP account access to the staging docroot ONLY — if it
+# leaks, the blast radius should be one directory of public funding calls.
+#
+# Access control is host-side: cPanel -> Directory Privacy on the docroot.
+# Basic auth does not break the app; the browser replays credentials on the
+# same-origin calls.json fetch.
+
+name: Deploy staging dashboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "web/**"
+      - "calls.json"
+      - ".github/workflows/deploy-staging.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+# A watcher push and a manual deploy can land together; let the newer one win
+# rather than uploading an older build over a newer feed.
+concurrency:
+  group: deploy-staging
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Publish the live feed into the app
+        # The repo-root calls.json only exists once a watcher has run. Before
+        # that the sample feed checked into web/public/ is what ships.
+        run: '[ -f calls.json ] && cp calls.json web/public/calls.json || echo "no feed yet, keeping the sample"'
+
+      - name: Build
+        working-directory: web
+        env:
+          BASE_PATH: ${{ vars.STAGING_BASE_PATH || '/' }}
+        run: npm run build
+
+      - name: Upload to cPanel over FTPS
+        env:
+          HOST: ${{ secrets.CPANEL_FTP_HOST }}
+          USER: ${{ secrets.CPANEL_FTP_USER }}
+          PASS: ${{ secrets.CPANEL_FTP_PASS }}
+          REMOTE: ${{ vars.STAGING_REMOTE_DIR }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          # --delete prunes files the build no longer produces, so a stale
+          # hashed asset bundle cannot linger and get served.
+          # .htaccess is excluded: Directory Privacy writes it on the host and
+          # a deploy must never overwrite the auth config.
+          lftp -c "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate true;
+            open -u '$USER','$PASS' '$HOST';
+            mirror --reverse --delete --verbose --parallel=4 \
+                   --exclude-glob .htaccess --exclude-glob .htpasswd \
+                   web/dist/ '$REMOTE'
+          "

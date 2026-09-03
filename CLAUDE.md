@@ -101,6 +101,20 @@ Two contracts cross the language boundary and will break silently if only one si
 
 `web/src/styles/nocturne.css` is vendored from the design handoff — do not edit it. Everything this product added sits in `app.css`. See `web/README.md`.
 
+## Staging deploy
+
+The dashboard is **not** on GitHub Pages. The repo is private under a free-plan org, which cannot publish Pages, so `pages.yml` exists with its push trigger commented out and is inert — leave it that way unless the repo goes public.
+
+The live surface is a cPanel staging subdomain, deployed by `.github/workflows/deploy-staging.yml` on any push to `main` touching `web/**` or `calls.json`, so a watcher's state commit refreshes the dashboard on its own. cPanel was chosen over Vercel for one reason: access is host-level **Directory Privacy** (htpasswd), which cPanel does natively and Vercel charges for. Basic auth does not break the app — `calls.json` is fetched same-origin, so the browser replays the credentials.
+
+Three things about that workflow are load-bearing:
+
+- `BASE_PATH=/` (the `STAGING_BASE_PATH` variable). Vite writes every asset path relative to `base`; the default `/funding_radar/` is the Pages layout and would 404 everything at a subdomain root.
+- `calls.json` is copied from the repo root into `web/public/` **before** the build. The copy checked into `web/public/` is a development sample and is what ships if that step is skipped.
+- The upload excludes `.htaccess`/`.htpasswd`. Directory Privacy writes those on the host; a `mirror --delete` that did not exclude them would silently remove the auth on every deploy.
+
+This is the project's first secret beyond the automatic `GITHUB_TOKEN` (`CPANEL_FTP_HOST` / `_USER` / `_PASS`). Scope that FTP account to the staging docroot only.
+
 ## Workflow caveats
 
 Schedules are **UTC-only** — GitHub Actions has no `timezone:` support and silently ignores that key. Crons are therefore written in UTC (`0 5 * * 1` for the radar, `0 4 * * *` for the watcher), which lands at 07:00/06:00 Bucharest in winter and an hour later in summer. Do not "fix" this by re-adding `timezone:`.
