@@ -1,0 +1,799 @@
+{
+ "totalResults": 5,
+ "pageNumber": 1,
+ "pageSize": 100,
+ "results": [
+  {
+   "apiVersion": "2.154",
+   "reference": "50140738TOPICSes",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02",
+   "contentType": "text/plain",
+   "language": "es",
+   "databaseLabel": "SEDIA",
+   "database": "SEDIA",
+   "summary": "Investigación clínica realizada por Comprehensive Cancer Infrastructures en beneficio de pacientes con cánceres comunes",
+   "weight": 23.039677,
+   "groupById": "2",
+   "content": "Investigación clínica realizada por Comprehensive <b>Cancer</b> Infrastructures en beneficio de pacientes con <b>cánceres</b> comunes",
+   "accessRestriction": false,
+   "checksum": "C77F082BC91F02197087BA1A83007DEB9D9E035488BE5483D1E51700AD6F3DBB",
+   "metadata": {
+    "latestInfos": [
+     "[]"
+    ],
+    "es_SortDate": [
+     "2027-02-10T00:00:00.000+0000"
+    ],
+    "sepTemplate": [
+     "<p>Está previsto que el sistema de presentación se abra en la fecha indicada en el encabezado del tema.</p>"
+    ],
+    "keywords": [
+     "HORIZON-MISS-2027-02-CANCER-02",
+     "HORIZON-MISS-2027-02",
+     "Anticancer therapy",
+     "Clinical medicine",
+     "Digital data",
+     "Gender in basic medicine",
+     "Personalised medicine",
+     "Radiology, nuclear medicine and medical imaging",
+     "Translational medicine"
+    ],
+    "sortStatus": [
+     "2"
+    ],
+    "language": [
+     "es"
+    ],
+    "topicConditions": [
+     "<div class=\"eui-u-mt-l>\"><h4>Condiciones generales</h4><div><h4>1. Condiciones de admisibilidad: Límite de página y diseño de la propuesta</h4><div class=\"eui-u-mt-s\"><p><strong><em>﻿</em></strong> descrito en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo A</a> y <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo E</a> de los anexos generales del programa de trabajo de Horizonte Europa.</p><p><strong>Límites de página y diseño de la propuesta:</strong> descrito en la parte B del formulario de solicitud disponible en el sistema de presentación.</p></div></div><div><h4>2. Países elegibles</h4><div class=\"eui-u-mt-s\"><p>descritos en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo B</a> de los anexos generales del programa de trabajo.</p><p>Varios países no pertenecientes a la UE o no asociados que no son automáticamente elegibles para recibir financiación han adoptado disposiciones específicas para poner fondos a disposición de sus participantes en proyectos de Horizonte Europa. Véase la información en la <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Guía del Programa Horizonte Europa.</a></p></div></div><div><h4>3. Otras condiciones de elegibilidad</h4><div class=\"eui-u-mt-s\"><p>descritos en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo B</a> de los anexos generales del programa de trabajo.</p></div></div><div><h4>4. Capacidad financiera y operativa y exclusión</h4><div class=\"eui-u-mt-s\"><p>descritos en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo C</a> del programa de trabajo Anexos generales.</p></div></div><div><h4>5 bis. Evaluación y adjudicación: Criterios de adjudicación, puntuación y umbrales</h4><div class=\"eui-u-mt-s\"><p>descritos en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo D</a> del programa de trabajo Anexos generales.</p></div></div><div><h4>5 ter. Evaluación y adjudicación: Procesos de presentación y evaluación</h4><div class=\"eui-u-mt-s\"><p>Los umbrales para cada criterio serán 4 (Excelencia), 4 (Impacto) y 4 (Aplicación). El umbral acumulativo es de 12.</p></div><div class=\"eui-u-mt-s\"><p>se describen en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo F</a> del programa de trabajo, en los anexos generales y en el <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/om_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">manual en línea.</a></p></div></div><div><h4>5c. Evaluación y adjudicación: Calendario indicativo para la evaluación y el acuerdo de subvención</h4><div class=\"eui-u-mt-s\"><p>descritos en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo F</a> del programa de trabajo Anexos generales.</p></div></div><div><h4>6. Estructura jurídica y financiera de las subvenciones</h4><div class=\"eui-u-mt-s\"><p>Los costes subvencionables adoptarán la forma de una cantidad a tanto alzado tal como se define en la Decisión de 7 de julio de 2021 por la que se autoriza el uso de contribuciones a tanto alzado en el marco del Programa Horizonte Europa —el Programa Marco de Investigación e Innovación (2021-2027)— y en las acciones del Programa de Investigación y Formación de la Comunidad Europea de la Energía Atómica (2021-2025) [[La presente <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\"><u>Decisión</u></a> está disponible en el Portal de Financiación y Licitaciones, en la sección de documentos de referencia de Horizonte Europa, en «Decisiones sobre costes simplificados» o a través del presente enlace: <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\"><u>https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf</u></a>]].</p></div><div class=\"eui-u-mt-s\"><p>La autoridad otorgante podrá, hasta cuatro años después de la finalización de la acción, oponerse a una transferencia de propiedad o a la concesión de licencias exclusivas de resultados, tal como se establece en la disposición específica del anexo 5.</p></div><div class=\"eui-u-mt-s\"><p>descritos en <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">el anexo G</a> del programa de trabajo Anexos generales.</p></div></div></div><div class=\"eui-u-mt-l\"><h4>Condiciones específicas</h4> <div class=\"eui-u-mt-s\"><p>descrito en el tema específico del programa de trabajo</p></div></div><div class=\"eui-u-mt-l\"><div class=\"eui-u-mt-s\">\n</div><h4>Formularios de solicitud y evaluación y modelo de convenio de subvención:</h4> <div class=\"eui-u-mt-s\"><p><strong>Plantillas de formulario de solicitud</strong></p><p>Utilice el formulario de solicitud que encontrará en el sistema de presentación. Puede encontrar ejemplos de formularios de solicitud normalizados en la <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/reference-documents?programmePeriod=2021-2027&amp;frameworkProgramme=43108390\" rel=\"noopener noreferrer\" target=\"_blank\">página Documentos de referencia.</a></p><p><strong>Plantillas de formulario de evaluación:</strong> <em>se utilizarán con las adaptaciones necesarias.</em></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/temp-form/ef/ef_he-ria-ia_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Formulario de evaluación estándar (HE RIA, IA)</a></p><p><strong>Orientación</strong></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Guía del programa de educación superior</a> </p><p><strong>Modelo de acuerdo de subvención (MGA)</strong></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/agr-contr/ls-mga_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Suma a tanto alzado MGA</a> </p><p><strong>Instrucciones específicas de la convocatoria</strong> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/temp-form/af/detailed-budget-table_he-ls-euratom_en.xlsm\" rel=\"noopener noreferrer\" target=\"_blank\">Cuadro presupuestario detallado (HE LS)</a> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/temp-form/af/information-on-clinical-studies_he_en.docx\" rel=\"noopener noreferrer\" target=\"_blank\">Información sobre estudios clínicos (HE)</a> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-funding-what-do-i-need-to-know_he_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Orientación: &quot;Sumas de bombeo - ¿qué necesito saber?&quot;</a></p></div><h4>Documentos adicionales:</h4> <div class=\"eui-u-mt-s\"><p>Programa de trabajo principal de <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-1-general-introduction_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">la educación superior para 2026-2027 – 1. Introducción general</a></p><p>Programa de trabajo principal de <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-12-missions_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">la educación superior para 2026-2027 – 12. Misiones</a></p><p>Programa de trabajo principal de <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">la educación superior para 2026-2027 – 15. Anexos generales</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021R0695\" rel=\"noopener noreferrer\" target=\"_blank\">Programa Marco de educación superior y normas de participación Reglamento (UE) 2021/695</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021D0764\" rel=\"noopener noreferrer\" target=\"_blank\">Decisión 2021/764 sobre el programa específico de educación superior</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=OJ:L_202402509\" rel=\"noopener noreferrer\" target=\"_blank\">Reglamento Financiero de la UE 2024/2509</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Decisión por la que se autoriza el uso de contribuciones a tanto alzado en el marco del Programa Horizonte Europa</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/rules-lev-lear-fca_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Normas para la validación de las entidades jurídicas, el nombramiento del LEAR y la evaluación de la capacidad financiera</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/aga_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Subvenciones de la UE AGA — Modelo de acuerdo de subvención anotado</a></p><p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Manual en línea del Portal de Licitaciones</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/ftp/tc_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Términos y Condiciones del Portal de Licitaciones de Funding &amp;</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/legalnotice\" rel=\"noopener noreferrer\" target=\"_blank\">Declaración de privacidad de Funding &amp; Tenders Portal</a></p></div></div>"
+    ],
+    "title": [
+     "Investigación clínica realizada por Comprehensive Cancer Infrastructures en beneficio de pacientes con cánceres comunes"
+    ],
+    "type": [
+     "1"
+    ],
+    "esST_checksum": [
+     "C77F082BC91F02197087BA1A83007DEB9D9E035488BE5483D1E51700AD6F3DBB"
+    ],
+    "focusArea": [],
+    "esST_FileName": [
+     "file.txt"
+    ],
+    "typeOfMGAs": [
+     "43027849"
+    ],
+    "callIdentifier": [
+     "HORIZON-MISS-2027-02"
+    ],
+    "ccm2Id": [
+     "50140738"
+    ],
+    "callccm2Id": [
+     "50140770"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "REFERENCE": [
+     "50140738TOPICSes"
+    ],
+    "links": [
+     "[]"
+    ],
+    "callTitle": [
+     "Apoyo a la ejecución de la Misión contra el Cáncer"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "descriptionByte": [
+     "<p class=\"topicdescriptionkind\">Resultado esperado:</p><p>Las propuestas en relación con este tema deben tener por objeto obtener resultados orientados y adaptados a todos los resultados esperados siguientes y contribuir a ellos:</p><ul level=\"0\"><li>Los pacientes afectados por cáncer de pulmón, intestino, mama o próstata<sup> [1]</sup> se beneficiarán de los resultados de programas de investigación clínica basados en datos contrastados, adaptados, innovadores, asequibles y accesibles centrados <strong>en el diagnóstico y el tratamiento mediante infraestructuras oncológicas integrales</strong><sup> [2].</sup></li><li>Investigadores, médicos, representantes de pacientes, la sociedad civil, organizaciones benéficas, fundaciones, compañías de seguros, pymes e innovadores<sup> [3]</sup> aprovecharán las oportunidades para cocrear, apoyar, ampliar o comercializar, respectivamente, los resultados de programas de investigación clínica basados en pruebas, adaptados, asequibles y accesibles para el diagnóstico y el tratamiento de pacientes con cáncer de pulmón, intestino, mama o próstata.</li><li>Los proveedores nacionales y regionales de asistencia sanitaria, los pagadores de la asistencia sanitaria, los responsables políticos y las autoridades de las regiones europeas, los Estados miembros de la UE y los países asociados disponen de pruebas para participar en la experimentación, la ampliación o la aplicación de programas de investigación clínica adecuados para el diagnóstico y el tratamiento de pacientes con cáncer de pulmón, intestino, mama o próstata.</li> </ul><p class=\"topicdescriptionkind\">Ámbito de aplicación:</p><p>La incidencia, la mortalidad y la prevalencia del cáncer de pulmón, intestino, mama y próstata en los Estados miembros de la UE y los países asociados están aumentando, al tiempo que muestran variaciones sustanciales, con comunidades, regiones y países de Europa Central y Oriental especialmente afectados<sup> [4].</sup> Al mismo tiempo, el nivel de desarrollo de infraestructuras oncológicas integrales sigue variando considerablemente entre los Estados miembros de la UE y los países asociados, lo que contribuye a las desigualdades, en particular en términos de capacidad de investigación clínica, así como de calidad y acceso a intervenciones diagnósticas y terapéuticas innovadoras.</p><p>Los solicitantes deben abordar todo lo siguiente:</p><ul level=\"0\"><li>Las infraestructuras oncológicas integrales de los Estados miembros de la UE y los países asociados se unen para llevar a cabo investigaciones clínicas sobre el cáncer de pulmón, intestino, mama o próstata, centrándose en al menos uno de los siguientes ámbitos:<ul level=\"1\"><li>Diagnósticos innovadores;</li><li>Radioterapia, cirugía, quimioterapia;</li><li>Vacunas terapéuticas contra el cáncer para el tratamiento de pacientes con cáncer con enfermedad residual en estadio temprano, avanzada, metastásica o mínima (por ejemplo, después del debulking mediante cirugía, quimioterapia, radioterapia o inmunoterapia);</li><li>Implementación de guías de práctica clínica apropiadas para el diagnóstico y tratamiento en países sin o con infraestructuras integrales de cáncer limitadas;</li>   </ul> </li><li>Las infraestructuras oncológicas integrales deben poner a prueba y ampliar ampliamente programas innovadores de diagnóstico o tratamiento en al menos cuatro Estados miembros de la UE o países asociados diferentes. Uno de los cuatro Estados miembros de la UE destinatarios debe representar a un país sin o con una infraestructura global contra el cáncer menos desarrollada.</li><li>Garantizar que, al diseñar y llevar a cabo programas innovadores de investigación clínica con valor añadido para el diagnóstico y tratamiento oportunos de pacientes con cáncer de pulmón, intestino, mama o próstata, aborden conjuntamente, y siempre que sea factible, los retos derivados del contexto nacional, regional o local de investigación y asistencia sanitaria [por ejemplo, los que afrontan los Estados miembros de la UE pequeños o más pequeños, o debido a una gran población rural, o a una carga particular de cáncer, situación socioeconómica o medioambiental, o a una capacidad limitada de investigación clínica<sup> [5]].</sup></li><li>Identificar recursos adicionales a través del Fondo Europeo de Desarrollo de la Investigación (FEDER), el Instrumento de Apoyo Técnico<sup> [6]</sup>, el Mecanismo de Resiliencia y Recuperación (MRR), la filantropía, el Grupo del Banco Europeo de Inversiones (BEI<sup> [7]</sup>, FEI<sup> [8]</sup>) o cualquier otra iniciativa.</li><li>Los programas innovadores de investigación clínica deben definirse junto con los pacientes y sus cuidadores/familias utilizando modelos de investigación participativos y adaptarse a las necesidades de la población destinataria y a las especificidades de la prestación de asistencia sanitaria a nivel local, regional o nacional, reflejando debidamente la diversidad (cultural) y los recursos disponibles en los Estados miembros de la UE y los países asociados;</li><li>Los datos deben desglosarse por sexo, género, edad y otras variables pertinentes, como las medidas de la situación socioeconómica o el origen étnico;</li><li>Todos los conjuntos de datos producidos deben describirse con registros de metadatos en el catálogo de conjuntos de datos de la UE del Espacio Europeo de Datos Sanitarios, mientras que todas las herramientas y modelos deben aprovechar las infraestructuras de investigación europeas actuales, deben seguir los principios de la ciencia abierta y ponerse a disposición a través de la futura plataforma UNCAN.eu;</li><li>Los solicitantes deben incluir una combinación adecuada de partes interesadas de diversas disciplinas y sectores<sup> [9]</sup> y facilitar detalles de los estudios clínicos en el anexo específico utilizando el modelo facilitado en el sistema de presentación.</li> </ul><p>Se pedirá a las propuestas que tengan éxito que se adhieran al clúster «Diagnóstico y tratamiento»<sup>[10]</sup> para la Misión de la UE contra el Cáncer y que incluyan un presupuesto para la creación de redes, la asistencia a reuniones y actividades conjuntas<sup> [11].</sup> La Comisión facilitará la coordinación de estas actividades.</p><p>Se espera que las propuestas seleccionadas se basen en las redes pertinentes puestas en marcha en el marco del Plan Europeo de Lucha contra el Cáncer que podrían facilitar los ensayos clínicos transfronterizos<sup> [12],</sup> los recursos puestos a disposición por las infraestructuras de investigación pertinentes del ESFRI<sup> [13]</sup> y el Centro de Conocimiento sobre el Cáncer para fomentar la armonización y la coordinación<sup> de la UE [14].</sup></p><p class=\"eui-u-font-s\">[1] Cualquier grupo de edad o subtipo de cáncer</p><p class=\"eui-u-font-s\">[2] Infraestructuras nacionales o regionales que proporcionan recursos y servicios para apoyar, mejorar e integrar la atención del cáncer, la investigación, la formación de profesionales de la atención y la educación para pacientes con cáncer, sobrevivientes y sus familias / cuidadores de cualquier grupo de edad. Por lo tanto, las infraestructuras integrales contra el cáncer podrían consistir en cualquier combinación, número o tipo de centro oncológico -público o privado-, hospital, centro médico universitario, departamento o instituto de investigación, empresa, centro de salud pública, etc.</p><p class=\"eui-u-font-s\">[3] Los innovadores convierten los resultados de la investigación en nuevos y mejores servicios y productos, para seguir siendo competitivos en un mercado mundial y mejorar la calidad de vida de los ciudadanos europeos.</p><p class=\"eui-u-font-s\">[4] Registro de desigualdades en cáncer: <a href=\"https://cancer-inequalities.jrc.ec.europa.eu/\">https://cancer-inequalities.jrc.ec.europa.eu/</a></p><p class=\"eui-u-font-s\">[5] Laboratorios de investigación, infraestructuras de diagnóstico y ensayos clínicos</p><p class=\"eui-u-font-s\">[6] <a href=\"https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/technical-support-instrument/technical-support-instrument-tsi_en\"><strong>Instrumento de Apoyo Técnico (ETI),</strong></a><strong> DG </strong>REFORM</p><p class=\"eui-u-font-s\">[7] <a href=\"https://www.eib.org/en/index\"><strong>Homepage | Banco Europeo de Inversiones</strong></a></p><p class=\"eui-u-font-s\">[8] <a href=\"https://www.eif.org/index.htm\"><strong>eif.org/index.htm</strong></a></p><p class=\"eui-u-font-s\">[9] como los médicos, el mundo académico, los pacientes y sus cuidadores, los representantes de los pacientes, los ingenieros, los científicos del comportamiento, las pymes, las redes empresariales, las compañías de seguros, las organizaciones benéficas y fundaciones, las organizaciones de investigación y la sociedad civil.</p><p class=\"eui-u-font-s\">[10] Con el fin de abordar los objetivos de la Misión de la UE contra el Cáncer, los participantes colaborarán en grupos de proyectos para aprovechar la financiación de la UE, aumentar la creación de redes entre sectores y disciplinas y establecer una cartera de acciones políticas y de I+i de la Misión de la UE contra el Cáncer.</p><p class=\"eui-u-font-s\">[11] Ejemplos de estas actividades son la investigación o la capacidad de investigación, la organización de talleres conjuntos, el establecimiento de mejores prácticas, las actividades conjuntas de comunicación o participación ciudadana con proyectos financiados en el marco de otros clústeres y pilares de Horizonte Europa u otros programas de la UE, según proceda. No es necesario que las propuestas incluyan detalles de estas actividades, ya que se definirán durante la preparación del acuerdo de subvención y durante la vida del proyecto.</p><p class=\"eui-u-font-s\">[12] Como la Red de centros oncológicos integrales de la UE EUNetCCC</p><p class=\"eui-u-font-s\">[13] Como BBMRI, EATRIS, ELIXIR, ECRIN.</p><p class=\"eui-u-font-s\">[14] Organizado por el Centro Común de Investigación (CCI) de la Comisión Europea. Especialmente a través de las «Directrices europeas y sistemas de garantía de calidad para la detección y el diagnóstico del cáncer de mama, colorrectal y cervical», el «Sistema Europeo de Información sobre el Cáncer (ECIS)» y el «Registro Europeo de Desigualdades del Cáncer (ECIR), véase https://knowledge4policy.ec.europa.eu/cancer_en.</p>"
+    ],
+    "identifier": [
+     "HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "es_ContentType": [
+     "text/plain"
+    ],
+    "programmeDivision": [
+     "43108390",
+     "43108541",
+     "43108557"
+    ],
+    "crossCuttingPriorities": [
+     "DigitalAgenda",
+     "AI"
+    ],
+    "esDA_FirstIngestDate": [
+     "2026-07-06T16:31:11.405+0200"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2027-09-21T00:00:00.000+0000"
+    ],
+    "esDA_IngestDate": [
+     "2026-07-06T16:37:02.576+0200"
+    ],
+    "typesOfAction": [
+     "HORIZON Innovation Actions"
+    ],
+    "url": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "es_Combine": [
+     "2"
+    ],
+    "esST_URL": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "tags": [
+     "Cancer centre",
+     "Clinical Trial Centre",
+     "Comprehensive Cancer Centre",
+     "Diagnostic facilities",
+     "Hospital",
+     "Medical Centre",
+     "Oncology Department"
+    ],
+    "esDA_QueueDate": [
+     "2026-07-06T16:37:02.558+0200"
+    ],
+    "actions": [
+     "[{\"types\":[{\"typeOfAction\":\"HORIZON-IA HORIZON Innovation Actions\",\"typeOfMGA\":[{\"id\":43027849,\"abbreviation\":\"HORIZON-AG-LS\",\"description\":\"HORIZON Lump Sum Grant\"}]}],\"status\":{\"id\":31094501,\"abbreviation\":\"Forthcoming\",\"description\":\"Forthcoming\"},\"plannedOpeningDate\":\"2027-02-10\",\"submissionProcedure\":{\"id\":31094504,\"abbreviation\":\"single-stage\",\"description\":\"single-stage\"},\"deadlineDates\":[\"2027-09-21\"]}]"
+    ],
+    "allowPartnerSearch": [
+     "true"
+    ],
+    "budgetOverview": [
+     "{\"budgetYearsColumns\":[\"2027\"],\"budgetTopicActionMap\":{\"113121\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-03 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":3,\"minContribution\":7000000,\"maxContribution\":9000000,\"budgetYearMap\":{\"2027\":\"24000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113120\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-02 - HORIZON-IA HORIZON Innovation Actions\",\"expectedGrants\":3,\"minContribution\":7000000,\"maxContribution\":10000000,\"budgetYearMap\":{\"2027\":\"20000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113123\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-06 - HORIZON-CSA HORIZON Coordination and Support Actions\",\"expectedGrants\":1,\"minContribution\":3000000,\"maxContribution\":3000000,\"budgetYearMap\":{\"2027\":\"3000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113122\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-01 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":4,\"minContribution\":7000000,\"maxContribution\":8000000,\"budgetYearMap\":{\"2027\":\"32323812\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113125\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-05 - HORIZON-PCP HORIZON Pre-commercial Procurement\",\"expectedGrants\":3,\"minContribution\":8000000,\"maxContribution\":10000000,\"budgetYearMap\":{\"2027\":\"26000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113124\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-04 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":3,\"minContribution\":5000000,\"maxContribution\":7000000,\"budgetYearMap\":{\"2027\":\"10000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}]}}"
+    ],
+    "startDate": [
+     "2027-02-10T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "specificObjective": [],
+    "supportInfo": [
+     "<p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">El Manual en línea</a> es su guía sobre los procedimientos desde la presentación de propuestas hasta la gestión de su subvención.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">La Guía del Programa Horizonte Europa</a> contiene orientaciones detalladas sobre la estructura, el presupuesto y las prioridades políticas de Horizonte Europa.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/faq?isExactMatch=true&amp;status=0&amp;type=0,1&amp;order=DESC&amp;pageNumber=1&amp;pageSize=50&amp;sortBy=publicationDate\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal FAQ:</a> encuentra las respuestas a las preguntas más frecuentes sobre la presentación de propuestas, la evaluación y la gestión de subvenciones.</p><p><a href=\"https://research-and-innovation.ec.europa.eu/contact-us/research-enquiry-service_en\" rel=\"noopener noreferrer\" target=\"_blank\">Servicio de Investigación:</a> formular preguntas sobre cualquier aspecto de la investigación europea en general y de los programas marco de investigación de la UE en particular.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/ncp\" rel=\"noopener noreferrer\" target=\"_blank\">Puntos de contacto nacionales (PCN):</a> obtener orientación, información práctica y asistencia sobre la participación en Horizonte Europa. También hay puntos de contacto nacionales en muchos países no pertenecientes a la UE y no asociados («terceros países»).</p><p><a href=\"https://een.ec.europa.eu/\" rel=\"noopener noreferrer\" target=\"_blank\">Red Europea para las Empresas:</a> póngase en contacto con su contacto nacional de la Red Europea para las Empresas para asesorar a las empresas, prestando especial atención a las pymes. El apoyo incluye orientaciones sobre la financiación de la investigación de la UE.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/helpdesks/contact-form\" rel=\"noopener noreferrer\" target=\"_blank\">Servicio de asistencia informática:</a> póngase en contacto con el servicio de asistencia informática de Funding &amp; Tenders Portal para preguntas como contraseñas olvidadas, derechos y funciones de acceso, aspectos técnicos de la presentación de propuestas, etc.</p><p><a href=\"https://intellectual-property-helpdesk.ec.europa.eu/index_en\" rel=\"noopener noreferrer\" target=\"_blank\">European IPR Helpdesk</a> le ayuda en cuestiones de propiedad intelectual.</p><p><a href=\"mailto:research@cencenelec.eu\" rel=\"noopener noreferrer\" target=\"_blank\">CEN-CENELEC Research Helpdesk</a> y <a href=\"https://www.etsi.org/research/helpdesk\" rel=\"noopener noreferrer\" target=\"_blank\">ETSI Research Helpdesk:</a> las organizaciones europeas de normalización le aconsejan cómo abordar la normalización en su propuesta de proyecto.</p><p><a href=\"https://euraxess.ec.europa.eu/sites/default/files/am509774cee_en_e4.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">La Carta Europea del Investigador y el Código de Conducta para su contratación:</a> consulta los principios y requisitos generales que especifican las funciones, responsabilidades y derechos de los investigadores, los empleadores y los financiadores de los investigadores.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/partner-search?order=DESC&amp;pageNumber=1&amp;pageSize=50&amp;sortBy=lastModified&amp;isExactMatch=true&amp;type=ORGANISATION,PERSON&amp;frameworkProgramme=43108390\" rel=\"noopener noreferrer\" target=\"_blank\">Partner Search</a> te ayuda a encontrar una organización asociada para tu propuesta.</p>"
+    ],
+    "status": [
+     "31094501"
+    ]
+   },
+   "enrichedMetadata": {},
+   "children": [],
+   "highlightedFragments": [
+    "Investigación clínica realizada por Comprehensive <b>Cancer</b> Infrastructures en beneficio de pacientes con <b>cánceres</b> comunes"
+   ],
+   "citation": "Investigación clínica realizada por Comprehensive Cancer Infrastructures en beneficio de pacientes con cánceres comunes. Available at: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+  },
+  {
+   "apiVersion": "2.154",
+   "reference": "47176970TOPICSes",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json",
+   "contentType": "text/plain",
+   "language": "es",
+   "databaseLabel": "SEDIA",
+   "database": "SEDIA",
+   "summary": "Call for proposals to support the establishment of new networks of expertise on cancer and cancer conditions - (CR-g-24-96)",
+   "weight": 21.510593,
+   "groupById": "1",
+   "content": "Call for proposals to support the establishment of new networks of expertise on <b>cancer</b> and <b>cancer</b> conditions - (CR-g-24-96)",
+   "accessRestriction": false,
+   "checksum": "F3CAC5421097C80E4973A96533086CB84E7927CF577053240E533D1B2079C545",
+   "metadata": {
+    "latestInfos": [
+     "[{\"approvalDate\":\"\",\"lastChangeDate\":\"2024-11-05T13:56:27.658\",\"content\":\"\\u003cp\\u003eThe updated version of the Questions and Answers is published in the following link:\\u003c/p\\u003e\\u003cp\\u003e \\u003ca href\\u003d\\\"https://eur01.safelinks.protection.outlook.com/?url\\u003dhttps%3A%2F%2Fhadea.ec.europa.eu%2Fevents%2Finfo-session-eu4health-action-grants-2024-second-wave-2024-09-19_en\\u0026data\\u003d05%7C02%7CLorena.ANDROUTSOU%40ec.europa.eu%7Ce654813547744e4f5e9d08dcfcc4356c%7Cb24c8b06522c46fe908070926f8dddb1%7C1%7C0%7C638663166862521289%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\\u0026amp;sdata\\u003dI2OGRnbs9NcCHjeT4Mb1Mghsy59i56f8xFf%2FDSE8V5U%3D\\u0026amp;reserved\\u003d0\\\" rel\\u003d\\\"noopener noreferrer\\\" target\\u003d\\\"_blank\\\"\\u003eInfo session - EU4Health action grants, 2024 second wave - European Commission\\u003c/a\\u003e \\u003c/p\\u003e\"},{\"approvalDate\":\"\",\"lastChangeDate\":\"2024-09-17T11:56:57.661\",\"content\":\"The submission session is now available for: EU4H-2024-PJ-03-2-c, EU4H-2024-PJ-03-1, EU4H-2024-PJ-03-4, EU4H-2024-PJ-03-3, EU4H-2024-PJ-03-2-b, EU4H-2024-PJ-03-6, EU4H-2024-PJ-03-2-a, EU4H-2024-PJ-03-5, EU4H-2024-PJ-03-7\"}]"
+    ],
+    "es_SortDate": [
+     "2024-09-16T22:00:00.000+0000"
+    ],
+    "sepTemplate": [
+     "<p>To access the Electronic Submission Service, please click on the submission-button next to the <strong>type of action</strong> and the <strong>type of model grant agreement</strong> that corresponds to your proposal. You will then be asked to confirm your choice, as it cannot be changed in the submission system. Upon confirmation, you will be linked to the correct entry point.</p><p>To access existing draft proposals for this topic, please login to the Funding & Tenders Portal and select the My Proposals page of the My Area section.</p>"
+    ],
+    "keywords": [],
+    "sortStatus": [
+     "1"
+    ],
+    "language": [
+     "es"
+    ],
+    "topicConditions": [
+     "<div class=\"eui-u-mt-l>\"><h4>Conditions</h4><div><h4> Conditions</h4><div class=\"eui-u-mt-s\"><p><strong>1. Admissibility conditions: </strong>described in section 5 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><strong>Proposal page limits and layout:</strong> described in Part B of the Application Form available in the Submission System</p><p><strong>2. Eligible countries:&nbsp;</strong>described in section 6 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><strong>3. Other eligibility conditions:</strong>&nbsp;described in section 6 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><strong>4. Financial and operational capacity and exclusion:&nbsp;</strong>described in&nbsp;section 7 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><ol><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Submission and evaluation processes:</strong>&nbsp;described&nbsp;section 8 of the call document and the&nbsp;<a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/om_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Online Manual</a></li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Award criteria, scoring and thresholds:</strong>&nbsp;described in section 9 of the call document</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Indicative timeline for evaluation and grant agreement:&nbsp;</strong>described in section 4 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></li></ol><p><strong>6. Legal and financial set-up of the grants:&nbsp;</strong>described&nbsp;in section 10 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p></div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div></div><div class=\"eui-u-mt-l\"><h4> </h4> <div class=\"eui-u-mt-s\"><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/temp-form/af/af_eu4h_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Standard application form ([ToA])</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/temp-form/af/detailed-budget-table_eu4h_en.xlsx\" rel=\"noopener noreferrer\" target=\"_blank\">Detailed budget table ([ToA])</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/agr-contr/mga_eu4h_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">EU4Health Programme General MGA v1.1</a></p><p><a href=\"https://health.ec.europa.eu/publications/2024-eu4health-work-programme_en\" rel=\"noopener noreferrer\" target=\"_blank\">EU4Health Work Programme 2024</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021R0522\" rel=\"noopener noreferrer\" target=\"_blank\">EU4Health Regulation 2021/522</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32018R1046&qid=1535046024012\" rel=\"noopener noreferrer\" target=\"_blank\">EU Financial Regulation 2018/1046</a></p></div><h4> </h4> <div class=\"eui-u-mt-s\"> </div><h4> </h4> <div class=\"eui-u-mt-s\"> </div></div>"
+    ],
+    "title": [
+     "Call for proposals to support the establishment of new networks of expertise on cancer and cancer conditions - (CR-g-24-96)"
+    ],
+    "type": [
+     "1"
+    ],
+    "esST_checksum": [
+     "F3CAC5421097C80E4973A96533086CB84E7927CF577053240E533D1B2079C545"
+    ],
+    "focusArea": [],
+    "esST_FileName": [
+     "file.txt"
+    ],
+    "typeOfMGAs": [
+     "43326018"
+    ],
+    "callIdentifier": [
+     "EU4H-2024-PJ-03"
+    ],
+    "ccm2Id": [
+     "47176970"
+    ],
+    "callccm2Id": [
+     "47177033"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "REFERENCE": [
+     "47176970TOPICSes"
+    ],
+    "links": [
+     "[{\"callIdentifier\":\"EU4H-2024-PJ-03\",\"criterionCode\":\"EU4H-PJG\",\"criterionDescription\":\"EU4H Project Grants\",\"url\":\"https://ec.europa.eu/research/participants/submission/manage/screen/submission/create-draft/37623?topic\\u003dEU4H-2024-PJ-03-5\",\"startDate\":\"1726524000000\",\"endDate\":\"1737500400000\",\"mgaDescription\":\"EU4H Action Grant Budget-Based\",\"mgaCode\":\"EU4H-AG\"}]"
+    ],
+    "callTitle": [
+     "EU4H Action Grants 2024"
+    ],
+    "frameworkProgramme": [
+     "43332642"
+    ],
+    "descriptionByte": [
+     "<span class=\"topicdescriptionkind\">Expected Impact:</span><p>The expected result is to enable stakeholders to contribute to the delivery of the joint action on new networks of expertise launched under the EU4Health work programme 2023. This will include of establishing within the networks of expertise supporting actions for patients, families, caregivers and other participants in the fight against cancer. This action will help Member States to improve cooperation among their cancer services and with health professionals and patient advocates (by for instance addressing skill gaps and better equipping the health workforce in cancer care); and to improve and deepen the cooperation with the non-governmental sector.</p><span class=\"topicdescriptionkind\">Objective:</span><p>Activities will complement the joint action on new networks of expertise to be launched under the EU4Health work programme 2023 (CR-g-23-40.1-2).</p><span class=\"topicdescriptionkind\">Scope:</span><p>Activities will complement the joint action on new networks of expertise to be launched under</p><p>the EU4Health work programme 2023 (CR-g-23-40.1-2), and include:</p><p>a) implementing targeted projects involving patient organisations, civil societies, non-government organisations complementing the Member States’ efforts in the design, planning and implementation of the networks;</p><p>b) the establishment of best practices, the production of public health, treatment guidelines, or </p><p>other actions that can benefit patients;</p><p>c) the preparation and roll out of innovative practices (pilot tests), and support actions such as training and twinning, health communication or health literacy.</p><p>Support activities could include:</p><p>a) practical support (to help patients better understand the impact of cancer and treatment; managing the side effects of cancer and cancer treatment);</p><p>b) emotional support (regular consultations in support groups and workshops, aimed at supporting and helping patients to manage the difficult psychological and emotional impact of cancer);</p><p>c) education and information (practical information on diet in cancer, oncology workshops for healthcare professionals and support personnel, tailored to specific types of cancer and their symptoms).</p><p>These resources will help guiding patients through their cancer journey by shedding light on some of the unknowns that come with a cancer diagnosis. The resources will also include a range of exercise classes and groups to suit individual needs (physical activities can help to reduce symptoms of anxiety, fatigue, improving patient mood and physical functioning); organising of survivorship groups for families and patients for education of special techniques and acquiring skills for dealing with stress and anxiety with cancer; mindfulness resources and programmes to help patients and their families to improve and maintain their wellbeing; manage the emotional challenges that a cancer diagnosis and treatment can present that can be an important part of the patient cancer journey.</p>"
+    ],
+    "identifier": [
+     "EU4H-2024-PJ-03-5"
+    ],
+    "es_ContentType": [
+     "text/plain"
+    ],
+    "programmeDivision": [
+     "43332657"
+    ],
+    "crossCuttingPriorities": [],
+    "esDA_FirstIngestDate": [
+     "2024-11-15T03:05:05.167+0100"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2025-01-21T23:00:00.000+0000"
+    ],
+    "esDA_IngestDate": [
+     "2024-11-15T03:05:05.167+0100"
+    ],
+    "typesOfAction": [
+     "EU4H Project Grants"
+    ],
+    "url": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json"
+    ],
+    "es_Combine": [
+     "1"
+    ],
+    "esST_URL": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json"
+    ],
+    "tags": [],
+    "esDA_QueueDate": [
+     "2024-11-15T03:05:05.096+0100"
+    ],
+    "actions": [
+     "[{\"types\":[{\"typeOfAction\":\"EU4H-PJG EU4H Project Grants\",\"typeOfMGA\":[{\"id\":43326018,\"abbreviation\":\"EU4H-AG\",\"description\":\"EU4H Action Grant Budget-Based\"}]}],\"status\":{\"id\":31094502,\"abbreviation\":\"Open\",\"description\":\"Open\"},\"plannedOpeningDate\":\"2024-09-17\",\"submissionProcedure\":{\"id\":31094504,\"abbreviation\":\"single-stage\",\"description\":\"single-stage\"},\"deadlineDates\":[\"2025-01-22\"]}]"
+    ],
+    "allowPartnerSearch": [
+     "true"
+    ],
+    "budgetOverview": [
+     "{\"budgetYearsColumns\":[\"2024\"],\"budgetTopicActionMap\":{\"125568\":[{\"action\":\"EU4H-2024-PJ-03-7 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":450000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125561\":[{\"action\":\"EU4H-2024-PJ-03-1 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":2000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125560\":[{\"action\":\"EU4H-2024-PJ-03-2-c - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":1000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125563\":[{\"action\":\"EU4H-2024-PJ-03-3 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":3000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125562\":[{\"action\":\"EU4H-2024-PJ-03-4 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":3000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125565\":[{\"action\":\"EU4H-2024-PJ-03-6 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":4500000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125564\":[{\"action\":\"EU4H-2024-PJ-03-2-b - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":2500000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125567\":[{\"action\":\"EU4H-2024-PJ-03-5 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":1000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125566\":[{\"action\":\"EU4H-2024-PJ-03-2-a - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":1500000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}]}}"
+    ],
+    "startDate": [
+     "2024-09-16T22:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "supportInfo": [
+     "<p>For help related to this call, please contact <a href=\"mailto:hadea-hp-calls@ec.europa.eu\" rel=\"noopener noreferrer\" target=\"_blank\">hadea-hp-calls@ec.europa.eu</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/faq?order=DESC&pageNumber=1&amp;pageSize=10&amp;sortBy=publicationDate&amp;isExactMatch=true&amp;type=1&amp;grantCategories=p_submission_eval\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal FAQ – Submission of proposals</a>.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/helpdesks/contact-form\" rel=\"noopener noreferrer\" target=\"_blank\">IT Helpdesk</a> – Contact the IT helpdesk for questions such as forgotten passwords, access rights and roles, technical aspects of submission of proposals, etc.</p><p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Online Manual</a> – Step-by-step online guide through the Portal processes from proposal preparation and evaluation to reporting on your ongoing project. Valid for all 2021-2027 programmes.</p>"
+    ],
+    "status": [
+     "31094502"
+    ]
+   },
+   "enrichedMetadata": {},
+   "children": [],
+   "highlightedFragments": [
+    "Call for proposals to support the establishment of new networks of expertise on <b>cancer</b> and <b>cancer</b> conditions - (CR-g-24-96)"
+   ],
+   "citation": "Call for proposals to support the establishment of new networks of expertise on cancer and cancer conditions - (CR-g-24-96). Available at: https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json"
+  },
+  {
+   "apiVersion": "2.154",
+   "reference": "47176970TOPICSro",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json",
+   "contentType": "text/plain",
+   "language": "ro",
+   "databaseLabel": "SEDIA",
+   "database": "SEDIA",
+   "summary": "Call for proposals to support the establishment of new networks of expertise on cancer and cancer conditions - (CR-g-24-96)",
+   "weight": 20.184595,
+   "groupById": "1",
+   "content": "Call for proposals to support the establishment of new networks of expertise on <b>cancer</b> and <b>cancer</b> conditions - (CR-g-24-96)",
+   "accessRestriction": false,
+   "checksum": "F3CAC5421097C80E4973A96533086CB84E7927CF577053240E533D1B2079C545",
+   "metadata": {
+    "latestInfos": [
+     "[{\"approvalDate\":\"\",\"lastChangeDate\":\"2024-11-05T13:56:27.658\",\"content\":\"\\u003cp\\u003eThe updated version of the Questions and Answers is published in the following link:\\u003c/p\\u003e\\u003cp\\u003e \\u003ca href\\u003d\\\"https://eur01.safelinks.protection.outlook.com/?url\\u003dhttps%3A%2F%2Fhadea.ec.europa.eu%2Fevents%2Finfo-session-eu4health-action-grants-2024-second-wave-2024-09-19_en\\u0026data\\u003d05%7C02%7CLorena.ANDROUTSOU%40ec.europa.eu%7Ce654813547744e4f5e9d08dcfcc4356c%7Cb24c8b06522c46fe908070926f8dddb1%7C1%7C0%7C638663166862521289%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C\\u0026amp;sdata\\u003dI2OGRnbs9NcCHjeT4Mb1Mghsy59i56f8xFf%2FDSE8V5U%3D\\u0026amp;reserved\\u003d0\\\" rel\\u003d\\\"noopener noreferrer\\\" target\\u003d\\\"_blank\\\"\\u003eInfo session - EU4Health action grants, 2024 second wave - European Commission\\u003c/a\\u003e \\u003c/p\\u003e\"},{\"approvalDate\":\"\",\"lastChangeDate\":\"2024-09-17T11:56:57.661\",\"content\":\"The submission session is now available for: EU4H-2024-PJ-03-2-c, EU4H-2024-PJ-03-1, EU4H-2024-PJ-03-4, EU4H-2024-PJ-03-3, EU4H-2024-PJ-03-2-b, EU4H-2024-PJ-03-6, EU4H-2024-PJ-03-2-a, EU4H-2024-PJ-03-5, EU4H-2024-PJ-03-7\"}]"
+    ],
+    "es_SortDate": [
+     "2024-09-16T22:00:00.000+0000"
+    ],
+    "sepTemplate": [
+     "<p>To access the Electronic Submission Service, please click on the submission-button next to the <strong>type of action</strong> and the <strong>type of model grant agreement</strong> that corresponds to your proposal. You will then be asked to confirm your choice, as it cannot be changed in the submission system. Upon confirmation, you will be linked to the correct entry point.</p><p>To access existing draft proposals for this topic, please login to the Funding & Tenders Portal and select the My Proposals page of the My Area section.</p>"
+    ],
+    "keywords": [],
+    "sortStatus": [
+     "1"
+    ],
+    "language": [
+     "ro"
+    ],
+    "topicConditions": [
+     "<div class=\"eui-u-mt-l>\"><h4>Conditions</h4><div><h4> Conditions</h4><div class=\"eui-u-mt-s\"><p><strong>1. Admissibility conditions: </strong>described in section 5 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><strong>Proposal page limits and layout:</strong> described in Part B of the Application Form available in the Submission System</p><p><strong>2. Eligible countries:&nbsp;</strong>described in section 6 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><strong>3. Other eligibility conditions:</strong>&nbsp;described in section 6 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><strong>4. Financial and operational capacity and exclusion:&nbsp;</strong>described in&nbsp;section 7 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><ol><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Submission and evaluation processes:</strong>&nbsp;described&nbsp;section 8 of the call document and the&nbsp;<a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/om_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Online Manual</a></li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Award criteria, scoring and thresholds:</strong>&nbsp;described in section 9 of the call document</li><li data-list=\"ordered\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Indicative timeline for evaluation and grant agreement:&nbsp;</strong>described in section 4 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></li></ol><p><strong>6. Legal and financial set-up of the grants:&nbsp;</strong>described&nbsp;in section 10 of the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p></div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div><div><h4> </h4><div class=\"eui-u-mt-s\"> </div></div></div><div class=\"eui-u-mt-l\"><h4> </h4> <div class=\"eui-u-mt-s\"><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/wp-call/2024/call-fiche_eu4h-2024-pj-03_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Call document</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/temp-form/af/af_eu4h_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Standard application form ([ToA])</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/temp-form/af/detailed-budget-table_eu4h_en.xlsx\" rel=\"noopener noreferrer\" target=\"_blank\">Detailed budget table ([ToA])</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/eu4h/agr-contr/mga_eu4h_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">EU4Health Programme General MGA v1.1</a></p><p><a href=\"https://health.ec.europa.eu/publications/2024-eu4health-work-programme_en\" rel=\"noopener noreferrer\" target=\"_blank\">EU4Health Work Programme 2024</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021R0522\" rel=\"noopener noreferrer\" target=\"_blank\">EU4Health Regulation 2021/522</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32018R1046&qid=1535046024012\" rel=\"noopener noreferrer\" target=\"_blank\">EU Financial Regulation 2018/1046</a></p></div><h4> </h4> <div class=\"eui-u-mt-s\"> </div><h4> </h4> <div class=\"eui-u-mt-s\"> </div></div>"
+    ],
+    "title": [
+     "Call for proposals to support the establishment of new networks of expertise on cancer and cancer conditions - (CR-g-24-96)"
+    ],
+    "type": [
+     "1"
+    ],
+    "esST_checksum": [
+     "F3CAC5421097C80E4973A96533086CB84E7927CF577053240E533D1B2079C545"
+    ],
+    "focusArea": [],
+    "esST_FileName": [
+     "file.txt"
+    ],
+    "typeOfMGAs": [
+     "43326018"
+    ],
+    "callIdentifier": [
+     "EU4H-2024-PJ-03"
+    ],
+    "ccm2Id": [
+     "47176970"
+    ],
+    "callccm2Id": [
+     "47177033"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "REFERENCE": [
+     "47176970TOPICSro"
+    ],
+    "links": [
+     "[{\"callIdentifier\":\"EU4H-2024-PJ-03\",\"criterionCode\":\"EU4H-PJG\",\"criterionDescription\":\"EU4H Project Grants\",\"url\":\"https://ec.europa.eu/research/participants/submission/manage/screen/submission/create-draft/37623?topic\\u003dEU4H-2024-PJ-03-5\",\"startDate\":\"1726524000000\",\"endDate\":\"1737500400000\",\"mgaDescription\":\"EU4H Action Grant Budget-Based\",\"mgaCode\":\"EU4H-AG\"}]"
+    ],
+    "callTitle": [
+     "EU4H Action Grants 2024"
+    ],
+    "frameworkProgramme": [
+     "43332642"
+    ],
+    "descriptionByte": [
+     "<span class=\"topicdescriptionkind\">Expected Impact:</span><p>The expected result is to enable stakeholders to contribute to the delivery of the joint action on new networks of expertise launched under the EU4Health work programme 2023. This will include of establishing within the networks of expertise supporting actions for patients, families, caregivers and other participants in the fight against cancer. This action will help Member States to improve cooperation among their cancer services and with health professionals and patient advocates (by for instance addressing skill gaps and better equipping the health workforce in cancer care); and to improve and deepen the cooperation with the non-governmental sector.</p><span class=\"topicdescriptionkind\">Objective:</span><p>Activities will complement the joint action on new networks of expertise to be launched under the EU4Health work programme 2023 (CR-g-23-40.1-2).</p><span class=\"topicdescriptionkind\">Scope:</span><p>Activities will complement the joint action on new networks of expertise to be launched under</p><p>the EU4Health work programme 2023 (CR-g-23-40.1-2), and include:</p><p>a) implementing targeted projects involving patient organisations, civil societies, non-government organisations complementing the Member States’ efforts in the design, planning and implementation of the networks;</p><p>b) the establishment of best practices, the production of public health, treatment guidelines, or </p><p>other actions that can benefit patients;</p><p>c) the preparation and roll out of innovative practices (pilot tests), and support actions such as training and twinning, health communication or health literacy.</p><p>Support activities could include:</p><p>a) practical support (to help patients better understand the impact of cancer and treatment; managing the side effects of cancer and cancer treatment);</p><p>b) emotional support (regular consultations in support groups and workshops, aimed at supporting and helping patients to manage the difficult psychological and emotional impact of cancer);</p><p>c) education and information (practical information on diet in cancer, oncology workshops for healthcare professionals and support personnel, tailored to specific types of cancer and their symptoms).</p><p>These resources will help guiding patients through their cancer journey by shedding light on some of the unknowns that come with a cancer diagnosis. The resources will also include a range of exercise classes and groups to suit individual needs (physical activities can help to reduce symptoms of anxiety, fatigue, improving patient mood and physical functioning); organising of survivorship groups for families and patients for education of special techniques and acquiring skills for dealing with stress and anxiety with cancer; mindfulness resources and programmes to help patients and their families to improve and maintain their wellbeing; manage the emotional challenges that a cancer diagnosis and treatment can present that can be an important part of the patient cancer journey.</p>"
+    ],
+    "identifier": [
+     "EU4H-2024-PJ-03-5"
+    ],
+    "es_ContentType": [
+     "text/plain"
+    ],
+    "programmeDivision": [
+     "43332657"
+    ],
+    "crossCuttingPriorities": [],
+    "esDA_FirstIngestDate": [
+     "2024-11-15T03:05:08.187+0100"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2025-01-21T23:00:00.000+0000"
+    ],
+    "esDA_IngestDate": [
+     "2024-11-15T03:05:08.187+0100"
+    ],
+    "typesOfAction": [
+     "EU4H Project Grants"
+    ],
+    "url": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json"
+    ],
+    "es_Combine": [
+     "1"
+    ],
+    "esST_URL": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json"
+    ],
+    "tags": [],
+    "esDA_QueueDate": [
+     "2024-11-15T03:05:08.100+0100"
+    ],
+    "actions": [
+     "[{\"types\":[{\"typeOfAction\":\"EU4H-PJG EU4H Project Grants\",\"typeOfMGA\":[{\"id\":43326018,\"abbreviation\":\"EU4H-AG\",\"description\":\"EU4H Action Grant Budget-Based\"}]}],\"status\":{\"id\":31094502,\"abbreviation\":\"Open\",\"description\":\"Open\"},\"plannedOpeningDate\":\"2024-09-17\",\"submissionProcedure\":{\"id\":31094504,\"abbreviation\":\"single-stage\",\"description\":\"single-stage\"},\"deadlineDates\":[\"2025-01-22\"]}]"
+    ],
+    "allowPartnerSearch": [
+     "true"
+    ],
+    "budgetOverview": [
+     "{\"budgetYearsColumns\":[\"2024\"],\"budgetTopicActionMap\":{\"125568\":[{\"action\":\"EU4H-2024-PJ-03-7 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":450000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125561\":[{\"action\":\"EU4H-2024-PJ-03-1 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":2000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125560\":[{\"action\":\"EU4H-2024-PJ-03-2-c - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":1000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125563\":[{\"action\":\"EU4H-2024-PJ-03-3 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":3000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125562\":[{\"action\":\"EU4H-2024-PJ-03-4 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":3000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125565\":[{\"action\":\"EU4H-2024-PJ-03-6 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":4500000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125564\":[{\"action\":\"EU4H-2024-PJ-03-2-b - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":2500000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125567\":[{\"action\":\"EU4H-2024-PJ-03-5 - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":1000000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}],\"125566\":[{\"action\":\"EU4H-2024-PJ-03-2-a - EU4H-PJG EU4H Project Grants\",\"budgetYearMap\":{\"2024\":1500000},\"plannedOpeningDate\":\"2024-09-17\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2025-01-22\"]}]}}"
+    ],
+    "startDate": [
+     "2024-09-16T22:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "supportInfo": [
+     "<p>For help related to this call, please contact <a href=\"mailto:hadea-hp-calls@ec.europa.eu\" rel=\"noopener noreferrer\" target=\"_blank\">hadea-hp-calls@ec.europa.eu</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/faq?order=DESC&pageNumber=1&amp;pageSize=10&amp;sortBy=publicationDate&amp;isExactMatch=true&amp;type=1&amp;grantCategories=p_submission_eval\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal FAQ – Submission of proposals</a>.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/helpdesks/contact-form\" rel=\"noopener noreferrer\" target=\"_blank\">IT Helpdesk</a> – Contact the IT helpdesk for questions such as forgotten passwords, access rights and roles, technical aspects of submission of proposals, etc.</p><p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Online Manual</a> – Step-by-step online guide through the Portal processes from proposal preparation and evaluation to reporting on your ongoing project. Valid for all 2021-2027 programmes.</p>"
+    ],
+    "status": [
+     "31094502"
+    ]
+   },
+   "enrichedMetadata": {},
+   "children": [],
+   "highlightedFragments": [
+    "Call for proposals to support the establishment of new networks of expertise on <b>cancer</b> and <b>cancer</b> conditions - (CR-g-24-96)"
+   ],
+   "citation": "Call for proposals to support the establishment of new networks of expertise on cancer and cancer conditions - (CR-g-24-96). Available at: https://ec.europa.eu/info/funding-tenders/opportunities/data/topicDetails/EU4H-2024-PJ-03-5.json"
+  },
+  {
+   "apiVersion": "2.154",
+   "reference": "50140738TOPICSen",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02",
+   "contentType": "text/plain",
+   "language": "en",
+   "databaseLabel": "SEDIA",
+   "database": "SEDIA",
+   "summary": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers",
+   "weight": 20.178085,
+   "groupById": "2",
+   "content": "Clinical research by Comprehensive <b>Cancer</b> Infrastructures for the benefit of patients with common <b>cancers</b>",
+   "accessRestriction": false,
+   "checksum": "25FCD685C87AA02782E5A1107C3FE999EC3B158B6A61D76F57357616F2772625",
+   "metadata": {
+    "latestInfos": [
+     "[]"
+    ],
+    "es_SortDate": [
+     "2027-02-10T00:00:00.000+0000"
+    ],
+    "sepTemplate": [
+     "<p>The submission system is planned to be opened on the date stated on the topic header.</p>"
+    ],
+    "keywords": [
+     "HORIZON-MISS-2027-02-CANCER-02",
+     "HORIZON-MISS-2027-02",
+     "Anticancer therapy",
+     "Clinical medicine",
+     "Digital data",
+     "Gender in basic medicine",
+     "Personalised medicine",
+     "Radiology, nuclear medicine and medical imaging",
+     "Translational medicine"
+    ],
+    "sortStatus": [
+     "2"
+    ],
+    "language": [
+     "en"
+    ],
+    "topicConditions": [
+     "<div class=\"eui-u-mt-l>\"><h4>General conditions</h4><div><h4>1. Admissibility conditions: Proposal page limit and layout</h4><div class=\"eui-u-mt-s\"><p><strong><em>﻿</em></strong>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex A</a> and <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex E</a> of the Horizon Europe Work Programme General Annexes.</p><p><strong>Proposal page limits and layout:</strong> described in Part B of the Application Form available in the Submission System.</p></div></div><div><h4>2. Eligible countries</h4><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex B</a> of the Work Programme General Annexes.</p><p>A number of non-EU/non-Associated Countries that are not automatically eligible for funding have made specific provisions for making funding available for their participants in Horizon Europe projects. See the information in the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Horizon Europe Programme Guide</a>.</p></div></div><div><h4>3. Other Eligibility Conditions</h4><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex B</a> of the Work Programme General Annexes.</p></div></div><div><h4>4. Financial and operational capacity and exclusion</h4><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex C</a> of the Work Programme General Annexes.</p></div></div><div><h4>5a. Evaluation and award: Award criteria, scoring and thresholds</h4><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex D</a> of the Work Programme General Annexes.</p></div></div><div><h4>5b. Evaluation and award: Submission and evaluation processes</h4><div class=\"eui-u-mt-s\"><p>The thresholds for each criterion will be 4 (Excellence), 4 (Impact) and 4 (Implementation). The cumulative threshold is 12.</p></div><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex F</a> of the Work Programme General Annexes and the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/om_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Online Manual</a>.</p></div></div><div><h4>5c. Evaluation and award: Indicative timeline for evaluation and grant agreement</h4><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex F</a> of the Work Programme General Annexes.</p></div></div><div><h4>6. Legal and financial set-up of the grants</h4><div class=\"eui-u-mt-s\"><p>Eligible costs will take the form of a lump sum as defined in the Decision of 7 July 2021 authorising the use of lump sum contributions under the Horizon Europe Programme – the Framework Programme for Research and Innovation (2021-2027) – and in actions under the Research and Training Programme of the European Atomic Energy Community (2021-2025) [[This <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\"><u>decision</u></a> is available on the Funding and Tenders Portal, in the reference documents section for Horizon Europe, under ‘Simplified costs decisions’ or through this link: <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\"><u>https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf</u></a>]].</p></div><div class=\"eui-u-mt-s\"><p>The granting authority may, up to 4 years after the end of the action, object to a transfer of ownership or to the exclusive licensing of results, as set out in the specific provision of Annex 5.</p></div><div class=\"eui-u-mt-s\"><p>described in <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Annex G</a> of the Work Programme General Annexes.</p></div></div></div><div class=\"eui-u-mt-l\"><h4>Specific conditions</h4> <div class=\"eui-u-mt-s\"><p>described in the specific topic of the Work Programme</p></div></div><div class=\"eui-u-mt-l\"><div class=\"eui-u-mt-s\">\n</div><h4>Application and evaluation forms and model grant agreement (MGA):</h4> <div class=\"eui-u-mt-s\"><p><strong>Application form templates</strong></p><p>Please use the application form that you will find in the Submission System. You can find examples of standard application forms in the <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/reference-documents?programmePeriod=2021-2027&amp;frameworkProgramme=43108390\" rel=\"noopener noreferrer\" target=\"_blank\">Reference Documents page</a>.</p><p><strong>Evaluation form templates</strong> <em>— will be used with the necessary adaptations</em></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/temp-form/ef/ef_he-ria-ia_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Standard evaluation form (HE RIA, IA)</a> </p><p><strong>Guidance</strong></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">HE Programme Guide</a>&#xa0;</p><p><strong>Model Grant Agreements (MGA)</strong></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/agr-contr/ls-mga_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Lump Sum MGA</a>&#xa0;</p><p><strong>Call-specific instructions</strong>&#xa0;</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/temp-form/af/detailed-budget-table_he-ls-euratom_en.xlsm\" rel=\"noopener noreferrer\" target=\"_blank\">Detailed budget table (HE LS)</a>&#xa0;</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/temp-form/af/information-on-clinical-studies_he_en.docx\" rel=\"noopener noreferrer\" target=\"_blank\">Information on clinical studies (HE)</a>&#xa0;</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-funding-what-do-i-need-to-know_he_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Guidance: \"Lump sums - what do I need to know?\"</a></p></div><h4>Additional documents:</h4> <div class=\"eui-u-mt-s\"><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-1-general-introduction_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">HE Main Work Programme 2026-2027 – 1. General Introduction</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-12-missions_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">HE Main Work Programme 2026-2027 – 12. Missions</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">HE Main Work Programme 2026-2027 – 15. General Annexes</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021R0695\" rel=\"noopener noreferrer\" target=\"_blank\">HE Framework Programme and Rules for Participation Regulation 2021/695</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021D0764\" rel=\"noopener noreferrer\" target=\"_blank\">HE Specific Programme Decision 2021/764</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=OJ:L_202402509\" rel=\"noopener noreferrer\" target=\"_blank\">EU Financial Regulation 2024/2509</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Decision authorising the use of lump sum contributions under the Horizon Europe Programme</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/rules-lev-lear-fca_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Rules for Legal Entity Validation, LEAR Appointment and Financial Capacity Assessment</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/aga_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">EU Grants AGA — Annotated Model Grant Agreement</a></p><p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal Online Manual</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/ftp/tc_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal Terms and Conditions</a> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/legalnotice\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal Privacy Statement</a></p></div></div>"
+    ],
+    "title": [
+     "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers"
+    ],
+    "type": [
+     "1"
+    ],
+    "esST_checksum": [
+     "25FCD685C87AA02782E5A1107C3FE999EC3B158B6A61D76F57357616F2772625"
+    ],
+    "focusArea": [],
+    "esST_FileName": [
+     "file.txt"
+    ],
+    "typeOfMGAs": [
+     "43027849"
+    ],
+    "callIdentifier": [
+     "HORIZON-MISS-2027-02"
+    ],
+    "ccm2Id": [
+     "50140738"
+    ],
+    "callccm2Id": [
+     "50140770"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "REFERENCE": [
+     "50140738TOPICSen"
+    ],
+    "links": [
+     "[]"
+    ],
+    "callTitle": [
+     "Supporting the implementation of the Cancer Mission"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "descriptionByte": [
+     "<p class=\"topicdescriptionkind\">Expected Outcome:</p><p>Proposals under this topic should aim to deliver results that are directed and tailored towards, and contribute to all of the following expected outcomes:</p><ul level=\"0\"><li>Patients afflicted by lung, bowel, breast or prostate cancer<sup>[1]</sup>, will benefit from the outcomes of evidence-based, tailored, innovative, affordable and accessible diagnosis- and treatment-centred clinical research programmes by <strong>comprehensive cancer infrastructures</strong><sup>[2]</sup>.</li><li>Researchers, physicians, patient representatives, civil society, charities, foundations, insurance companies, SMEs and innovators<sup>[3]</sup> will seize opportunities to respectively co-create, support, upscale or commercialise outcomes of evidence-based, tailored, affordable and accessible clinical research programmes for the diagnosis and treatment of patients afflicted by lung, bowel, breast or prostate cancer.</li><li>National and regional healthcare providers, healthcare payers, policymakers and authorities in European regions, EU Member States and Associated Countries have the evidence to engage in piloting, upscaling or implementing appropriate clinical research programmes for the diagnosis and treatment of patients afflicted by lung, bowel, breast or prostate cancer.</li> </ul><p class=\"topicdescriptionkind\">Scope:</p><p>Lung, bowel, breast and prostate cancer incidence, mortality and prevalence across EU Member States and Associated Countries are increasing while showing substantial variation, with Central and Eastern European communities, regions and countries particularly affected<sup>[4]</sup>. At the same time, the level of development of comprehensive cancer infrastructures continues to vary considerably across EU Member States and Associated Countries, contributing to inequalities, in particular in terms of clinical research capacity as well as quality of and access to innovative diagnostic and therapeutic interventions.</p><p>Applicants should address all of the following:</p><ul level=\"0\"><li>Comprehensive cancer infrastructures across the EU Member States and Associated Countries come together to conduct clinical research on lung, bowel, breast or prostate cancer focusing on at least one of the following areas:   <ul level=\"1\"><li>Innovative diagnostics;</li><li>Radiotherapy, surgery, chemotherapy;</li><li>Therapeutic cancer vaccines for the treatment of cancer patients with early-stage, advanced, metastatic or minimal residual disease (e.g. after debulking by surgery, chemotherapy, radiotherapy, or immunotherapy);</li><li>Implementation of appropriate clinical practice guidelines for diagnosis and treatment in countries without or with limited Comprehensive Cancer Infrastructures;</li>   </ul> </li><li>Comprehensive cancer infrastructures should extensively pilot and upscale innovative diagnostic or treatment programmes in at least four different EU Member States or Associated Countries. One of the four targeted EU Member States should represent a country without or with a less developed comprehensive cancer infrastructure.</li><li>To ensure that together they address - and whenever feasible - overcome challenges because of the national, regional, or local research and healthcare context (e.g. those faced by small(er) EU Member States, or due to a large rural population, or particular cancer burden, socio-economic or environmental situation, or limited clinical research capacity<sup>[5]</sup>), when designing and conducting innovative clinical research programmes with added value for the timely diagnosis and treatment of patients with lung, bowel, breast or prostate cancer;</li><li>Identify additional resources through the European Research Development Fund (ERDF), the Technical Support Instrument<sup>[6]</sup>, the Resilience and Recovery Facility (RRF), philanthropy, the European Investment Bank Group (EIB<sup>[7]</sup>, EIF<sup>[8]</sup>) or any other initiative;</li><li>Innovative clinical research programmes should be defined together with patients and their caregivers/families using participative research models and adapted to the needs of the target population and the specificities of healthcare provision at local, regional, or national level, duly reflecting the (cultural) diversity and available resources across EU Member States and Associated Countries;</li><li>Data should be disaggregated by sex, gender, age and other relevant variables, such as by measures of socio-economic status or ethnicity;</li><li>All datasets produced should be described with metadata records in the EU dataset catalogue of the European Health Data Space, while all tools and models should take advantage of current European research infrastructures, should follow the principles of open science and made available through the future UNCAN.eu platform;</li><li>Applicants should include an appropriate mix of stakeholders from various disciplines and sectors<sup>[9]</sup> and provide details of the clinical study(ies) in the dedicated annex using the template provided in the submission system.</li> </ul><p>Successful proposals will be asked to join the 'Diagnosis and treatment” cluster<sup>[10]</sup> for the EU Cancer Mission and should include a budget for networking, attendance at meetings, and joint activities<sup>[11]</sup>. The Commission will facilitate coordination of these activities.</p><p>The successful proposals are expected to build on relevant networks launched under the Europe’s Beating Cancer Plan that could facilitate cross-border clinical trials<sup>[12]</sup>, resources made available by relevant ESFRI Research Infrastructures<sup>[13]</sup>, and the Knowledge Centre on Cancer (KCC) to foster EU alignment and coordination<sup>[14]</sup>.</p><p class=\"eui-u-font-s\">[1] Any age group or cancer subtype</p><p class=\"eui-u-font-s\">[2] National or regional infrastructures that provide resources and services to support, improve and integrate cancer care, research, training of care professionals and education for cancer patients, survivors and their families/carers of any age group. Hence, comprehensive cancer infrastructures could consist of any combination, number or type of -public or private- cancer centre, hospital, university medical centre, research department or institute, company, public health facility, etc.</p><p class=\"eui-u-font-s\">[3] Innovators turn research results into new and better services and products, to remain competitive in a global marketplace and to improve the quality of life of Europe’s citizens.</p><p class=\"eui-u-font-s\">[4] Cancer inequalities registry: <a href=\"https://cancer-inequalities.jrc.ec.europa.eu/\">https://cancer-inequalities.jrc.ec.europa.eu/</a></p><p class=\"eui-u-font-s\">[5] research laboratories, diagnostics and clinical trial infrastructures</p><p class=\"eui-u-font-s\">[6] <a href=\"https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/technical-support-instrument/technical-support-instrument-tsi_en\"><strong>Technical Support Instrument (TSI)</strong></a><strong>, </strong>DG REFORM</p><p class=\"eui-u-font-s\">[7] <a href=\"https://www.eib.org/en/index\"><strong>Homepage | European Investment Bank</strong></a></p><p class=\"eui-u-font-s\">[8] <a href=\"https://www.eif.org/index.htm\"><strong>eif.org/index.htm</strong></a></p><p class=\"eui-u-font-s\">[9] such as physicians, academia, patients and their caregivers, patient representatives, engineers, behavioural scientists, SMEs, business networks, insurance companies, charities and foundations, research organisations, civil society.</p><p class=\"eui-u-font-s\">[10] In order to address the objectives of the EU Cancer Mission, participants will collaborate in project clusters to leverage EU-funding, increase networking across sectors and disciplines, and establish a portfolio of EU Cancer Mission R&amp;I and policy actions.</p><p class=\"eui-u-font-s\">[11] Examples of those activities are research or research capacity, organising joint workshops, establishing best practices, joint communication or citizen engagement activities with projects funded under other clusters and pillars of Horizon Europe, or other EU programmes, as appropriate. Proposals are not required to include details of these activities, as they will be defined during the grant agreement preparation and during the life of the project.</p><p class=\"eui-u-font-s\">[12] Such as the EU Network of comprehensive cancer centres EUNetCCC</p><p class=\"eui-u-font-s\">[13] Such as BBMRI, EATRIS, ELIXIR, ECRIN.</p><p class=\"eui-u-font-s\">[14] Hosted by the European Commission's Joint Research Centre (JRC). Especially through the ’European Guidelines and Quality Assurance Schemes for Breast, Colorectal and Cervical Cancer Screening and Diagnosis‘, and the ’European Cancer Information System (ECIS)’ and the ’European Cancer Inequalities Registry (ECIR), see https://knowledge4policy.ec.europa.eu/cancer_en.</p>"
+    ],
+    "identifier": [
+     "HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "es_ContentType": [
+     "text/plain"
+    ],
+    "programmeDivision": [
+     "43108390",
+     "43108541",
+     "43108557"
+    ],
+    "crossCuttingPriorities": [
+     "DigitalAgenda",
+     "AI"
+    ],
+    "esDA_FirstIngestDate": [
+     "2026-03-05T11:43:56.817+0100"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2027-09-21T00:00:00.000+0000"
+    ],
+    "esDA_IngestDate": [
+     "2026-07-06T16:30:59.897+0200"
+    ],
+    "typesOfAction": [
+     "HORIZON Innovation Actions"
+    ],
+    "url": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "es_Combine": [
+     "2"
+    ],
+    "esST_URL": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "tags": [
+     "Cancer centre",
+     "Clinical Trial Centre",
+     "Comprehensive Cancer Centre",
+     "Diagnostic facilities",
+     "Hospital",
+     "Medical Centre",
+     "Oncology Department"
+    ],
+    "esDA_QueueDate": [
+     "2026-07-06T16:30:59.879+0200"
+    ],
+    "actions": [
+     "[{\"types\":[{\"typeOfAction\":\"HORIZON-IA HORIZON Innovation Actions\",\"typeOfMGA\":[{\"id\":43027849,\"abbreviation\":\"HORIZON-AG-LS\",\"description\":\"HORIZON Lump Sum Grant\"}]}],\"status\":{\"id\":31094501,\"abbreviation\":\"Forthcoming\",\"description\":\"Forthcoming\"},\"plannedOpeningDate\":\"2027-02-10\",\"submissionProcedure\":{\"id\":31094504,\"abbreviation\":\"single-stage\",\"description\":\"single-stage\"},\"deadlineDates\":[\"2027-09-21\"]}]"
+    ],
+    "allowPartnerSearch": [
+     "true"
+    ],
+    "budgetOverview": [
+     "{\"budgetYearsColumns\":[\"2027\"],\"budgetTopicActionMap\":{\"113121\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-03 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":3,\"minContribution\":7000000,\"maxContribution\":9000000,\"budgetYearMap\":{\"2027\":\"24000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113120\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-02 - HORIZON-IA HORIZON Innovation Actions\",\"expectedGrants\":3,\"minContribution\":7000000,\"maxContribution\":10000000,\"budgetYearMap\":{\"2027\":\"20000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113123\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-06 - HORIZON-CSA HORIZON Coordination and Support Actions\",\"expectedGrants\":1,\"minContribution\":3000000,\"maxContribution\":3000000,\"budgetYearMap\":{\"2027\":\"3000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113122\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-01 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":4,\"minContribution\":7000000,\"maxContribution\":8000000,\"budgetYearMap\":{\"2027\":\"32323812\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113125\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-05 - HORIZON-PCP HORIZON Pre-commercial Procurement\",\"expectedGrants\":3,\"minContribution\":8000000,\"maxContribution\":10000000,\"budgetYearMap\":{\"2027\":\"26000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113124\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-04 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":3,\"minContribution\":5000000,\"maxContribution\":7000000,\"budgetYearMap\":{\"2027\":\"10000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}]}}"
+    ],
+    "startDate": [
+     "2027-02-10T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "specificObjective": [],
+    "supportInfo": [
+     "<p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Online Manual</a> is your guide on the procedures from proposal submission to managing your grant.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Horizon Europe Programme Guide</a> contains the detailed guidance to the structure, budget and political priorities of Horizon Europe.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/faq?isExactMatch=true&amp;status=0&amp;type=0,1&amp;order=DESC&amp;pageNumber=1&amp;pageSize=50&amp;sortBy=publicationDate\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal FAQ</a> – find the answers to most frequently asked questions on submission of proposals, evaluation and grant management.</p><p><a href=\"https://research-and-innovation.ec.europa.eu/contact-us/research-enquiry-service_en\" rel=\"noopener noreferrer\" target=\"_blank\">Research Enquiry Service</a> – ask questions about any aspect of European research in general and the EU Research Framework Programmes in particular.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/ncp\" rel=\"noopener noreferrer\" target=\"_blank\">National Contact Points (NCPs)</a> – get guidance, practical information and assistance on participation in Horizon Europe. There are also NCPs in many non-EU and non-associated countries (‘third-countries’).</p><p><a href=\"https://een.ec.europa.eu/\" rel=\"noopener noreferrer\" target=\"_blank\">Enterprise Europe Network</a> – contact your EEN national contact for advice to businesses with special focus on SMEs. The support includes guidance on the EU research funding.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/helpdesks/contact-form\" rel=\"noopener noreferrer\" target=\"_blank\">IT Helpdesk</a> – contact the Funding &amp; Tenders Portal IT helpdesk for questions such as forgotten passwords, access rights and roles, technical aspects of submission of proposals, etc.</p><p><a href=\"https://intellectual-property-helpdesk.ec.europa.eu/index_en\" rel=\"noopener noreferrer\" target=\"_blank\">European IPR Helpdesk</a> assists you on intellectual property issues.</p><p><a href=\"mailto:research@cencenelec.eu\" rel=\"noopener noreferrer\" target=\"_blank\">CEN-CENELEC Research Helpdesk</a> and <a href=\"https://www.etsi.org/research/helpdesk\" rel=\"noopener noreferrer\" target=\"_blank\">ETSI Research Helpdesk</a> – the European Standards Organisations advise you how to tackle standardisation in your project proposal.</p><p><a href=\"https://euraxess.ec.europa.eu/sites/default/files/am509774cee_en_e4.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">The European Charter for Researchers and the Code of Conduct for their recruitment</a> – consult the general principles and requirements specifying the roles, responsibilities and entitlements of researchers, employers and funders of researchers.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/partner-search?order=DESC&amp;pageNumber=1&amp;pageSize=50&amp;sortBy=lastModified&amp;isExactMatch=true&amp;type=ORGANISATION,PERSON&amp;frameworkProgramme=43108390\" rel=\"noopener noreferrer\" target=\"_blank\">Partner Search</a> help you find a partner organisation for your proposal.</p>"
+    ],
+    "status": [
+     "31094501"
+    ]
+   },
+   "enrichedMetadata": {},
+   "children": [],
+   "highlightedFragments": [
+    "Clinical research by Comprehensive <b>Cancer</b> Infrastructures for the benefit of patients with common <b>cancers</b>"
+   ],
+   "citation": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers. Available at: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+  },
+  {
+   "apiVersion": "2.154",
+   "reference": "50140738TOPICSro",
+   "url": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02",
+   "contentType": "text/plain",
+   "language": "ro",
+   "databaseLabel": "SEDIA",
+   "database": "SEDIA",
+   "summary": "Cercetarea clinică realizată de Infrastructurile cuprinzătoare de cancer în beneficiul pacienților cu cancere comune",
+   "weight": 19.440218,
+   "groupById": "2",
+   "content": "Cercetarea clinică realizată de Infrastructurile cuprinzătoare de <b>cancer</b> în beneficiul pacienților cu cancere comune",
+   "accessRestriction": false,
+   "checksum": "8AC6E5D76E4851A2F7BB52785AE29831F68C225E8198A04EFDD70DD269740EEB",
+   "metadata": {
+    "latestInfos": [
+     "[]"
+    ],
+    "es_SortDate": [
+     "2027-02-10T00:00:00.000+0000"
+    ],
+    "sepTemplate": [
+     "<p>Se preconizează că sistemul de depunere va fi deschis la data menționată în antetul subiectului.</p>"
+    ],
+    "keywords": [
+     "HORIZON-MISS-2027-02-CANCER-02",
+     "HORIZON-MISS-2027-02",
+     "Anticancer therapy",
+     "Clinical medicine",
+     "Digital data",
+     "Gender in basic medicine",
+     "Personalised medicine",
+     "Radiology, nuclear medicine and medical imaging",
+     "Translational medicine"
+    ],
+    "sortStatus": [
+     "2"
+    ],
+    "language": [
+     "ro"
+    ],
+    "topicConditions": [
+     "<div class=\"eui-u-mt-l>\"><h4>Condiții generale</h4><div><h4>1. Condiții de admisibilitate: Limita și aspectul paginii propunerii</h4><div class=\"eui-u-mt-s\"><p><strong><em>﻿</em></strong> descrisă în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa A</a> și <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">în anexa E la</a> anexele generale ale programului de lucru Orizont Europa.</p><p><strong>Limitele și formatul paginilor propunerii:</strong> descrise în partea B a formularului de cerere disponibil în sistemul de depunere.</p></div></div><div><h4>2. Țări eligibile</h4><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa B</a> la anexele generale ale programului de lucru.</p><p>O serie de țări din afara UE/neasociate care nu sunt eligibile în mod automat pentru finanțare au prevăzut dispoziții specifice pentru punerea finanțării la dispoziția participanților lor la proiectele Orizont Europa. A se vedea informațiile din <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Ghidul programului Orizont Europa.</a></p></div></div><div><h4>3. Alte condiții de eligibilitate</h4><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa B</a> la anexele generale ale programului de lucru.</p></div></div><div><h4>4. Capacitatea financiară și operațională și excluderea</h4><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa C</a> la anexele generale la programul de lucru.</p></div></div><div><h4>5a. Evaluare și atribuire: Criterii de atribuire, punctaj și praguri</h4><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa D</a> la anexele generale ale programului de lucru.</p></div></div><div><h4>5b. Evaluare și atribuire: Procese de depunere și evaluare</h4><div class=\"eui-u-mt-s\"><p>Pragurile pentru fiecare criteriu vor fi 4 (Excelență), 4 (Impact) și 4 (Punere în aplicare). Pragul cumulativ este 12.</p></div><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa F la</a> programul de lucru, în anexele generale și în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/om_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">manualul online.</a></p></div></div><div><h4>5c. Evaluare și atribuire: Calendar orientativ pentru evaluare și acordul de grant</h4><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa F</a> la anexele generale ale programului de lucru.</p></div></div><div><h4>6. Structura juridică și financiară a granturilor</h4><div class=\"eui-u-mt-s\"><p>Costurile eligibile vor lua forma unei sume forfetare, astfel cum este definită în Decizia din 7 iulie 2021 de autorizare a utilizării contribuțiilor pe bază de sumă forfetară în cadrul programului Orizont Europa – Programul-cadru pentru cercetare și inovare (2021-2027) – și în cadrul acțiunilor din cadrul Programului pentru cercetare și formare al Comunității Europene a Energiei Atomice (2021-2025) [[Prezenta <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\"><u>decizie</u></a> este disponibilă pe Portalul pentru finanțare și licitații, în secțiunea „Documente de referință” pentru Orizont Europa, la rubrica „Decizii privind costurile simplificate” sau prin intermediul acestui link: <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\"><u>https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf</u></a>]].</p></div><div class=\"eui-u-mt-s\"><p>Autoritatea care acordă grantul poate, în termen de maximum patru ani de la încheierea acțiunii, să se opună unui transfer de proprietate sau acordării de licențe exclusive pentru rezultate, astfel cum se prevede în dispoziția specifică din anexa 5.</p></div><div class=\"eui-u-mt-s\"><p>descrise în <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">anexa G</a> la anexele generale ale programului de lucru.</p></div></div></div><div class=\"eui-u-mt-l\"><h4>Condiții specifice</h4> <div class=\"eui-u-mt-s\"><p>descrise în tema specifică a programului de lucru</p></div></div><div class=\"eui-u-mt-l\"><div class=\"eui-u-mt-s\">\n</div><h4>Formulare de cerere și de evaluare și model de acord de grant (AMG):</h4> <div class=\"eui-u-mt-s\"><p><strong>Modele de formulare de cerere</strong></p><p>Vă rugăm să utilizați formularul de candidatură pe care îl veți găsi în sistemul de depunere. Puteți găsi exemple de formulare standard de cerere pe <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/reference-documents?programmePeriod=2021-2027&amp;frameworkProgramme=43108390\" rel=\"noopener noreferrer\" target=\"_blank\">pagina Documente de referință</a>.</p><p><strong>Modele de formular de evaluare</strong> <em>– vor fi utilizate cu adaptările necesare</em></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/temp-form/ef/ef_he-ria-ia_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Formular standard de evaluare (HE RIA, IA)</a></p><p><strong>Orientări</strong></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Ghidul programului IS</a> </p><p><strong>Modele de acorduri de grant (AMG)</strong></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/agr-contr/ls-mga_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Sumă forfetară MGA</a> </p><p><strong>Instrucțiuni specifice apelului</strong> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/temp-form/af/detailed-budget-table_he-ls-euratom_en.xlsm\" rel=\"noopener noreferrer\" target=\"_blank\">Tabel cu bugetul detaliat (HE LS)</a> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/temp-form/af/information-on-clinical-studies_he_en.docx\" rel=\"noopener noreferrer\" target=\"_blank\">Informații privind studiile clinice (IS)</a> </p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-funding-what-do-i-need-to-know_he_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Orientări: Sume forfetare - ce trebuie să știu?</a></p></div><h4>Documente suplimentare:</h4> <div class=\"eui-u-mt-s\"><p>Programul de lucru principal al <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-1-general-introduction_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">IS pentru perioada 2026-2027 – 1. Introducere generală</a></p><p>Programul de lucru principal al <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-12-missions_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">IS pentru perioada 2026-2027 – 12. Misiuni</a></p><p>Programul de lucru principal al <a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/wp-call/2026-2027/wp-15-general-annexes_horizon-2026-2027_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">IS pentru perioada 2026-2027 – 15. Anexe generale</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021R0695\" rel=\"noopener noreferrer\" target=\"_blank\">Programul-cadru al IS și Regulamentul privind normele de participare 2021/695</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:32021D0764\" rel=\"noopener noreferrer\" target=\"_blank\">Decizia 2021/764 privind programul specific IS</a></p><p><a href=\"https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=OJ:L_202402509\" rel=\"noopener noreferrer\" target=\"_blank\">Regulamentul financiar al UE 2024/2509</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/ls-decision_he_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Decizie de autorizare a utilizării contribuțiilor forfetare în cadrul programului Orizont Europa</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/rules-lev-lear-fca_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Norme privind validarea entităților juridice, numirea LEAR și evaluarea capacității financiare</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/guidance/aga_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Granturi UE AGA — Model adnotat de acord de grant</a></p><p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Finanțare și amplificare; Manualul online al portalului de licitații</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/common/ftp/tc_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Finanțare &amp; amplificare; Termeni și condiții ale portalului de licitații</a></p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/legalnotice\" rel=\"noopener noreferrer\" target=\"_blank\">Finanțare și amplificare; Declarație de confidențialitate pe portalul licitațiilor</a></p></div></div>"
+    ],
+    "title": [
+     "Cercetarea clinică realizată de Infrastructurile cuprinzătoare de cancer în beneficiul pacienților cu cancere comune"
+    ],
+    "type": [
+     "1"
+    ],
+    "esST_checksum": [
+     "8AC6E5D76E4851A2F7BB52785AE29831F68C225E8198A04EFDD70DD269740EEB"
+    ],
+    "focusArea": [],
+    "esST_FileName": [
+     "file.txt"
+    ],
+    "typeOfMGAs": [
+     "43027849"
+    ],
+    "callIdentifier": [
+     "HORIZON-MISS-2027-02"
+    ],
+    "ccm2Id": [
+     "50140738"
+    ],
+    "callccm2Id": [
+     "50140770"
+    ],
+    "DATASOURCE": [
+     "SEDIA"
+    ],
+    "REFERENCE": [
+     "50140738TOPICSro"
+    ],
+    "links": [
+     "[]"
+    ],
+    "callTitle": [
+     "Sprijinirea punerii în aplicare a Misiunii de combatere a cancerului"
+    ],
+    "frameworkProgramme": [
+     "43108390"
+    ],
+    "descriptionByte": [
+     "<p class=\"topicdescriptionkind\">Rezultatul preconizat:</p><p>Propunerile din cadrul acestui subiect ar trebui să vizeze obținerea unor rezultate direcționate și adaptate și să contribuie la toate rezultatele preconizate următoare:</p><ul level=\"0\"><li>Pacienții afectați de cancer pulmonar, intestinal, de sân sau de prostată<sup> [1]</sup> vor beneficia de rezultatele unor programe de cercetare clinică bazate pe dovezi, adaptate, inovatoare, abordabile ca preț și accesibile, axate pe diagnostic și tratament, prin <strong>infrastructuri cuprinzătoare de combatere a cancerului [2].</strong><sup></sup></li><li>Cercetătorii, medicii, reprezentanții pacienților, societatea civilă, organizațiile caritabile, fundațiile, societățile de asigurări, IMM-urile și inovatorii<sup> [3]</sup> vor profita de oportunități pentru a co-crea, a sprijini, a extinde sau, respectiv, a comercializa rezultatele programelor de cercetare clinică bazate pe dovezi, adaptate, la prețuri accesibile și accesibile pentru diagnosticarea și tratamentul pacienților afectați de cancer pulmonar, intestinal, de sân sau de prostată.</li><li>Furnizorii naționali și regionali de asistență medicală, plătitorii de asistență medicală, factorii de decizie și autoritățile din regiunile europene, statele membre ale UE și țările asociate dispun de dovezi pentru a se angaja în proiecte-pilot, extinderea sau punerea în aplicare a unor programe adecvate de cercetare clinică pentru diagnosticarea și tratamentul pacienților afectați de cancer pulmonar, intestinal, de sân sau de prostată.</li> </ul><p class=\"topicdescriptionkind\">Domeniul de aplicare:</p><p>Incidența, mortalitatea și prevalența cancerului pulmonar, intestinal, de sân și de prostată în statele membre ale UE și în țările asociate sunt în creștere, prezentând în același timp variații substanțiale, comunitățile, regiunile și țările din Europa Centrală și de Est fiind afectate în mod deosebit<sup> [4].</sup> În același timp, nivelul de dezvoltare a unor infrastructuri oncologice cuprinzătoare continuă să varieze considerabil de la un stat membru al UE la altul și de la o țară asociată la alta, contribuind la inegalități, în special în ceea ce privește capacitatea de cercetare clinică, precum și calitatea intervențiilor inovatoare de diagnosticare și terapeutice și accesul la acestea.</p><p>Solicitanții trebuie să abordeze toate aspectele următoare:</p><ul level=\"0\"><li>Infrastructurile oncologice cuprinzătoare din statele membre ale UE și din țările asociate se reunesc pentru a efectua cercetări clinice privind cancerul pulmonar, intestinal, de sân sau de prostată, concentrându-se pe cel puțin unul dintre următoarele domenii:<ul level=\"1\"><li>Diagnosticare inovatoare;</li><li>Radioterapia, chirurgia, chimioterapia;</li><li>vaccinuri terapeutice împotriva cancerului pentru tratamentul pacienților bolnavi de cancer cu boală reziduală în stadiu incipient, avansată, metastatică sau minimă (de exemplu, după debulking prin intervenție chirurgicală, chimioterapie, radioterapie sau imunoterapie);</li><li>punerea în aplicare a unor orientări adecvate privind practicile clinice pentru diagnosticare și tratament în țări fără sau cu infrastructuri cuprinzătoare limitate în domeniul cancerului;</li>   </ul> </li><li>Infrastructurile oncologice cuprinzătoare ar trebui să testeze și să extindă pe scară largă programe inovatoare de diagnosticare sau tratament în cel puțin patru state membre ale UE sau țări asociate diferite. Unul dintre cele patru state membre ale UE vizate ar trebui să reprezinte o țară fără sau cu o infrastructură cuprinzătoare mai puțin dezvoltată în domeniul cancerului.</li><li>să se asigure că acestea abordează împreună - și ori de câte ori este posibil - provocările generate de contextul național, regional sau local de cercetare și asistență medicală [de exemplu, cele cu care se confruntă statele membre mai mici ale UE sau din cauza unei populații rurale mari sau a unei poveri deosebite a cancerului, a situației socioeconomice sau de mediu sau a capacității limitate de cercetare clinică<sup> [5]],</sup> atunci când concep și desfășoară programe inovatoare de cercetare clinică cu valoare adăugată pentru diagnosticarea și tratarea în timp util a pacienților cu cancer pulmonar, intestinal, de sân sau de prostată;</li><li>să identifice resurse suplimentare prin intermediul Fondului european de cercetare și dezvoltare (FEDR), al Instrumentului de sprijin tehnic<sup> [6],</sup> al Mecanismului de redresare și reziliență (MRR), al filantropiei, al Grupului Băncii Europene de Investiții (BEI<sup> [7],</sup> FEI<sup> [8])</sup> sau al oricărei alte inițiative;</li><li>Programele inovatoare de cercetare clinică ar trebui definite împreună cu pacienții și îngrijitorii/familiile acestora, utilizând modele de cercetare participative și adaptate la nevoile populației-țintă și la particularitățile furnizării de asistență medicală la nivel local, regional sau național, reflectând în mod corespunzător diversitatea (culturală) și resursele disponibile în statele membre ale UE și în țările asociate;</li><li>Datele ar trebui defalcate în funcție de sex, gen, vârstă și alte variabile relevante, cum ar fi măsurile privind statutul socioeconomic sau etnia;</li><li>Toate seturile de date produse ar trebui descrise cu înregistrări de metadate în catalogul UE de seturi de date din spațiul european al datelor privind sănătatea, în timp ce toate instrumentele și modelele ar trebui să profite de infrastructurile europene de cercetare actuale, ar trebui să respecte principiile științei deschise și să fie puse la dispoziție prin intermediul viitoarei platforme UNCAN.eu;</li><li>Solicitanții ar trebui să includă o combinație adecvată de părți interesate din diferite discipline și sectoare<sup> [9]</sup> și să furnizeze detalii privind studiul (studiile) clinic(e) în anexa specifică, utilizând modelul furnizat în sistemul de depunere.</li> </ul><p>Propunerile câștigătoare vor fi invitate să se alăture clusterului „Diagnostic și tratament”<sup>[10]</sup> pentru misiunea UE în domeniul cancerului și ar trebui să includă un buget pentru crearea de rețele, participarea la reuniuni și activități comune<sup> [11].</sup> Comisia va facilita coordonarea acestor activități.</p><p>Se preconizează că propunerile de succes se vor baza pe rețelele relevante lansate în cadrul Planului european de combatere a cancerului, care ar putea facilita trialurile clinice transfrontaliere<sup> [12],</sup> pe resursele puse la dispoziție de infrastructurile de cercetare relevante ale ESFRI<sup> [13]</sup> și pe Centrul de cunoștințe privind cancerul (KCC) pentru a promova alinierea și coordonarea la nivelul UE<sup> [14].</sup></p><p class=\"eui-u-font-s\">[1] Orice grupă de vârstă sau subtip de cancer</p><p class=\"eui-u-font-s\">[2] Infrastructuri naționale sau regionale care oferă resurse și servicii pentru sprijinirea, îmbunătățirea și integrarea îngrijirii oncologice, a cercetării, a formării profesioniștilor din domeniul îngrijirii și a educației pentru pacienții bolnavi de cancer, supraviețuitori și familiile/îngrijitorii acestora, indiferent de grupa de vârstă. Prin urmare, infrastructurile oncologice cuprinzătoare ar putea consta în orice combinație, număr sau tip de centru oncologic public sau privat, spital, centru medical universitar, departament sau institut de cercetare, întreprindere, unitate de sănătate publică etc.</p><p class=\"eui-u-font-s\">[3] Inovatorii transformă rezultatele cercetării în servicii și produse noi și mai bune, pentru a rămâne competitivi pe o piață mondială și pentru a îmbunătăți calitatea vieții cetățenilor Europei.</p><p class=\"eui-u-font-s\">[4] Registrul inegalităților în materie de cancer: <a href=\"https://cancer-inequalities.jrc.ec.europa.eu/\">https://cancer-inequalities.jrc.ec.europa.eu/</a></p><p class=\"eui-u-font-s\">[5] laboratoare de cercetare, infrastructuri de diagnosticare și trialuri clinice</p><p class=\"eui-u-font-s\">[6] <a href=\"https://commission.europa.eu/funding-tenders/find-funding/eu-funding-programmes/technical-support-instrument/technical-support-instrument-tsi_en\"><strong>Instrumentul de sprijin tehnic (IST),</strong></a><strong> DG </strong>REFORM</p><p class=\"eui-u-font-s\">[7] <a href=\"https://www.eib.org/en/index\"><strong>Homepage | Banca Europeană de Investiții</strong></a></p><p class=\"eui-u-font-s\">[8] <a href=\"https://www.eif.org/index.htm\"><strong>eif.org/index.htm</strong></a></p><p class=\"eui-u-font-s\">[9] cum ar fi medicii, mediul academic, pacienții și îngrijitorii acestora, reprezentanții pacienților, inginerii, oamenii de știință comportamentali, IMM-urile, rețelele de afaceri, societățile de asigurări, organizațiile caritabile și fundațiile, organizațiile de cercetare, societatea civilă.</p><p class=\"eui-u-font-s\">[10] Pentru a aborda obiectivele misiunii UE în domeniul cancerului, participanții vor colabora în cadrul clusterelor de proiecte pentru a mobiliza finanțarea din partea UE, pentru a spori colaborarea în rețea între sectoare și discipline și pentru a stabili un portofoliu de acțiuni de cercetare și inovare și de acțiuni de politică ale misiunii UE în domeniul cancerului.</p><p class=\"eui-u-font-s\">[11] Exemple de astfel de activități sunt capacitatea de cercetare sau de cercetare, organizarea de ateliere comune, stabilirea de bune practici, activități comune de comunicare sau de implicare a cetățenilor cu proiecte finanțate în cadrul altor clustere și piloni ai programului Orizont Europa sau al altor programe ale UE, după caz. Propunerile nu trebuie să includă detalii privind aceste activități, deoarece acestea vor fi definite în timpul pregătirii acordului de grant și pe durata proiectului.</p><p class=\"eui-u-font-s\">[12] Cum ar fi Rețeaua UE de centre oncologice cuprinzătoare EUNetCCC</p><p class=\"eui-u-font-s\">[13] Cum ar fi BBMRI, EATRIS, ELIXIR, ECRIN.</p><p class=\"eui-u-font-s\">[14] Găzduit de Centrul Comun de Cercetare (JRC) al Comisiei Europene. În special prin intermediul „Orientărilor europene și al sistemelor de asigurare a calității pentru screeningul și diagnosticarea cancerului mamar, colorectal și de col uterin”, al „Sistemului european de informații privind cancerul (ECIS)” și al „Registrului european privind inegalitățile în materie de cancer (ECIR), a se vedea https://knowledge4policy.ec.europa.eu/cancer_en.</p>"
+    ],
+    "identifier": [
+     "HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "es_ContentType": [
+     "text/plain"
+    ],
+    "programmeDivision": [
+     "43108390",
+     "43108541",
+     "43108557"
+    ],
+    "crossCuttingPriorities": [
+     "DigitalAgenda",
+     "AI"
+    ],
+    "esDA_FirstIngestDate": [
+     "2026-07-06T16:31:11.136+0200"
+    ],
+    "programmePeriod": [
+     "2021 - 2027"
+    ],
+    "deadlineDate": [
+     "2027-09-21T00:00:00.000+0000"
+    ],
+    "esDA_IngestDate": [
+     "2026-07-06T16:37:04.948+0200"
+    ],
+    "typesOfAction": [
+     "HORIZON Innovation Actions"
+    ],
+    "url": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "es_Combine": [
+     "2"
+    ],
+    "esST_URL": [
+     "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+    ],
+    "tags": [
+     "Cancer centre",
+     "Clinical Trial Centre",
+     "Comprehensive Cancer Centre",
+     "Diagnostic facilities",
+     "Hospital",
+     "Medical Centre",
+     "Oncology Department"
+    ],
+    "esDA_QueueDate": [
+     "2026-07-06T16:37:04.928+0200"
+    ],
+    "actions": [
+     "[{\"types\":[{\"typeOfAction\":\"HORIZON-IA HORIZON Innovation Actions\",\"typeOfMGA\":[{\"id\":43027849,\"abbreviation\":\"HORIZON-AG-LS\",\"description\":\"HORIZON Lump Sum Grant\"}]}],\"status\":{\"id\":31094501,\"abbreviation\":\"Forthcoming\",\"description\":\"Forthcoming\"},\"plannedOpeningDate\":\"2027-02-10\",\"submissionProcedure\":{\"id\":31094504,\"abbreviation\":\"single-stage\",\"description\":\"single-stage\"},\"deadlineDates\":[\"2027-09-21\"]}]"
+    ],
+    "allowPartnerSearch": [
+     "true"
+    ],
+    "budgetOverview": [
+     "{\"budgetYearsColumns\":[\"2027\"],\"budgetTopicActionMap\":{\"113121\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-03 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":3,\"minContribution\":7000000,\"maxContribution\":9000000,\"budgetYearMap\":{\"2027\":\"24000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113120\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-02 - HORIZON-IA HORIZON Innovation Actions\",\"expectedGrants\":3,\"minContribution\":7000000,\"maxContribution\":10000000,\"budgetYearMap\":{\"2027\":\"20000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113123\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-06 - HORIZON-CSA HORIZON Coordination and Support Actions\",\"expectedGrants\":1,\"minContribution\":3000000,\"maxContribution\":3000000,\"budgetYearMap\":{\"2027\":\"3000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113122\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-01 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":4,\"minContribution\":7000000,\"maxContribution\":8000000,\"budgetYearMap\":{\"2027\":\"32323812\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113125\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-05 - HORIZON-PCP HORIZON Pre-commercial Procurement\",\"expectedGrants\":3,\"minContribution\":8000000,\"maxContribution\":10000000,\"budgetYearMap\":{\"2027\":\"26000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}],\"113124\":[{\"action\":\"HORIZON-MISS-2027-02-CANCER-04 - HORIZON-RIA HORIZON  Research and Innovation Actions\",\"expectedGrants\":3,\"minContribution\":5000000,\"maxContribution\":7000000,\"budgetYearMap\":{\"2027\":\"10000000\"},\"plannedOpeningDate\":\"2027-02-10\",\"deadlineModel\":\"single-stage\",\"deadlineDates\":[\"2027-09-21\"]}]}}"
+    ],
+    "startDate": [
+     "2027-02-10T00:00:00.000+0000"
+    ],
+    "deadlineModel": [
+     "single-stage"
+    ],
+    "specificObjective": [],
+    "supportInfo": [
+     "<p><a href=\"https://webgate.ec.europa.eu/funding-tenders-opportunities/display/OM/Online+Manual\" rel=\"noopener noreferrer\" target=\"_blank\">Manualul online</a> este ghidul dumneavoastră privind procedurile de la depunerea propunerii până la gestionarea grantului.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/docs/2021-2027/horizon/guidance/programme-guide_horizon_en.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Ghidul programului Orizont Europa</a> conține orientări detaliate privind structura, bugetul și prioritățile politice ale programului Orizont Europa.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/faq?isExactMatch=true&amp;status=0&amp;type=0,1&amp;order=DESC&amp;pageNumber=1&amp;pageSize=50&amp;sortBy=publicationDate\" rel=\"noopener noreferrer\" target=\"_blank\">Funding &amp; Tenders Portal FAQ</a> – găsiți răspunsurile la cele mai frecvente întrebări privind depunerea propunerilor, evaluarea și gestionarea granturilor.</p><p><a href=\"https://research-and-innovation.ec.europa.eu/contact-us/research-enquiry-service_en\" rel=\"noopener noreferrer\" target=\"_blank\">Serviciul de informare în domeniul cercetării</a> – adresați întrebări cu privire la orice aspect al cercetării europene în general și al programelor-cadru de cercetare ale UE în special.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/ncp\" rel=\"noopener noreferrer\" target=\"_blank\">Punctele naționale de contact (PCN)</a> – obțineți orientări, informații practice și asistență cu privire la participarea la programul Orizont Europa. Există, de asemenea, puncte de contact naționale în multe țări din afara UE și țări neasociate („țări terțe”).</p><p><a href=\"https://een.ec.europa.eu/\" rel=\"noopener noreferrer\" target=\"_blank\">Rețeaua întreprinderilor europene</a> – contactați contactul național EEN pentru consilierea întreprinderilor, cu un accent special pe IMM-uri. Sprijinul include orientări privind finanțarea cercetării de către UE.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/helpdesks/contact-form\" rel=\"noopener noreferrer\" target=\"_blank\">Serviciul de asistență informatică –</a> contactați serviciul de asistență informatică al Portalului pentru licitații pentru întrebări precum parolele uitate, drepturile și rolurile de acces, aspectele tehnice ale depunerii propunerilor etc.</p><p><a href=\"https://intellectual-property-helpdesk.ec.europa.eu/index_en\" rel=\"noopener noreferrer\" target=\"_blank\">Serviciul european de asistență în materie de DPI vă oferă asistență</a> cu privire la aspecte legate de proprietatea intelectuală.</p><p><a href=\"mailto:research@cencenelec.eu\" rel=\"noopener noreferrer\" target=\"_blank\">CEN-CENELEC Research Helpdesk</a> și <a href=\"https://www.etsi.org/research/helpdesk\" rel=\"noopener noreferrer\" target=\"_blank\">ETSI Research Helpdesk</a> – organizațiile europene de standardizare vă sfătuiesc cum să abordați standardizarea în propunerea dumneavoastră de proiect.</p><p><a href=\"https://euraxess.ec.europa.eu/sites/default/files/am509774cee_en_e4.pdf\" rel=\"noopener noreferrer\" target=\"_blank\">Carta europeană a cercetătorilor și Codul de conduită pentru recrutarea acestora</a> – consultați principiile și cerințele generale care specifică rolurile, responsabilitățile și drepturile cercetătorilor, ale angajatorilor și ale finanțatorilor cercetătorilor.</p><p><a href=\"https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/how-to-participate/partner-search?order=DESC&amp;pageNumber=1&amp;pageSize=50&amp;sortBy=lastModified&amp;isExactMatch=true&amp;type=ORGANISATION,PERSON&amp;frameworkProgramme=43108390\" rel=\"noopener noreferrer\" target=\"_blank\">Căutarea de parteneri</a> vă ajută să găsiți o organizație parteneră pentru propunerea dvs.</p>"
+    ],
+    "status": [
+     "31094501"
+    ]
+   },
+   "enrichedMetadata": {},
+   "children": [],
+   "highlightedFragments": [
+    "Cercetarea clinică realizată de Infrastructurile cuprinzătoare de <b>cancer</b> în beneficiul pacienților cu cancere comune"
+   ],
+   "citation": "Cercetarea clinică realizată de Infrastructurile cuprinzătoare de cancer în beneficiul pacienților cu cancere comune. Available at: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2027-02-CANCER-02"
+  }
+ ]
+}

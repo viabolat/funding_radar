@@ -1,0 +1,4 @@
+# Runtime deps of both scripts, plus the test runner.
+requests
+beautifulsoup4
+pytest

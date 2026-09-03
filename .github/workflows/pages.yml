@@ -1,0 +1,84 @@
+# Save this file as: .github/workflows/pages.yml
+#
+# Builds web/ and publishes it to GitHub Pages. Once the push trigger below is
+# live it runs on any push to main touching the app or the feed, so a watcher
+# committing calls.json refreshes the dashboard without anyone doing anything.
+#
+# calls.json is copied out of the repo root into web/public/ at build time —
+# that is where the app fetches it from, and it overwrites the sample feed
+# checked in for local development.
+#
+# CURRENTLY MANUAL-ONLY. This repo is private and the viabolat org is on the
+# free plan, where GitHub Pages can only publish from a public repo — the
+# deploy job would fail on every push. The push trigger below is commented out
+# rather than deleted: uncomment it the day the repo goes public or the org
+# moves to Team, and enable Settings -> Pages -> Source: GitHub Actions. Until
+# then run the dashboard locally (see web/README.md).
+#
+# The only secret used is the automatic GITHUB_TOKEN.
+
+name: Deploy dashboard
+
+on:
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - "web/**"
+  #     - "calls.json"
+  #     - ".github/workflows/pages.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# A watcher push and a manual deploy can land together; let the newer one win
+# rather than publishing an older build over a newer feed.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: Publish the live feed into the app
+        run: cp calls.json web/public/calls.json
+
+      - name: Build
+        working-directory: web
+        env:
+          # Pages serves from /<repo>/, which has to match vite's base.
+          BASE_PATH: /${{ github.event.repository.name }}/
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

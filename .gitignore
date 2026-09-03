@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Dashboard
+web/node_modules/
+web/dist/
+web/*.tsbuildinfo
+
+# reason: a global ~/.gitignore_global excluding *.csv silently dropped this
+# fixture, and the test suite cannot run without it — it is a real captured
+# payload, BOM included. A repo .gitignore overrides the global one.
+!tests/fixtures/*.csv
+
+# Local scratch — note that seen_calls.json, mipe_page_hashes.json and
+# calls.json are NOT ignored: they are the state the scheduled workflows
+# commit back, and the radar depends on them persisting between runs.
+.DS_Store

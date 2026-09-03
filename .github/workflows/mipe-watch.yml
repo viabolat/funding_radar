@@ -1,0 +1,53 @@
+# Save this file as: .github/workflows/mipe-watch.yml
+#
+# Runs daily at 04:00 UTC, plus on-demand. GitHub Actions cron is UTC-only and
+# has no timezone support, so 04:00 UTC is 06:00 in Bucharest during winter
+# (EET, UTC+2) and 07:00 during summer (EEST, UTC+3). Do not re-add a
+# `timezone:` key — it is silently ignored. Only opens a GitHub Issue when a
+# watched MIPE calendar page's text actually changed since the last check —
+# otherwise it's just a quiet log line in the workflow run, exactly as
+# requested (no noise on a no-op run).
+#
+# No Slack/Telegram, no SMTP — the only secret this workflow uses is
+# GITHUB_TOKEN, which GitHub provides automatically for every run.
+
+name: MIPE Calendar Watch
+
+on:
+  schedule:
+    # 04:00 UTC = 06:00 Europe/Bucharest (EET) / 07:00 (EEST). UTC-only by design.
+    - cron: "0 4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  watch-mipe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run MIPE watcher
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python mipe_watch.py --create-issue
+
+      - name: Commit updated hash state
+        run: |
+          git config user.name "mipe-watch-bot"
+          git config user.email "actions@github.com"
+          git add mipe_page_hashes.json calls.json
+          git diff --cached --quiet || git commit -m "Update MIPE page hash state [skip ci]"
+          git push

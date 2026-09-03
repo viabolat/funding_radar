@@ -1,0 +1,56 @@
+# Save this file as: .github/workflows/funding-radar.yml
+#
+# Runs every Monday at 05:00 UTC, plus on-demand via the "Run workflow" button
+# in the Actions tab. GitHub Actions cron is UTC-only and has no timezone
+# support, so 05:00 UTC is 07:00 in Bucharest during winter (EET, UTC+2) and
+# 08:00 during summer (EEST, UTC+3). For a weekly digest that one-hour seasonal
+# drift is irrelevant; do not re-add a `timezone:` key, it is silently ignored.
+# Fetches both sources, opens a GitHub Issue if anything new matched, and
+# commits the updated seen_calls.json + digest file back to the repo so the
+# next run knows what's already been reported. calls.json is committed too —
+# it is the feed the web/ dashboard reads, and Pages deploys on a push to it.
+#
+# No Slack/Telegram, no SMTP — the only secret this workflow uses is
+# GITHUB_TOKEN, which GitHub provides automatically for every run. Nothing
+# else needs to be added under repo Settings -> Secrets.
+
+name: Funding Radar
+
+on:
+  schedule:
+    # 05:00 UTC = 07:00 Europe/Bucharest (EET) / 08:00 (EEST). UTC-only by design.
+    - cron: "0 5 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  run-radar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run funding radar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python funding_radar.py --create-issue
+
+      - name: Commit updated state
+        run: |
+          git config user.name "funding-radar-bot"
+          git config user.email "actions@github.com"
+          git add seen_calls.json digests/ calls.json
+          git diff --cached --quiet || git commit -m "Update funding radar state [skip ci]"
+          git push
