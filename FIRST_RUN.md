@@ -187,7 +187,7 @@ Assuming a deploy succeeded and the radar has run once:
 ## 6. Open items
 
 1. Decide where `mipe_watch.py` runs, since GitHub-hosted runners are blocked: cron on the cPanel host, or a self-hosted runner. Its GitHub schedule is off until then, so MIPE is checked by nobody — this is the only open item that loses coverage while it waits. Deciding needs one fact this repo does not record: whether the cPanel plan gives shell/cron access and a Python 3 runtime, or only the FTP account `deploy-staging.yml` uses.
-2. Delete `.github/workflows/connectivity-probe.yml` — it has answered its questions.
+2. ~~Delete `.github/workflows/connectivity-probe.yml` — it has answered its questions.~~ **Done 2026-09-07.** Its findings are the table in section 3, which is now the durable record — GitHub expires run logs after 90 days, so run `33773493284` is cited there for provenance, not as something you can still open. Recover the workflow from commit `ff13eee` if a source ever needs probing again.
 3. ~~Fire the first `funding-radar.yml` run manually and watch it.~~ **Done 2026-09-07**, though not manually — the Monday cron fired it (~5h late, see §2) before anyone got to it. 58 calls matched: 36 adieuronest + 22 SEDIA, against a probe expectation of 35 and 22 and a calibrated 37. Opened Issue #1, committed `seen_calls.json` (58 ids), `calls.json` and `digests/digest_2026-09-07.md`. Both sources landed inside their expected bands; nothing to investigate.
 4. Complete the cPanel setup and get one green `deploy-staging` run.
 5. Replace the placeholder staff roster and `CURRENT_USER`.
