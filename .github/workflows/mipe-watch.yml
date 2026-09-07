@@ -1,12 +1,13 @@
 # Save this file as: .github/workflows/mipe-watch.yml
 #
-# Runs daily at 04:00 UTC, plus on-demand. GitHub Actions cron is UTC-only and
-# has no timezone support, so 04:00 UTC is 06:00 in Bucharest during winter
-# (EET, UTC+2) and 07:00 during summer (EEST, UTC+3). Do not re-add a
-# `timezone:` key — it is silently ignored. Only opens a GitHub Issue when a
-# watched MIPE calendar page's text actually changed since the last check —
-# otherwise it's just a quiet log line in the workflow run, exactly as
-# requested (no noise on a no-op run).
+# On-demand only right now — the daily cron is commented out below; the reason
+# is with it. When it is re-enabled: GitHub Actions cron is UTC-only and has no
+# timezone support, so 04:00 UTC is 06:00 in Bucharest during winter (EET,
+# UTC+2) and 07:00 during summer (EEST, UTC+3). Do not re-add a `timezone:`
+# key — it is silently ignored. Only opens a GitHub Issue when a watched MIPE
+# calendar page's text actually changed since the last check — an unchanged
+# page is just a quiet log line (no noise on a no-op run). A run where every
+# watched page fails to fetch exits non-zero and shows red, by design.
 #
 # No Slack/Telegram, no SMTP — the only secret this workflow uses is
 # GITHUB_TOKEN, which GitHub provides automatically for every run.
@@ -14,9 +15,20 @@
 name: MIPE Calendar Watch
 
 on:
-  schedule:
-    # 04:00 UTC = 06:00 Europe/Bucharest (EET) / 07:00 (EEST). UTC-only by design.
-    - cron: "0 4 * * *"
+  # reason: mfe.gov.ro drops GitHub's runner IP ranges — probe run 33773493284
+  # measured 12ms to 193.151.29.8 from a developer machine and a silent 15s
+  # timeout to the same address from a runner. Every scheduled run therefore
+  # fails to fetch every watched page, and since a total fetch failure now
+  # exits non-zero (that was the fix for the old silent-green run), leaving
+  # this cron on means a red run and a failure email every single day for a
+  # cause no change in this repo can reach. Disabled rather than special-cased
+  # in the script: an "expected failure" escape hatch would rebuild the exact
+  # silent-green bug that was just removed. Same inert-workflow pattern as
+  # pages.yml. Re-enable this block once the watcher runs somewhere that can
+  # reach the host — see FIRST_RUN.md section 3.
+  # schedule:
+  #   # 04:00 UTC = 06:00 Europe/Bucharest (EET) / 07:00 (EEST). UTC-only by design.
+  #   - cron: "0 4 * * *"
   workflow_dispatch: {}
 
 permissions:

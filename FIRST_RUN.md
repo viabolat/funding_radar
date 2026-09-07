@@ -100,9 +100,10 @@ Fire the first one manually rather than meeting it on a Monday morning, so someb
 
 ---
 
-## 3. `mipe_watch.py` — currently broken, and it looks green
+## 3. `mipe_watch.py` — unmonitored, because runners cannot reach the host
 
-**This is the one thing in this document that needs fixing rather than watching.**
+**Nothing here needs a code change any more.** Both code-side problems below are
+fixed; what is left is a hosting decision (open item 1).
 
 Run `33747227918` reported success at every step. It did no work at all:
 
@@ -136,6 +137,16 @@ Neither machine has IPv6, so the unreachable AAAA is normal and is not the cause
 **The original error message was actively misleading.** urllib3 walks the getaddrinfo list and reports only the last error, so the IPv6 `ENETUNREACH` masked the IPv4 timeout underneath it and made this look like an IPv6 problem. If you see `Network is unreachable` from a dual-stack host, check each address family separately before believing it.
 
 Fixing this means running `mipe_watch.py` from somewhere that is not a GitHub runner — the cPanel host is Romanian and already in the picture, so a cron job there is the obvious candidate; a self-hosted runner is the other. **Until then, treat MIPE as unmonitored.**
+
+**The daily schedule is disabled as of 2026-09-07.** Once a total fetch failure
+started exiting non-zero, the 04:00 cron would have gone red every single day
+for a cause this repo cannot reach — and a failure email a day is how a team
+learns to ignore CI. The `schedule:` block in `mipe-watch.yml` is commented out
+with the reason inline; `workflow_dispatch` still works, so you can run it by
+hand any time, and it will still fail from a runner. Uncomment that block when
+the watcher moves to a host that can reach mfe.gov.ro. It was **not** fixed by
+teaching the script to tolerate the failure quietly: that is the silent-green
+bug from (b) rebuilt under a new name.
 
 **b) A total fetch failure exited 0. Fixed 2026-09-03.** The watcher now exits non-zero when *every* watched page fails, so CI shows red instead of a green quiet run. A partial failure still exits 0 — the pages that did fetch were genuinely checked, and failing the run on one dead page would mean noise on every run until it came back. State handling is unchanged: baselines are still kept for pages that failed, no Issue, no feed rows. Two regression tests cover both directions (suite is now 66 tests).
 
@@ -173,7 +184,7 @@ Assuming a deploy succeeded and the radar has run once:
 
 ## 6. Open items
 
-1. Decide where `mipe_watch.py` runs, since GitHub-hosted runners are blocked: cron on the cPanel host, or a self-hosted runner.
+1. Decide where `mipe_watch.py` runs, since GitHub-hosted runners are blocked: cron on the cPanel host, or a self-hosted runner. Its GitHub schedule is off until then, so MIPE is checked by nobody — this is the only open item that loses coverage while it waits. Deciding needs one fact this repo does not record: whether the cPanel plan gives shell/cron access and a Python 3 runtime, or only the FTP account `deploy-staging.yml` uses.
 2. Delete `.github/workflows/connectivity-probe.yml` — it has answered its questions.
 3. Fire the first `funding-radar.yml` run manually and watch it.
 4. Complete the cPanel setup and get one green `deploy-staging` run.
