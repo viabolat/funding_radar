@@ -96,7 +96,9 @@ Of the 57 rows, as of 2026-09-03: 47 carry a deadline, 55 carry a budget, all 57
 
 `0 5 * * 1` — Mondays, 05:00 **UTC**. That is 08:00 Bucharest in summer, 07:00 in winter. GitHub Actions cron has no timezone support and silently ignores a `timezone:` key, so this drifts by an hour twice a year by design. Do not "fix" it.
 
-Fire the first one manually rather than meeting it on a Monday morning, so somebody is watching when 57 calls land.
+**In practice it runs 4–5 hours later than that.** The first scheduled run fired at 09:59 UTC on 2026-09-07, not 05:00, and the four MIPE runs before it were late by 4h15m to 5h12m. GitHub queues scheduled workflows at low priority and defers them under load. A late run is not a missed run — expect the radar nearer 13:00 Bucharest than 08:00, and do not tighten the cron to compensate.
+
+The first run has already happened, unattended and on schedule — see open item 3.
 
 ---
 
@@ -186,7 +188,7 @@ Assuming a deploy succeeded and the radar has run once:
 
 1. Decide where `mipe_watch.py` runs, since GitHub-hosted runners are blocked: cron on the cPanel host, or a self-hosted runner. Its GitHub schedule is off until then, so MIPE is checked by nobody — this is the only open item that loses coverage while it waits. Deciding needs one fact this repo does not record: whether the cPanel plan gives shell/cron access and a Python 3 runtime, or only the FTP account `deploy-staging.yml` uses.
 2. Delete `.github/workflows/connectivity-probe.yml` — it has answered its questions.
-3. Fire the first `funding-radar.yml` run manually and watch it.
+3. ~~Fire the first `funding-radar.yml` run manually and watch it.~~ **Done 2026-09-07**, though not manually — the Monday cron fired it (~5h late, see §2) before anyone got to it. 58 calls matched: 36 adieuronest + 22 SEDIA, against a probe expectation of 35 and 22 and a calibrated 37. Opened Issue #1, committed `seen_calls.json` (58 ids), `calls.json` and `digests/digest_2026-09-07.md`. Both sources landed inside their expected bands; nothing to investigate.
 4. Complete the cPanel setup and get one green `deploy-staging` run.
 5. Replace the placeholder staff roster and `CURRENT_USER`.
 6. Shared triage via GitHub OAuth — this also unblocks reminders.

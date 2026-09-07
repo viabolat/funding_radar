@@ -119,4 +119,6 @@ This is the project's first secret beyond the automatic `GITHUB_TOKEN` (`CPANEL_
 
 Schedules are **UTC-only** — GitHub Actions has no `timezone:` support and silently ignores that key. Crons are therefore written in UTC (`0 5 * * 1` for the radar, `0 4 * * *` for the watcher), which lands at 07:00/06:00 Bucharest in winter and an hour later in summer. Do not "fix" this by re-adding `timezone:`.
 
+**Scheduled runs start 4–5 hours late, consistently.** Every scheduled run so far began well after its cron time: the four MIPE runs (`0 4 * * *`) started 08:15, 08:34, 08:45 and 09:12 UTC, and the first radar run (`0 5 * * 1`) at 09:59 UTC — 4h15m to 5h12m late. GitHub queues scheduled workflows at low priority and defers them under load; nothing in this repo controls it. So the radar lands nearer 13:00 Bucharest than the 08:00 the cron implies. A late run is not a missed run, and tightening the cron does not help — the delay is not proportional to the time requested.
+
 Both workflows commit state back to the repo with `[skip ci]` and need `contents: write` + `issues: write`. `mipe_watch.py` seeds its hash map from the previous run and prunes keys no longer in `WATCHED_PAGES`, so a page that fails to fetch keeps its baseline instead of resetting to a first check.
