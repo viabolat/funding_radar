@@ -39,13 +39,28 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install requests
+        # ijson streams the ~130 MB EU reference dataset one record at a time;
+        # json.load on it peaks past 1.5 GB on a hosted runner.
+        run: pip install requests ijson
 
       - name: Run funding radar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python funding_radar.py --create-issue
+        run: python funding_radar.py --create-issue --evidence evidence
+
+      # The provenance receipt: every URL fetched, its status, the sha256 of the
+      # exact bytes parsed, and the upstream server's own Date/ETag. Re-fetch the
+      # URL yourself and compare the hash. It is uploaded, never committed —
+      # the repo is the watchers' state store and this is not state.
+      - name: Upload provenance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: funding-radar-evidence
+          path: evidence/
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Commit updated state
         run: |

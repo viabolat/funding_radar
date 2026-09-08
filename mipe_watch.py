@@ -48,7 +48,8 @@ from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-from calls_store import write_source_calls
+from calls_store import atomic_write_text, write_source_calls
+from provenance import Recorder, sha256_of
 
 logging.basicConfig(
     level=logging.INFO,
@@ -131,7 +132,9 @@ def load_hashes(path: str) -> dict:
 
 
 def save_hashes(path: str, hashes: dict) -> None:
-    Path(path).write_text(json.dumps(hashes, ensure_ascii=False, indent=2), encoding="utf-8")
+    # Atomic: a truncated hash map reads as "first check" for every page it lost,
+    # which silently skips a change-detection cycle rather than erroring.
+    atomic_write_text(path, json.dumps(hashes, ensure_ascii=False, indent=2))
 
 
 # ---------------------------------------------------------------------------
@@ -189,11 +192,34 @@ def main() -> None:
         action="store_true",
         help="Open a GitHub Issue if any watched page changed (meaningful inside GitHub Actions).",
     )
+    parser.add_argument(
+        "--no-state",
+        action="store_true",
+        help="Read and write no state — no mipe_page_hashes.json, no calls.json. "
+             "Every page reads as a first check, so nothing is reported as changed; "
+             "use this to verify the fetch itself without disturbing the baseline.",
+    )
+    parser.add_argument(
+        "--evidence",
+        metavar="DIR",
+        help="Write a provenance manifest (URLs, status codes, sha256 of the exact "
+             "bytes hashed, upstream Date/ETag) plus bounded raw samples to DIR.",
+    )
+    parser.add_argument(
+        "--evidence-full",
+        action="store_true",
+        help="Persist complete raw page bodies in the evidence directory.",
+    )
     args = parser.parse_args()
 
-    session = create_resilient_session()
+    if args.create_issue and args.no_state:
+        parser.error("--no-state and --create-issue are contradictory: a verification "
+                     "run must not notify the office.")
 
-    previous_hashes = load_hashes(HASH_STORE_PATH)
+    session = create_resilient_session()
+    recorder = Recorder(args.evidence, full_bodies=args.evidence_full)
+
+    previous_hashes = {} if args.no_state else load_hashes(HASH_STORE_PATH)
 
     # reason: seeding from previous_hashes (instead of starting empty) keeps the
     # stored baseline for any page that fails to fetch this run. Starting empty
@@ -216,6 +242,23 @@ def main() -> None:
             failed_pages.append(name)
             continue
 
+        body = response.content
+        recorder.http(
+            source=f"mipe:{name}",
+            method="GET",
+            url=response.url,
+            status=response.status_code,
+            response_bytes=len(body),
+            # reason: this is the sha256 of the RAW bytes, which is what someone
+            # re-fetching can reproduce. The page hash below is deliberately a
+            # different digest — over the normalised visible text — because that
+            # is what change detection has to be insensitive to markup for.
+            sha256=sha256_of(body),
+            request_headers=dict(response.request.headers) if response.request else None,
+            response_headers=dict(response.headers),
+            sample=recorder.body_for_evidence(body),
+        )
+
         new_hash = normalized_text_hash(response.text)
         current_hashes[name] = new_hash
 
@@ -229,35 +272,46 @@ def main() -> None:
             log.info("CHANGE DETECTED: '%s' (%s)", name, url)
             changed_pages.append(name)
 
-    save_hashes(HASH_STORE_PATH, current_hashes)
+    if args.no_state:
+        log.info("--no-state: nothing written, no page hash stored, no feed row.")
+    else:
+        save_hashes(HASH_STORE_PATH, current_hashes)
 
-    # A MIPE row is a change-alert, not a funding call: it has no deadline and
-    # no budget, and stays in the feed until a human resolves it. Only pages
-    # that actually changed become rows — an unchanged page is not news, and a
-    # page whose fetch failed has nothing to say either way.
-    write_source_calls(
-        [
-            {
-                "call_id": f"mipe:{name}",
-                "source": "mipe",
-                "title": f"{PAGE_LABELS.get(name, name)} — calendar modificat",
-                "programme": "MIPE",
-                "deadline": None,
-                "announced": False,
-                "budget": "",
-                "tags": ["pagină modificată"],
-                "match_reason": "text modificat",
-                "link": WATCHED_PAGES[name],
-                "first_seen": datetime.now().strftime("%Y-%m-%d"),
-            }
-            for name in changed_pages
-        ],
-        owned_sources={"mipe"},
-        # reason: this script reports only the pages that changed on this run, so
-        # a quiet day passes an empty list. Replacing would delete every
-        # outstanding alert the moment a page stopped changing.
-        replace=False,
+        # A MIPE row is a change-alert, not a funding call: it has no deadline
+        # and no budget, and stays in the feed until a human resolves it. Only
+        # pages that actually changed become rows — an unchanged page is not
+        # news, and a page whose fetch failed has nothing to say either way.
+        write_source_calls(
+            [
+                {
+                    "call_id": f"mipe:{name}",
+                    "source": "mipe",
+                    "title": f"{PAGE_LABELS.get(name, name)} — calendar modificat",
+                    "programme": "MIPE",
+                    "deadline": None,
+                    "announced": False,
+                    "budget": "",
+                    "tags": ["pagină modificată"],
+                    "match_reason": "text modificat",
+                    "link": WATCHED_PAGES[name],
+                    "first_seen": datetime.now().strftime("%Y-%m-%d"),
+                }
+                for name in changed_pages
+            ],
+            owned_sources={"mipe"},
+            # reason: this script reports only the pages that changed on this run, so
+            # a quiet day passes an empty list. Replacing would delete every
+            # outstanding alert the moment a page stopped changing.
+            replace=False,
+        )
+
+    recorder.funnel(
+        "mipe",
+        watched=len(WATCHED_PAGES),
+        fetched=len(WATCHED_PAGES) - len(failed_pages),
+        changed=len(changed_pages),
     )
+    recorder.write()
 
     if args.create_issue:
         create_github_issue(changed_pages)

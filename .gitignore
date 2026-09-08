@@ -19,3 +19,9 @@ web/*.tsbuildinfo
 # calls.json are NOT ignored: they are the state the scheduled workflows
 # commit back, and the radar depends on them persisting between runs.
 .DS_Store
+
+# Provenance receipts and the EU dataset cache. Never committed: the samples can
+# be large, the full-body mode is ~130 MB, and the repo is the state store for
+# the watchers — evidence belongs in an Actions artifact, not in history.
+evidence/
+.cache/

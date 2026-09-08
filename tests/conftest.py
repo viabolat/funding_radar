@@ -11,19 +11,69 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
 
-class FakeResponse:
-    """Stands in for requests.Response for the fields these scripts touch."""
+class FakeRequest:
+    """The `.request` attribute — provenance reads the sent headers off it."""
 
-    def __init__(self, text="", json_data=None, status=200, content=None):
+    def __init__(self, headers=None):
+        self.headers = dict(headers or {})
+
+
+class FakeResponse:
+    """Stands in for requests.Response for the fields these scripts touch.
+
+    `url` defaults to an allowed host because assert_trusted() inspects the URL
+    AFTER redirects and refuses anything else. A test that wants to prove that
+    guard passes an off-allowlist `url` explicitly."""
+
+    def __init__(
+        self,
+        text="",
+        json_data=None,
+        status=200,
+        content=None,
+        url="https://ec.europa.eu/fixture",
+        headers=None,
+        request_headers=None,
+        chunks=None,
+    ):
         self.text = text
-        # fetch_adieuronest_calls decodes .content itself so it can strip the
-        # feed's UTF-8 BOM, so a fixture must carry bytes as well as text.
-        self.content = content if content is not None else text.encode("utf-8")
+        # Every caller reads .content, not .json() or .text: the CSV parser
+        # decodes it itself to strip the feed's UTF-8 BOM, and the EU enrichment
+        # hashes it before parsing so the receipt covers the bytes that were
+        # actually parsed. A JSON route therefore has to carry real bytes too.
+        if content is not None:
+            self.content = content
+        elif json_data is not None:
+            import json as _json
+
+            self.content = _json.dumps(json_data).encode("utf-8")
+        else:
+            self.content = text.encode("utf-8")
         self._json = json_data if json_data is not None else {}
         self.status_code = status
+        self.url = url
+        self.headers = dict(headers or {})
+        self.request = FakeRequest(request_headers)
+        # download_to_file streams; a route can dictate the chunk boundaries so
+        # a test can drive the size ceiling without holding a big body.
+        self._chunks = chunks
 
     def json(self):
         return self._json
+
+    def iter_content(self, chunk_size=1):
+        if self._chunks is not None:
+            yield from self._chunks
+            return
+        for start in range(0, len(self.content), chunk_size):
+            yield self.content[start:start + chunk_size]
+
+    # `with session.get(..., stream=True) as response:` in download_to_file.
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
 
     def raise_for_status(self):
         if self.status_code >= 400:
@@ -43,6 +93,7 @@ class FakeSession:
         self.routes = routes
         self.calls = []
         self.posted_queries = []
+        self.request_headers = []
 
     def _resolve(self, url, params):
         key = (url, params["text"]) if params and "text" in params else url
@@ -53,8 +104,9 @@ class FakeSession:
             raise result
         return result
 
-    def get(self, url, params=None, timeout=None):
+    def get(self, url, params=None, timeout=None, headers=None, stream=False):
         self.calls.append(("GET", url, params))
+        self.request_headers.append(dict(headers or {}))
         return self._resolve(url, params)
 
     def post(self, url, params=None, files=None, timeout=None):
@@ -84,6 +136,21 @@ def sedia_payload():
     import json
 
     return json.loads((FIXTURES / "sedia_response.json").read_text(encoding="utf-8"))
+
+
+@pytest.fixture
+def eu_reference_path():
+    """Seven records cut unedited from the live 129,759,798-byte reference
+    dataset (sha256 3f3440d0…, Last-Modified 2026-09-08): an open cancer grant,
+    a forthcoming one, a WIDE-tier match, a closed grant, a multi-cutoff grant,
+    a context-guarded biodiversity/human-health grant, and a procurement tender.
+    Re-cut it from a live body rather than hand-editing if the shape changes."""
+    return FIXTURES / "eu_reference_sample.json"
+
+
+@pytest.fixture
+def eu_reference_bytes(eu_reference_path):
+    return eu_reference_path.read_bytes()
 
 
 @pytest.fixture

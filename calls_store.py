@@ -31,6 +31,8 @@ is user-authored and lives in triage.json, keyed by the same call_id.
 """
 
 import json
+import os
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -78,6 +80,31 @@ def merge_calls(existing: dict, records: list[dict], owned_sources: set[str]) ->
     return merged
 
 
+def atomic_write_text(path: str, text: str) -> None:
+    """
+    Write via a temp file in the same directory, then os.replace.
+
+    reason: these files ARE the state. A run interrupted midway through a plain
+    write (a cancelled workflow, a runner going away) leaves a truncated
+    seen_calls.json, and a truncated seen store is not a detectable error — it
+    parses as "we have seen fewer calls" and re-reports them all on the next
+    run. os.replace is atomic on the same filesystem, so a reader sees either
+    the old file or the new one, never half of either.
+    """
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(dir=str(p.parent), prefix=f".{p.name}.", suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(tmp, p)
+    except BaseException:
+        Path(tmp).unlink(missing_ok=True)
+        raise
+
+
 def save_calls(calls: dict, path: str = CALLS_STORE_PATH) -> None:
     """Writes the feed sorted by call_id so a commit diff shows real changes
     rather than dictionary reordering."""
@@ -86,9 +113,7 @@ def save_calls(calls: dict, path: str = CALLS_STORE_PATH) -> None:
         "generated_at": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
         "calls": [calls[key] for key in sorted(calls)],
     }
-    p = Path(path)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_text(path, json.dumps(payload, ensure_ascii=False, indent=2))
 
 
 def upsert_calls(existing: dict, records: list[dict]) -> dict:

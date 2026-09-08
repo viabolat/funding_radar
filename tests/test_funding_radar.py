@@ -225,141 +225,324 @@ def test_real_feed_sample_is_filtered_as_expected(
 
 
 # ---------------------------------------------------------------------------
-# EU SEDIA source — real response shape
+# EU discovery — the portal's bulk reference dataset
+#
+# Discovery reads the dataset directly, so these run against a slice of the real
+# 129,759,798-byte body rather than against a stubbed search response. Nothing
+# here touches the network: fetch_eu_calls takes `dataset_path` for exactly this.
 # ---------------------------------------------------------------------------
 
-def sedia_routes(payload, keywords=None):
-    url = fr.CONFIG["eu_sedia_url"]
-    return {
-        (url, kw): payload
-        for kw in (keywords or fr.CONFIG["eu_sedia_keywords"])
-    }
+class OfflineEnrichment:
+    """A session whose enrichment POST always fails. Discovery must not care."""
+
+    def __init__(self):
+        self.calls = []
+
+    def post(self, url, params=None, files=None, timeout=None):
+        self.calls.append((url, params))
+        raise requests.RequestException("enrichment unavailable")
 
 
-def fetch_sedia(fake_session, fake_response, payload, only_first_keyword=True):
-    empty = fake_response(json_data={"results": []})
-    routes = {k: empty for k in sedia_routes(None)}
-    routes[(fr.CONFIG["eu_sedia_url"], fr.CONFIG["eu_sedia_keywords"][0])] = fake_response(
-        json_data=payload
-    )
-    session = fake_session(routes)
-    return fr.fetch_eu_sedia_calls(session), session
+def eu_calls(dataset_path, session=None):
+    session = session or OfflineEnrichment()
+    return fr.fetch_eu_calls(session, dataset_path=dataset_path), session
 
 
-def test_sedia_is_queried_over_post_not_get(fake_session, fake_response, sedia_payload):
-    """Regression: the API answers GET with 405 Method Not Allowed, so every
-    keyword failed and the entire EU half of the radar silently reported zero."""
-    _, session = fetch_sedia(fake_session, fake_response, sedia_payload)
-
-    assert session.calls, "no request was made at all"
-    assert {method for method, _, _ in session.calls} == {"POST"}
+def eu_ids(dataset_path, session=None):
+    calls, _ = eu_calls(dataset_path, session)
+    return {call.call_id for call in calls}
 
 
-def test_sedia_query_is_sent_as_a_multipart_json_part(
-    fake_session, fake_response, sedia_payload
+def eu_record(dataset_path, identifier):
+    for record in fr.iter_eu_opportunities(dataset_path):
+        if record.get("identifier") == identifier:
+            return record
+    raise AssertionError(f"{identifier} is not in the fixture")
+
+
+def test_procurement_tenders_are_excluded(eu_reference_path):
+    """type 0 is a procurement tender (999 in the live dataset), type 1 a grant
+    topic (10,161). Vertical Freedom applies for grants; a tender in the digest
+    is noise the office cannot act on."""
+    assert "eu_sedia:INTPA/2023/EA-RP/0177-PIN" not in eu_ids(eu_reference_path)
+    assert any(c.startswith("eu_sedia:HORIZON-MISS") for c in eu_ids(eu_reference_path))
+
+
+def test_closed_calls_are_dropped_and_forthcoming_kept(eu_reference_path):
+    ids = eu_ids(eu_reference_path)
+    assert "eu_sedia:AGRIP-MULTI-2021-IM" not in ids
+    assert "eu_sedia:HORIZON-MISS-2027-02-CANCER-06" in ids
+
+
+def test_forthcoming_calls_are_flagged_announced(eu_reference_path):
+    calls, _ = eu_calls(eu_reference_path)
+    by_id = {c.call_id: c for c in calls}
+    assert by_id["eu_sedia:HORIZON-MISS-2027-02-CANCER-06"].announced is True
+    assert by_id["eu_sedia:HORIZON-MISS-2026-02-CANCER-05"].announced is False
+
+
+def test_programme_is_the_named_object_not_an_opaque_id(eu_reference_path):
+    calls, _ = eu_calls(eu_reference_path)
+    programmes = {c.programme for c in calls}
+    assert "Horizon Europe (HORIZON)" in programmes
+    assert not any(p.isdigit() for p in programmes), "43108390 is not a programme name"
+
+
+def test_programme_falls_back_to_the_prefix_map(eu_reference_path):
+    """The live dataset always carries frameworkProgramme, but the fallback is
+    the only thing standing between a missing object and a blank column, so it
+    is exercised against a record with the object removed."""
+    record = eu_record(eu_reference_path, "HORIZON-MISS-2026-02-CANCER-05")
+    record.pop("frameworkProgramme", None)
+
+    assert fr._eu_programme(record) == fr.EU_PROGRAMME_PREFIXES["HORIZON"]
+
+
+def test_call_id_keeps_the_eu_sedia_prefix(eu_reference_path):
+    """Regression: the prefix is the key in seen_calls.json, calls.json and
+    triage.json. Renaming it when discovery moved to the reference dataset would
+    have re-reported every EU call as new and orphaned the office's triage."""
+    assert "eu_sedia:HORIZON-MISS-2026-02-CANCER-05" in eu_ids(eu_reference_path)
+
+
+def test_topic_url_is_built_from_the_identifier(eu_reference_path):
+    """Regression: grant records carry no `url` field — only tenders do — so a
+    link copied straight off the record is always empty."""
+    calls, _ = eu_calls(eu_reference_path)
+    link = next(c.link for c in calls if c.call_id.endswith("HORIZON-MISS-2026-02-CANCER-05"))
+
+    assert link.endswith("/topic-details/horizon-miss-2026-02-cancer-05")
+    assert link.startswith("https://ec.europa.eu/")
+
+
+def test_core_keywords_match_the_topic_and_its_parent_call(eu_reference_path):
+    calls, _ = eu_calls(eu_reference_path)
+    tags = next(c.tags for c in calls if c.call_id.endswith("HORIZON-MISS-2026-02-CANCER-05"))
+
+    assert "cancer" in tags
+    assert "mental health" in tags
+
+
+def test_wide_keyword_alone_still_matches_in_a_title(eu_reference_path):
+    """"screening" is a WIDE term: signal in a title, noise in body prose."""
+    assert "eu_sedia:DIGITAL-2026-AI-PILOTING-10-SCREENING" in eu_ids(eu_reference_path)
+
+
+def test_context_guard_rejects_a_wide_match_in_the_wrong_domain(eu_reference_path):
+    """Regression: "Health of ecosystems and wild species, predictions and
+    impacts on human health" matches the WIDE term "human health" and is a
+    biodiversity call. Same failure as "sănătate animală" on the Romanian side."""
+    assert "eu_sedia:HORIZON-CL6-2027-01-BIODIV-07" not in eu_ids(eu_reference_path)
+
+
+def test_tags_are_never_matched_against(eu_reference_path):
+    """Regression: `tags` is a ~40-term marketing keyword dump. Matching it made
+    an invasive-species call hit on "mental health"."""
+    record = eu_record(eu_reference_path, "HORIZON-CL6-2027-01-BIODIV-07")
+    record["tags"] = ["cancer", "oncology", "palliative"]
+    record["keywords"] = ["cancer"]
+
+    assert fr._eu_matches(record) == []
+
+
+def test_enrichment_failure_keeps_the_call_without_a_budget(eu_reference_path):
+    """Discovery already established the call exists and is relevant. A search
+    index failure must cost a budget line, not a call — that asymmetry is the
+    whole reason discovery and enrichment use different endpoints."""
+    calls, session = eu_calls(eu_reference_path)
+
+    assert calls, "every call was dropped when enrichment failed"
+    assert all(c.budget == "" for c in calls)
+    assert len(session.calls) == len(calls), "one enrichment attempt per matched call"
+
+
+def test_enrichment_fills_in_the_budget(eu_reference_path, fake_session, fake_response, sedia_payload):
+    """The reference dataset carries no money at all; the budget in the digest
+    comes from the search index, one POST per matched topic."""
+    identifier = sedia_payload["results"][0]["metadata"]["identifier"][0]
+    call = fr.FundingCall(source="eu_sedia", call_id=f"eu_sedia:{identifier}", title="t")
+    session = fake_session({
+        (fr.CONFIG["eu_sedia_url"], f'"{identifier}"'): fake_response(
+            json_data=sedia_payload, url="https://api.tech.ec.europa.eu/search-api/prod/rest/search"
+        )
+    })
+
+    fr.enrich_eu_call(session, call, identifier)
+
+    assert call.budget.startswith("EUR ")
+
+
+def test_enrichment_prefers_english_over_other_translations(
+    eu_reference_path, fake_session, fake_response, sedia_payload
 ):
-    _, session = fetch_sedia(fake_session, fake_response, sedia_payload)
+    """Regression: every topic is indexed once per translation (up to 23), so
+    taking the first result put Spanish topic pages in the digest."""
+    identifier = sedia_payload["results"][0]["metadata"]["identifier"][0]
+    call = fr.FundingCall(source="eu_sedia", call_id=f"eu_sedia:{identifier}", title="t")
+    session = fake_session({
+        (fr.CONFIG["eu_sedia_url"], f'"{identifier}"'): fake_response(
+            json_data=sedia_payload, url="https://api.tech.ec.europa.eu/search-api/prod/rest/search"
+        )
+    })
 
-    name, body, content_type = session.posted_queries[0]
-    assert content_type == "application/json"
-    must = json.loads(body)["bool"]["must"]
-    assert {"terms": {"status": fr.CONFIG["eu_sedia_statuses"]}} in must
-    assert {"terms": {"language": fr.CONFIG["eu_sedia_languages"]}} in must
+    fr.enrich_eu_call(session, call, identifier)
 
-
-def test_language_variants_of_one_topic_collapse_to_the_preferred_language(
-    fake_session, fake_response, sedia_payload
-):
-    """The same topic is indexed once per translation; without a preference the
-    digest came out in whichever language happened to land last (Spanish)."""
-    calls, _ = fetch_sedia(fake_session, fake_response, sedia_payload)
-
-    horizon = [c for c in calls if c.call_id.endswith("HORIZON-MISS-2027-02-CANCER-02")]
-    assert len(horizon) == 1
-    assert horizon[0].title.startswith("Clinical research by Comprehensive Cancer")
-
-
-def test_expired_topics_are_dropped_despite_being_flagged_open(
-    fake_session, fake_response, sedia_payload
-):
-    """EU4H-2024-PJ-03-5 still carries status 31094502 ("Open") with a deadline
-    of 2025-01-21. The portal's status field cannot be trusted."""
-    calls, _ = fetch_sedia(fake_session, fake_response, sedia_payload)
-
-    assert not any("EU4H-2024-PJ-03-5" in c.call_id for c in calls)
-
-
-def test_programme_is_named_not_a_numeric_id(
-    fake_session, fake_response, sedia_payload
-):
-    """frameworkProgramme comes back as an opaque id such as 43108390."""
-    calls, _ = fetch_sedia(fake_session, fake_response, sedia_payload)
-
-    assert calls[0].programme == "Horizon Europe"
-
-
-def test_budget_is_reduced_to_this_topics_contribution_range(
-    fake_session, fake_response, sedia_payload
-):
-    """budgetOverview is a multi-kilobyte JSON blob covering every topic in the
-    parent call; dumping it raw made the Issue unreadable."""
-    calls, _ = fetch_sedia(fake_session, fake_response, sedia_payload)
-
-    budget = calls[0].budget
-    assert budget.startswith("EUR ")
-    assert "budgetTopicActionMap" not in budget
-    assert "grant(s) expected" in budget
-
-
-def test_one_failing_keyword_does_not_abort_the_rest(
-    fake_session, fake_response, sedia_payload
-):
-    url = fr.CONFIG["eu_sedia_url"]
-    empty = fake_response(json_data={"results": []})
-    routes = {(url, kw): empty for kw in fr.CONFIG["eu_sedia_keywords"]}
-    routes[(url, fr.CONFIG["eu_sedia_keywords"][0])] = requests.RequestException("boom")
-    routes[(url, fr.CONFIG["eu_sedia_keywords"][1])] = fake_response(json_data=sedia_payload)
-
-    calls = fr.fetch_eu_sedia_calls(fake_session(routes))
-
-    assert any("HORIZON-MISS-2027-02-CANCER-02" in c.call_id for c in calls)
-
-
-def test_result_without_any_identifier_is_skipped(fake_session, fake_response):
-    payload = {"results": [{"reference": "", "metadata": {"title": ["no id"]}}]}
-    calls, _ = fetch_sedia(fake_session, fake_response, payload)
-
-    assert calls == []
+    assert "/es/" not in call.link
 
 
 # ---------------------------------------------------------------------------
-# Deadline helper
+# Deadline helper — epoch-millisecond lists off the reference dataset
 # ---------------------------------------------------------------------------
 
-def test_multi_cutoff_deadline_picks_the_next_one_still_ahead():
-    """The EIC Accelerator publishes four cutoffs in one list; taking [0] gave a
-    date that had already passed."""
+def ms(date_string):
+    from datetime import timezone
+
+    return int(datetime.strptime(date_string, "%Y-%m-%d").replace(tzinfo=timezone.utc).timestamp() * 1000)
+
+
+def test_multi_cutoff_deadline_picks_the_next_one_still_ahead(eu_reference_path):
+    """Regression, against a real multi-cutoff record: EDF-EDIP publishes three
+    dates in one list and the EIC Accelerator four. Taking [0] gave a date that
+    had already passed."""
+    record = eu_record(eu_reference_path, "EDF-EDIP-P-2026-2027-FNLC-SA-SEAP")
+    deadline, expired = fr._eu_deadline(record)
+    dates = sorted(fr._eu_epoch_to_iso(v) for v in record["deadlineDatesLong"])
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    assert expired is False
+    assert deadline == next(d for d in dates if d >= today)
+    assert deadline != dates[0] or dates[0] >= today
+
+
+def test_dates_are_read_as_milliseconds_not_seconds():
+    """Regression: reading these as seconds puts every deadline in 1970, which
+    expires the entire EU feed and looks exactly like "nothing matched"."""
+    assert fr._eu_epoch_to_iso(1620691200000) == "2021-05-11"
+    assert fr._eu_epoch_to_iso("1620691200000") == "2021-05-11"
+    assert fr._eu_epoch_to_iso(None) == ""
+
+
+def test_a_status_open_call_whose_deadline_passed_is_still_dropped():
+    """Regression: EU4H-2024-PJ-03-5 sat at "Open" with a deadline of
+    2025-01-21. Status is a claim; the deadline is a date."""
     past = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
-    soon = (datetime.now() + timedelta(days=30)).strftime("%Y-%m-%d")
-    later = (datetime.now() + timedelta(days=90)).strftime("%Y-%m-%d")
 
-    deadline, expired = fr._sedia_deadline(
-        {"deadlineDate": [f"{past}T17:00:00.000+0000", f"{later}T17:00:00.000+0000",
-                          f"{soon}T17:00:00.000+0000"]}
-    )
-
-    assert (deadline, expired) == (soon, False)
-
-
-def test_all_cutoffs_in_the_past_marks_the_topic_expired():
-    past = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-
-    assert fr._sedia_deadline({"deadlineDate": [f"{past}T00:00:00.000+0000"]})[1] is True
+    assert fr._eu_deadline({"deadlineDatesLong": [ms(past)]}) == (past, True)
 
 
 def test_a_topic_with_no_published_deadline_is_kept():
     """Typical of forthcoming calls — a missing date is not an expired one."""
-    assert fr._sedia_deadline({}) == ("", False)
+    assert fr._eu_deadline({}) == ("", False)
+
+
+# ---------------------------------------------------------------------------
+# Streaming download, size ceiling, conditional GET
+# ---------------------------------------------------------------------------
+
+def test_download_hashes_the_exact_bytes_it_wrote(tmp_path, fake_session, fake_response):
+    """The receipt is worthless unless the digest is over the bytes that were
+    actually parsed, so this compares it against hashlib over the file on disk."""
+    import hashlib
+
+    body = b'{"fundingData": {"GrantTenderObj": []}}'
+    url = fr.CONFIG["eu_reference_url"]
+    session = fake_session({url: fake_response(content=body, url=url)})
+    dest = tmp_path / "out.json"
+
+    status, sha, size, _ = fr.download_to_file(
+        session, url, dest, max_bytes=10_000, timeout=(1, 1)
+    )
+
+    assert (status, size) == (200, len(body))
+    assert sha == hashlib.sha256(dest.read_bytes()).hexdigest()
+
+
+def test_download_aborts_past_the_size_ceiling(tmp_path, fake_session, fake_response):
+    """An upstream fault — or a redirect to something else entirely — must not
+    stream until the runner dies."""
+    url = fr.CONFIG["eu_reference_url"]
+    session = fake_session({url: fake_response(chunks=[b"x" * 512] * 8, url=url)})
+
+    with pytest.raises(requests.RequestException, match="ceiling"):
+        fr.download_to_file(session, url, tmp_path / "out.json", max_bytes=1024, timeout=(1, 1))
+
+
+def test_conditional_get_reuses_the_cached_dataset(tmp_path, fake_session, fake_response):
+    """With --cache-dir, an unchanged dataset costs one 304 and zero bytes."""
+    cache = tmp_path / "cache"
+    cache.mkdir()
+    (cache / "grantsTenders.json").write_bytes(b'{"fundingData": {"GrantTenderObj": []}}')
+    (cache / "grantsTenders.meta.json").write_text(json.dumps({"etag": '"abc"'}))
+
+    url = fr.CONFIG["eu_reference_url"]
+    session = fake_session({url: fake_response(status=304, url=url)})
+
+    path = fr.fetch_eu_reference(session, tmp_path / "unused.json", cache_dir=cache)
+
+    assert path == cache / "grantsTenders.json"
+    assert session.request_headers[-1]["If-None-Match"] == '"abc"'
+
+
+def test_a_response_from_an_unexpected_host_is_refused(fake_response):
+    """assert_trusted reads the URL AFTER redirects: whatever comes back is
+    parsed, written to calls.json and mailed to the office inside an Issue."""
+    with pytest.raises(requests.RequestException, match="unexpected host"):
+        fr.assert_trusted(fake_response(url="https://evil.example/grantsTenders.json"))
+
+    with pytest.raises(requests.RequestException, match="non-HTTPS"):
+        fr.assert_trusted(fake_response(url="http://ec.europa.eu/x"))
+
+
+# ---------------------------------------------------------------------------
+# Provenance receipts
+# ---------------------------------------------------------------------------
+
+def test_manifest_records_a_hash_matching_the_fixture_bytes(
+    tmp_path, fake_session, fake_response, adieuronest_csv_bytes
+):
+    import hashlib
+
+    recorder = fr.Recorder(str(tmp_path / "evidence"))
+    url = fr.CONFIG["adieuronest_csv_url"]
+    session = fake_session({url: fake_response(content=adieuronest_csv_bytes, url=url)})
+
+    fr.fetch_adieuronest_calls(session, recorder=recorder)
+    recorder.write()
+
+    manifest = json.loads((tmp_path / "evidence" / "manifest.json").read_text())
+    exchange = manifest["exchanges"][0]
+
+    assert exchange["status"] == 200
+    assert exchange["response_bytes"] == len(adieuronest_csv_bytes)
+    assert exchange["sha256"] == hashlib.sha256(adieuronest_csv_bytes).hexdigest()
+    assert manifest["funnels"][0]["source"] == "adieuronest"
+
+
+def test_a_receipt_never_carries_an_authorization_header(tmp_path):
+    """GITHUB_TOKEN rides in an Authorization header and a receipt is an
+    artifact people pass around, so the header list is an allowlist."""
+    recorder = fr.Recorder(str(tmp_path / "evidence"))
+    recorder.http(
+        source="s", method="GET", url="https://ec.europa.eu/x", status=200,
+        response_bytes=0, sha256="",
+        request_headers={"Authorization": "Bearer secret", "User-Agent": "ua"},
+    )
+    recorder.write()
+
+    text = (tmp_path / "evidence" / "manifest.json").read_text()
+    assert "secret" not in text
+    assert "ua" in text
+
+
+def test_a_recorder_with_no_directory_writes_nothing(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    recorder = fr.Recorder(None)
+
+    recorder.http(source="s", method="GET", url="u", status=200, response_bytes=1, sha256="x")
+    recorder.funnel("s", rows=1)
+
+    assert recorder.write() is None
+    assert list(tmp_path.iterdir()) == []
 
 
 # ---------------------------------------------------------------------------
@@ -459,6 +642,24 @@ def test_issue_payload_carries_digest_count_and_label(monkeypatch, capture_post)
 # End-to-end main()
 # ---------------------------------------------------------------------------
 
+EMPTY_DATASET = b'{"fundingData": {"GrantTenderObj": []}}'
+
+
+def main_routes(fake_response, csv_payload=None, eu=EMPTY_DATASET):
+    """The two URLs main() reaches for. The EU side defaults to an empty
+    dataset envelope so a test about the CSV side triggers no enrichment POSTs
+    it would then have to route."""
+    routes = {}
+    eu_url = fr.CONFIG["eu_reference_url"]
+    routes[eu_url] = eu if isinstance(eu, Exception) else fake_response(content=eu, url=eu_url)
+    if csv_payload is not None:
+        csv_url = fr.CONFIG["adieuronest_csv_url"]
+        routes[csv_url] = (
+            csv_payload if isinstance(csv_payload, Exception)
+            else fake_response(content=csv_payload, url="https://adieuronest.ro/finantari.csv")
+        )
+    return routes
+
 def test_main_reports_only_new_calls_and_records_every_fetched_id(
     tmp_path, monkeypatch, fake_session, fake_response, capture_post
 ):
@@ -468,11 +669,7 @@ def test_main_reports_only_new_calls_and_records_every_fetched_id(
     monkeypatch.setattr("sys.argv", ["funding_radar.py", "--create-issue"])
 
     payload = feed(csv_row(id="slug-100", titlu="Sprijin pacienti cancer", url="http://c"))
-    routes = {
-        (fr.CONFIG["eu_sedia_url"], kw): fake_response(json_data={"results": []})
-        for kw in fr.CONFIG["eu_sedia_keywords"]
-    }
-    routes[fr.CONFIG["adieuronest_csv_url"]] = fake_response(content=payload)
+    routes = main_routes(fake_response, payload)
     monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
 
     posted = capture_post(fr)
@@ -492,11 +689,7 @@ def test_main_survives_a_totally_dead_source(
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr("sys.argv", ["funding_radar.py"])
 
-    routes = {
-        (fr.CONFIG["eu_sedia_url"], kw): fake_response(json_data={"results": []})
-        for kw in fr.CONFIG["eu_sedia_keywords"]
-    }
-    routes[fr.CONFIG["adieuronest_csv_url"]] = requests.RequestException("down")
+    routes = main_routes(fake_response, requests.RequestException("down"))
     monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
 
     fr.main()  # must not raise
@@ -525,11 +718,7 @@ def test_main_writes_a_feed_row_per_call(
             valoare_max="500 000 EUR",
         )
     )
-    routes = {
-        (fr.CONFIG["eu_sedia_url"], kw): fake_response(json_data={"results": []})
-        for kw in fr.CONFIG["eu_sedia_keywords"]
-    }
-    routes[fr.CONFIG["adieuronest_csv_url"]] = fake_response(content=payload)
+    routes = main_routes(fake_response, payload)
     monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
 
     fr.main()
@@ -552,13 +741,105 @@ def test_a_radar_run_does_not_disturb_mipe_rows(
     monkeypatch.setattr("sys.argv", ["funding_radar.py"])
     cs.save_calls({"mipe:page": {"call_id": "mipe:page", "source": "mipe"}}, "calls.json")
 
-    routes = {
-        (fr.CONFIG["eu_sedia_url"], kw): fake_response(json_data={"results": []})
-        for kw in fr.CONFIG["eu_sedia_keywords"]
-    }
-    routes[fr.CONFIG["adieuronest_csv_url"]] = fake_response(content=feed())
+    routes = main_routes(fake_response, feed())
     monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
 
     fr.main()
 
     assert "mipe:page" in cs.load_calls("calls.json")
+
+
+def test_a_failed_eu_fetch_does_not_delete_the_existing_eu_rows(
+    tmp_path, monkeypatch, fake_session, fake_response
+):
+    """Regression: merge_calls DELETES every row of a source named in
+    owned_sources. Naming a source that failed erased all 22 EU rows from
+    calls.json and redeployed the dashboard without them, exiting 0 — the
+    silent-green failure fixed for mipe_watch in 6712dfe, living in the other
+    script."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr("sys.argv", ["funding_radar.py"])
+    cs.save_calls(
+        {"eu_sedia:OLD": {"call_id": "eu_sedia:OLD", "source": "eu_sedia", "first_seen": "2026-01-01"}},
+        "calls.json",
+    )
+
+    routes = main_routes(
+        fake_response,
+        feed(csv_row(id="slug-1", titlu="Sprijin pacienti cancer")),
+        eu=requests.RequestException("portal down"),
+    )
+    monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
+
+    fr.main()
+
+    stored = cs.load_calls("calls.json")
+    assert "eu_sedia:OLD" in stored, "a failed source must not have its rows replaced"
+    assert "adieuronest:slug-1" in stored, "the source that succeeded is still written"
+
+
+def test_every_source_failing_exits_non_zero(
+    tmp_path, monkeypatch, fake_session, fake_response
+):
+    """A total outage used to be reported as a green, quiet week."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr("sys.argv", ["funding_radar.py"])
+
+    routes = main_routes(
+        fake_response,
+        requests.RequestException("down"),
+        eu=requests.RequestException("also down"),
+    )
+    monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
+
+    with pytest.raises(SystemExit) as exc:
+        fr.main()
+
+    assert exc.value.code == 1
+
+
+def test_source_flag_runs_one_scraper_alone(
+    tmp_path, monkeypatch, fake_session, fake_response
+):
+    """--source is what makes a scraper verifiable in isolation: the other
+    source must not be reached at all, not merely produce nothing."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr("sys.argv", ["funding_radar.py", "--source", "adieuronest"])
+
+    routes = main_routes(fake_response, feed(csv_row(id="slug-1", titlu="cancer")))
+    session = fake_session(routes)
+    monkeypatch.setattr(fr, "create_resilient_session", lambda: session)
+
+    fr.main()
+
+    assert [c[1] for c in session.calls] == [fr.CONFIG["adieuronest_csv_url"]]
+
+
+def test_no_state_writes_nothing_anywhere(
+    tmp_path, monkeypatch, fake_session, fake_response, capsys
+):
+    """A verification run must be incapable of poisoning the next scheduled one:
+    running locally normally rewrites seen_calls.json / calls.json in the working
+    directory, which suppresses the real run's alerts."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr("sys.argv", ["funding_radar.py", "--source", "adieuronest", "--no-state"])
+
+    routes = main_routes(fake_response, feed(csv_row(id="slug-1", titlu="Sprijin cancer")))
+    monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
+
+    fr.main()
+
+    assert list(tmp_path.rglob("*")) == []
+    assert "Sprijin cancer" in capsys.readouterr().out
+
+
+def test_no_state_refuses_to_open_an_issue(tmp_path, monkeypatch):
+    """The two flags are contradictory: a verification run must not notify."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setattr("sys.argv", ["funding_radar.py", "--no-state", "--create-issue"])
+
+    with pytest.raises(SystemExit) as exc:
+        fr.main()
+
+    assert exc.value.code == 2
+

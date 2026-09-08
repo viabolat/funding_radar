@@ -1,0 +1,828 @@
+{
+ "fundingData": {
+  "GrantTenderObj": [
+   {
+    "type": 1,
+    "ccm2Id": 50135695,
+    "identifier": "HORIZON-MISS-2026-02-CANCER-05",
+    "title": "Boosting mental health of young cancer survivors through the European Cancer Patient Digital Centre (ECPDC)",
+    "publicationDateLong": 1765497600000,
+    "plannedOpeningDateLong": 1770681600000,
+    "callIdentifier": "HORIZON-MISS-2026-02",
+    "callTitle": "Supporting the implementation of the Cancer Mission",
+    "callccm2Id": 50137823,
+    "deadlineDatesLong": [
+     1789430400000
+    ],
+    "allowPartnerSearch": true,
+    "frameworkProgramme": {
+     "id": 43108390,
+     "abbreviation": "HORIZON",
+     "description": "Horizon Europe (HORIZON)"
+    },
+    "programmeDivision": [
+     {
+      "id": 43108390,
+      "abbreviation": "HORIZON",
+      "description": "Horizon Europe (HORIZON)"
+     },
+     {
+      "id": 43108541,
+      "abbreviation": "HORIZON.2",
+      "description": "Global Challenges and European Industrial Competitiveness"
+     },
+     {
+      "id": 43108557,
+      "abbreviation": "HORIZON.2.1",
+      "description": "Health"
+     }
+    ],
+    "status": {
+     "id": 31094502,
+     "abbreviation": "Open",
+     "description": "Open"
+    },
+    "deadlineModel": {},
+    "topicActions": [
+     {
+      "id": 15849,
+      "abbreviation": "HORIZON-IA",
+      "description": "HORIZON Innovation Actions"
+     }
+    ],
+    "topicMGAs": [
+     {
+      "id": 43027849,
+      "abbreviation": "HORIZON-AG-LS",
+      "description": "HORIZON Lump Sum Grant"
+     }
+    ],
+    "tags": [
+     "Artificial Intelligence",
+     "Psychosocial support",
+     "Young Cancer Survivors"
+    ],
+    "sme": false,
+    "actions": [
+     {
+      "status": {
+       "id": 31094502,
+       "abbreviation": "Open",
+       "description": "Open"
+      },
+      "types": [
+       {
+        "typeOfAction": "HORIZON-IA HORIZON Innovation Actions",
+        "typeOfMGA": [
+         {
+          "id": 43027849,
+          "abbreviation": "HORIZON-AG-LS",
+          "description": "HORIZON Lump Sum Grant"
+         }
+        ]
+       }
+      ],
+      "plannedOpeningDate": "1770681600000",
+      "submissionProcedure": {},
+      "deadlineDates": [
+       "1789430400000"
+      ]
+     }
+    ],
+    "latestInfos": [
+     {
+      "approvalDate": "",
+      "lastChangeDate": "2026-02-12T15:50:54.218",
+      "content": "<p>If your lump sum budget contains any cost items in cost category C and/or D, please make sure to justify these items in the ‘Any comments’ sheet of the Excel detailed lump sum budget table.</p><p>The reason is that we simplified the proposal template, removing this information from Part B and bringing it closer to the relevant budget items.</p><p>Specifically, you must include justification in the ‘Any comments’ sheet if you are in any of the following situations:</p><ul><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>If the sum of the costs for ’travel and subsistence’, ‘equipment’, and ‘other goods, works and services’ (i.e. the purchase costs) exceeds 15% of the personnel costs for a participant. If this is the case, justify the most expensive cost item(s) up to the level that the remaining costs are below 15% of personnel costs.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>If other cost categories (e.g. internally invoiced goods and services) are used.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>If in-kind contributions are used (non-financial resources made available free of charge by third parties, which must be included as direct costs in the corresponding cost category, e.g. personnel costs or purchase costs for equipment).</li></ul><p><br></br></p>"
+     },
+     {
+      "approvalDate": "",
+      "lastChangeDate": "2026-02-12T10:49:10.129",
+      "content": "The submission session is now available for: HORIZON-MISS-2026-02-CANCER-04, HORIZON-MISS-2026-02-CANCER-01, HORIZON-MISS-2026-02-CANCER-05, HORIZON-MISS-2026-02-CANCER-03, HORIZON-MISS-2026-02-CANCER-02, HORIZON-MISS-2026-02-CANCER-06, HORIZON-MISS-2026-02-CANCER-07"
+     },
+     {
+      "approvalDate": "",
+      "lastChangeDate": "2026-02-11T16:40:08.864",
+      "content": "<p>Please note that the call opening is delayed as we are experiencing technical issues.</p>"
+     }
+    ],
+    "links": [
+     {
+      "callIdentifier": "HORIZON-MISS-2026-02",
+      "criterionCode": "HORIZON-IA",
+      "criterionDescription": "HORIZON Innovation Actions",
+      "url": "https://ec.europa.eu/research/participants/submission/manage/screen/submission/create-draft/43447?topic=HORIZON-MISS-2026-02-CANCER-05",
+      "startDate": "1770681600000",
+      "endDate": "1789430400000",
+      "mgaDescription": "HORIZON Lump Sum Grant",
+      "mgaCode": "HORIZON-AG-LS"
+     }
+    ],
+    "additionalDossiers": [],
+    "infoPackDossiers": [],
+    "keywords": [
+     "Man-machine-interfaces",
+     "Mental health",
+     "Patient care",
+     "Quality-of-life"
+    ],
+    "flags": [
+     "DigitalAgenda",
+     "AI"
+    ],
+    "additionalCpvs": [],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": []
+   },
+   {
+    "type": 1,
+    "ccm2Id": 50140712,
+    "identifier": "HORIZON-MISS-2027-02-CANCER-06",
+    "title": "Support a Young Cancer Survivor Quality of Life (QoL) research programme by cancer charities and funding agencies",
+    "publicationDateLong": 1765497600000,
+    "plannedOpeningDateLong": 1802217600000,
+    "callIdentifier": "HORIZON-MISS-2027-02",
+    "callTitle": "Supporting the implementation of the Cancer Mission",
+    "callccm2Id": 50140770,
+    "deadlineDatesLong": [
+     1821484800000
+    ],
+    "allowPartnerSearch": true,
+    "frameworkProgramme": {
+     "id": 43108390,
+     "abbreviation": "HORIZON",
+     "description": "Horizon Europe (HORIZON)"
+    },
+    "programmeDivision": [
+     {
+      "id": 43108390,
+      "abbreviation": "HORIZON",
+      "description": "Horizon Europe (HORIZON)"
+     },
+     {
+      "id": 43108541,
+      "abbreviation": "HORIZON.2",
+      "description": "Global Challenges and European Industrial Competitiveness"
+     },
+     {
+      "id": 43108557,
+      "abbreviation": "HORIZON.2.1",
+      "description": "Health"
+     }
+    ],
+    "status": {
+     "id": 31094501,
+     "abbreviation": "Forthcoming",
+     "description": "Forthcoming"
+    },
+    "deadlineModel": {},
+    "topicActions": [
+     {
+      "id": 15851,
+      "abbreviation": "HORIZON-CSA",
+      "description": "HORIZON Coordination and Support Actions"
+     }
+    ],
+    "topicMGAs": [
+     {
+      "id": 43027849,
+      "abbreviation": "HORIZON-AG-LS",
+      "description": "HORIZON Lump Sum Grant"
+     }
+    ],
+    "tags": [
+     "National funders",
+     "Philanthropy",
+     "late-effects",
+     "quality of life",
+     "survivorship"
+    ],
+    "sme": false,
+    "actions": [
+     {
+      "status": {
+       "id": 31094501,
+       "abbreviation": "Forthcoming",
+       "description": "Forthcoming"
+      },
+      "types": [
+       {
+        "typeOfAction": "HORIZON-CSA HORIZON Coordination and Support Actions",
+        "typeOfMGA": [
+         {
+          "id": 43027849,
+          "abbreviation": "HORIZON-AG-LS",
+          "description": "HORIZON Lump Sum Grant"
+         }
+        ]
+       }
+      ],
+      "plannedOpeningDate": "1802217600000",
+      "submissionProcedure": {},
+      "deadlineDates": [
+       "1821484800000"
+      ]
+     }
+    ],
+    "latestInfos": [],
+    "links": [],
+    "additionalDossiers": [],
+    "infoPackDossiers": [],
+    "keywords": [
+     "Child health",
+     "Health inequalities",
+     "Public health",
+     "Quality of health care",
+     "Rehabilitation",
+     "Rights of the child"
+    ],
+    "flags": [
+     "DigitalAgenda",
+     "AI"
+    ],
+    "additionalCpvs": [],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": []
+   },
+   {
+    "type": 1,
+    "ccm2Id": 43493632,
+    "identifier": "AGRIP-MULTI-2021-IM",
+    "title": "Support for multi programmes – Union quality schemes OR merits of Union agricultural products (Topic 1)",
+    "publicationDateLong": 1611792000000,
+    "plannedOpeningDateLong": 1611792000000,
+    "callIdentifier": "AGRIP-MULTI-2021",
+    "callTitle": "Call for proposals for multi programmes 2021 - Promotion of agricultural products",
+    "callccm2Id": 43493714,
+    "deadlineDatesLong": [
+     1620691200000
+    ],
+    "allowPartnerSearch": true,
+    "frameworkProgramme": {
+     "id": 43298664,
+     "abbreviation": "AGRIP2027",
+     "description": "Promotion of Agricultural Products (AGRIP)"
+    },
+    "programmeDivision": [
+     {
+      "id": 43251408,
+      "abbreviation": "AGRIP-1-1",
+      "description": "AGRIP-1-1"
+     }
+    ],
+    "status": {
+     "id": 31094503,
+     "abbreviation": "Closed",
+     "description": "Closed"
+    },
+    "deadlineModel": {},
+    "topicActions": [
+     {
+      "id": 15723,
+      "abbreviation": "AGRIP-MULTI-PJG",
+      "description": "AGRIP MULTI Project Grants"
+     }
+    ],
+    "topicMGAs": [
+     {
+      "id": 43246967,
+      "abbreviation": "AGRIP-AG",
+      "description": "AGRIP Action Grant Budget-Based"
+     }
+    ],
+    "tags": [
+     "EU funding agriculture",
+     "Food export",
+     "PR",
+     "SIMPLE-2021",
+     "activities",
+     "agri portal",
+     "agri-food",
+     "agricultural exports export of agricultural products",
+     "agricultural products export",
+     "agricultural products marketing",
+     "agriculture",
+     "agriculture events",
+     "agriculture export",
+     "agriculture funding",
+     "agriculture funding agencies",
+     "agriculture funding opportunities",
+     "agriculture loans Europe",
+     "agriculture new markets",
+     "agriculture portal",
+     "agriculture promotion",
+     "awareness",
+     "campaigns",
+     "co-funding",
+     "current events in agriculture",
+     "export promotion in agriculture",
+     "food",
+     "funding",
+     "how to apply for EU funding agriculture",
+     "information",
+     "internal market",
+     "marketing",
+     "marketing agriculture",
+     "multi programmes",
+     "opportunities",
+     "organic",
+     "partner",
+     "partners",
+     "products",
+     "programmes",
+     "promoting agriculture",
+     "promotion",
+     "proposals",
+     "quality schemes",
+     "simple programmes",
+     "third countries"
+    ],
+    "sme": false,
+    "actions": [
+     {
+      "status": {
+       "id": 31094503,
+       "abbreviation": "Closed",
+       "description": "Closed"
+      },
+      "types": [
+       {
+        "typeOfAction": "AGRIP-MULTI-PJG AGRIP MULTI Project Grants",
+        "typeOfMGA": [
+         {
+          "id": 43246967,
+          "abbreviation": "AGRIP-AG",
+          "description": "AGRIP Action Grant Budget-Based"
+         }
+        ]
+       }
+      ],
+      "plannedOpeningDate": "1611792000000",
+      "submissionProcedure": {},
+      "deadlineDates": [
+       "1620691200000"
+      ]
+     }
+    ],
+    "latestInfos": [
+     {
+      "approvalDate": "2021-05-19",
+      "lastChangeDate": "2021-05-19T16:37:05.927",
+      "content": "<p>54 proposals were submitted in  response to the 2021 Call for proposals for MULTI programmes for the Promotion of agricultural products.</p>"
+     },
+     {
+      "approvalDate": "2021-03-10",
+      "lastChangeDate": "2021-03-10T15:42:04.666",
+      "content": "<p>The following corrigenda have been published on 9 March 2021, <a href=\"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.C_.2021.080.01.0021.01.ENG&amp;toc=OJ%3AC%3A2021%3A080%3ATOC\" target=\"_blank\">OJ&#xa0;C 080/2021</a>:</p>\r\n<p>- Extension of submssion deadline until 11 May, 17:00</p>\r\n<p>- Revision of eligibility conditions</p>"
+     },
+     {
+      "approvalDate": "2021-03-09",
+      "lastChangeDate": "2021-03-09T19:54:08.988",
+      "content": "<p>The following corrigenda have been published on 9 March 2021, <a href=\"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.C_.2021.080.01.0021.01.ENG&amp;toc=OJ%3AC%3A2021%3A080%3ATOC\" target=\"_blank\">OJ&#xa0;C 080/2021</a>:</p>\r\n<p>- Extension of submssion deadline until 11 May, 17:00</p>\r\n<p>- Revision of eligibility conditions</p>"
+     },
+     {
+      "approvalDate": "2021-02-11",
+      "lastChangeDate": "2021-02-11T10:54:05.582",
+      "content": "<p>The deadline for submitting proposals has been extended to&#xa0;<strong>11 May, 17:00 CET</strong>. A corrigendum will be published shortly.</p>"
+     },
+     {
+      "approvalDate": "2021-02-10",
+      "lastChangeDate": "2021-02-10T16:32:45.801",
+      "content": "The submission session is now available for: AGRIP-MULTI-2021-IM-ORGANIC(AGRIP-PJG), AGRIP-MULTI-2021-IM-PROPER-DIET(AGRIP-PJG), AGRIP-MULTI-2021-TC-ORGANICS(AGRIP-PJG), AGRIP-MULTI-2021-IM(AGRIP-PJG), AGRIP-MULTI-2021-IM-SUSTAINABLE(AGRIP-PJG), AGRIP-MULTI-2021-TC-ALL(AGRIP-PJG)"
+     },
+     {
+      "approvalDate": "2021-02-05",
+      "lastChangeDate": "2021-02-05T10:39:15.646",
+      "content": "<p>&#xa0; The submission of proposals under this topic is possible now.</p>"
+     },
+     {
+      "approvalDate": "2021-02-04",
+      "lastChangeDate": "2021-02-04T17:07:25.528",
+      "content": "The submission session is now available for: AGRIP-MULTI-2021-IM-ORGANIC(AGRIP-PJG), AGRIP-MULTI-2021-IM-PROPER-DIET(AGRIP-PJG), AGRIP-MULTI-2021-TC-ORGANICS(AGRIP-PJG), AGRIP-MULTI-2021-IM(AGRIP-PJG), AGRIP-MULTI-2021-IM-SUSTAINABLE(AGRIP-PJG), AGRIP-MULTI-2021-TC-ALL(AGRIP-PJG)"
+     },
+     {
+      "approvalDate": "2021-01-28",
+      "lastChangeDate": "2021-01-28T10:36:53.913",
+      "content": "<p>&#xa0; The system for submissions of proposals under this topic will be open soon.</p>"
+     }
+    ],
+    "links": [],
+    "additionalDossiers": [],
+    "infoPackDossiers": [],
+    "keywords": [],
+    "flags": [],
+    "additionalCpvs": [],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": []
+   },
+   {
+    "type": 1,
+    "ccm2Id": 51188737,
+    "identifier": "EDF-EDIP-P-2026-2027-FNLC-SA-SEAP",
+    "title": "Support for the functioning of SEAPs, including  for the purpose of establishing, managing and maintaining defence industrial readiness pools",
+    "publicationDateLong": 1774915200000,
+    "plannedOpeningDateLong": 1788307200000,
+    "callIdentifier": "EDF-EDIP-P-2026-2027-FNLC-SA",
+    "callTitle": "Continuous call for proposals for supporting actions under the Programme",
+    "callccm2Id": 51188748,
+    "deadlineDatesLong": [
+     1791849600000,
+     1802736000000,
+     1822089600000
+    ],
+    "allowPartnerSearch": true,
+    "frameworkProgramme": {
+     "id": 44181033,
+     "abbreviation": "EDF",
+     "description": "European Defence Fund (EDF)"
+    },
+    "programmeDivision": [
+     {
+      "id": 44181033,
+      "abbreviation": "EDF",
+      "description": "European Defence Fund (EDF)"
+     }
+    ],
+    "status": {
+     "id": 31094501,
+     "abbreviation": "Forthcoming",
+     "description": "Forthcoming"
+    },
+    "deadlineModel": {},
+    "topicActions": [
+     {
+      "id": 15806,
+      "abbreviation": "EDF-LS",
+      "description": "EDF Lump Sum Grants"
+     }
+    ],
+    "topicMGAs": [
+     {
+      "id": 45095551,
+      "abbreviation": "EDF-AG-LS",
+      "description": "EDF Lump Sum Grant"
+     }
+    ],
+    "tags": [],
+    "sme": false,
+    "actions": [
+     {
+      "status": {
+       "id": 31094501,
+       "abbreviation": "Forthcoming",
+       "description": "Forthcoming"
+      },
+      "types": [
+       {
+        "typeOfAction": "EDF-LS EDF Lump Sum Grants",
+        "typeOfMGA": [
+         {
+          "id": 45095551,
+          "abbreviation": "EDF-AG-LS",
+          "description": "EDF Lump Sum Grant"
+         }
+        ]
+       }
+      ],
+      "plannedOpeningDate": "1788307200000",
+      "submissionProcedure": {},
+      "deadlineDates": [
+       "1791849600000",
+       "1802736000000",
+       "1822089600000"
+      ]
+     }
+    ],
+    "latestInfos": [],
+    "links": [],
+    "additionalDossiers": [],
+    "infoPackDossiers": [],
+    "keywords": [],
+    "flags": [],
+    "additionalCpvs": [],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": []
+   },
+   {
+    "type": 1,
+    "ccm2Id": 50143298,
+    "identifier": "HORIZON-CL6-2027-01-BIODIV-07",
+    "title": "Health of ecosystems and wild species, predictions and impacts on human health, in the face of existing and emerging stressors, from a One Health approach",
+    "publicationDateLong": 1765497600000,
+    "plannedOpeningDateLong": 1808179200000,
+    "callIdentifier": "HORIZON-CL6-2027-01",
+    "callTitle": "Call 01 - single stage (2027)",
+    "callccm2Id": 50144450,
+    "deadlineDatesLong": [
+     1821571200000
+    ],
+    "allowPartnerSearch": true,
+    "frameworkProgramme": {
+     "id": 43108390,
+     "abbreviation": "HORIZON",
+     "description": "Horizon Europe (HORIZON)"
+    },
+    "programmeDivision": [
+     {
+      "id": 43108390,
+      "abbreviation": "HORIZON",
+      "description": "Horizon Europe (HORIZON)"
+     },
+     {
+      "id": 43108541,
+      "abbreviation": "HORIZON.2",
+      "description": "Global Challenges and European Industrial Competitiveness"
+     },
+     {
+      "id": 43121563,
+      "abbreviation": "HORIZON.2.6",
+      "description": "Food, Bioeconomy Natural Resources, Agriculture and Environment"
+     },
+     {
+      "id": 43121573,
+      "abbreviation": "HORIZON.2.6.2",
+      "description": "Biodiversity and Natural Resources"
+     }
+    ],
+    "status": {
+     "id": 31094501,
+     "abbreviation": "Forthcoming",
+     "description": "Forthcoming"
+    },
+    "deadlineModel": {},
+    "topicActions": [
+     {
+      "id": 15850,
+      "abbreviation": "HORIZON-RIA",
+      "description": "HORIZON  Research and Innovation Actions"
+     }
+    ],
+    "topicMGAs": [
+     {
+      "id": 43027849,
+      "abbreviation": "HORIZON-AG-LS",
+      "description": "HORIZON Lump Sum Grant"
+     }
+    ],
+    "tags": [
+     "One Health",
+     "biodiversity",
+     "biodiversity monitoring",
+     "ecosystems",
+     "health",
+     "infectious diseases",
+     "nature restoration"
+    ],
+    "sme": false,
+    "actions": [
+     {
+      "status": {
+       "id": 31094501,
+       "abbreviation": "Forthcoming",
+       "description": "Forthcoming"
+      },
+      "types": [
+       {
+        "typeOfAction": "HORIZON-RIA HORIZON  Research and Innovation Actions",
+        "typeOfMGA": [
+         {
+          "id": 43027849,
+          "abbreviation": "HORIZON-AG-LS",
+          "description": "HORIZON Lump Sum Grant"
+         }
+        ]
+       }
+      ],
+      "plannedOpeningDate": "1808179200000",
+      "submissionProcedure": {},
+      "deadlineDates": [
+       "1821571200000"
+      ]
+     }
+    ],
+    "latestInfos": [],
+    "links": [],
+    "additionalDossiers": [],
+    "infoPackDossiers": [],
+    "keywords": [
+     "Biodiversity conservation",
+     "Biodiversity, conservation biology, conservation genetics",
+     "Co-habited environments",
+     "Coastal And Environmental Protection",
+     "Conservation biology, ecology, genetics",
+     "Disease prevention",
+     "Earth and related environmental sciences",
+     "Emerging Epidemics",
+     "Environment, Pollution & Climate",
+     "Environmental Conservation",
+     "Environmental biology",
+     "Environmental health",
+     "Environmental monitoring systems",
+     "Environmental protection",
+     "Environmental risk measurement",
+     "Environmental sciences",
+     "Global health",
+     "Habitat Systems",
+     "Habitat and species restoration and rehabilitation",
+     "Marine Environment",
+     "Nature conservation",
+     "Pathogen agents",
+     "Protection of environment (before, during and after)",
+     "Public and environmental health",
+     "Species interactions (e.g. food-webs, symbiosis, parasitism, mutualism, bio-invasion)",
+     "Surveillance of environment (control, detection CBRN, abnormal behaviours,etc.)",
+     "Terrestrial ecology, land cover change",
+     "Transmission"
+    ],
+    "flags": [
+     "DigitalAgenda",
+     "AI",
+     "SSH"
+    ],
+    "destination": 48080649,
+    "additionalCpvs": [],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": []
+   },
+   {
+    "type": 0,
+    "ccm2Id": 0,
+    "cftId": 15661,
+    "identifier": "INTPA/2023/EA-RP/0177-PIN",
+    "title": "Outreach to and engagement with young people in EU External Action",
+    "publicationDateLong": 1696291200000,
+    "callccm2Id": 0,
+    "deadlineDatesLong": [
+     1727560740000
+    ],
+    "allowPartnerSearch": false,
+    "programmeDivision": [],
+    "status": {
+     "id": 31094502,
+     "abbreviation": "Open",
+     "description": "Open"
+    },
+    "topicActions": [],
+    "topicMGAs": [],
+    "tags": [],
+    "keywords": [],
+    "flags": [],
+    "contractingAuthority": "DEVCO",
+    "url": "https://etendering.ted.europa.eu/cft/cft-display.html?cftId=15661",
+    "uuid": "ddaf2a26-841c-403d-9a5c-a40c6aa24e69",
+    "descriptionTender": "Support to increase the impact and sustainability of outreach to and engagement with young people in EU External Action. Tasks include (but are not limited to) curating information on opportunities for young people in external action, supporting young people in benefiting from these opportunities (e.g., through online learning activities or peer exchanges) and developing engaging actions (e.g., consultations, training, identification of programs). The consultant would also support community management, and create and implement a strategy for engagement with alumni.",
+    "procedureType": "PRIOR_INFORMATION_NOTICE",
+    "contractType": "SERVICES",
+    "mainCpv": {
+     "mainCode": "98000000"
+    },
+    "additionalCpvs": [
+     {
+      "mainCode": "98000000"
+     },
+     {
+      "mainCode": "73000000"
+     },
+     {
+      "mainCode": "80000000"
+     },
+     {
+      "mainCode": "63000000"
+     }
+    ],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": [
+     "BE10"
+    ],
+    "sme": false,
+    "actions": [],
+    "latestInfos": [],
+    "links": [],
+    "additionalDossiers": [],
+    "infoPackDossiers": []
+   },
+   {
+    "type": 1,
+    "ccm2Id": 50871369,
+    "identifier": "DIGITAL-2026-AI-PILOTING-10-SCREENING",
+    "title": "Apply AI: Piloting AI-based image screening in medical centres",
+    "publicationDateLong": 1771200000000,
+    "plannedOpeningDateLong": 1776729600000,
+    "callIdentifier": "DIGITAL-2026-AI-PILOTING-10",
+    "callTitle": "AI Continent",
+    "callccm2Id": 50871398,
+    "deadlineDatesLong": [
+     1790812800000
+    ],
+    "allowPartnerSearch": true,
+    "frameworkProgramme": {
+     "id": 43152860,
+     "abbreviation": "DIGITAL",
+     "description": "Digital Europe Programme (DIGITAL)"
+    },
+    "programmeDivision": [
+     {
+      "id": 43152869,
+      "abbreviation": "DIGITAL-1-1",
+      "description": "DIGITAL"
+     }
+    ],
+    "status": {
+     "id": 31094502,
+     "abbreviation": "Open",
+     "description": "Open"
+    },
+    "deadlineModel": {},
+    "topicActions": [
+     {
+      "id": 15795,
+      "abbreviation": "DIGITAL-SIMPLE",
+      "description": "DIGITAL Simple Grants"
+     }
+    ],
+    "topicMGAs": [
+     {
+      "id": 43140990,
+      "abbreviation": "DIGITAL-AG",
+      "description": "DIGITAL Action Grant Budget-Based"
+     }
+    ],
+    "tags": [
+     "Digital",
+     "Digital Europe",
+     "GenAI",
+     "Medical",
+     "Medical imaging devices"
+    ],
+    "sme": false,
+    "actions": [
+     {
+      "status": {
+       "id": 31094502,
+       "abbreviation": "Open",
+       "description": "Open"
+      },
+      "types": [
+       {
+        "typeOfAction": "DIGITAL-SIMPLE DIGITAL Simple Grants",
+        "typeOfMGA": [
+         {
+          "id": 43140990,
+          "abbreviation": "DIGITAL-AG",
+          "description": "DIGITAL Action Grant Budget-Based"
+         }
+        ]
+       }
+      ],
+      "plannedOpeningDate": "1776729600000",
+      "submissionProcedure": {},
+      "deadlineDates": [
+       "1790812800000"
+      ]
+     }
+    ],
+    "latestInfos": [
+     {
+      "approvalDate": "",
+      "lastChangeDate": "2026-04-21T12:02:51.312",
+      "content": "The submission session is now available for: DIGITAL-2026-AI-PILOTING-10-SCREENING"
+     }
+    ],
+    "links": [
+     {
+      "callIdentifier": "DIGITAL-2026-AI-PILOTING-10",
+      "criterionCode": "DIGITAL-SIMPLE",
+      "criterionDescription": "DIGITAL Simple Grants",
+      "url": "https://ec.europa.eu/research/participants/submission/manage/screen/submission/create-draft/43863?topic=DIGITAL-2026-AI-PILOTING-10-SCREENING",
+      "startDate": "1776729600000",
+      "endDate": "1790812800000",
+      "mgaDescription": "DIGITAL Action Grant Budget-Based",
+      "mgaCode": "DIGITAL-AG"
+     }
+    ],
+    "additionalDossiers": [],
+    "infoPackDossiers": [],
+    "keywords": [
+     "Artificial Intelligence & Decision support",
+     "Artificial intelligence",
+     "Artificial intelligence, intelligent systems, multi agent systems",
+     "Biomedical software",
+     "Cloud Services",
+     "Cloud, Edge and Virtualisation",
+     "Health and Ecosystem Services",
+     "Health care",
+     "Health data",
+     "Health information",
+     "Health sciences",
+     "Healthy lifestyle",
+     "Technological innovation",
+     "eHealth"
+    ],
+    "flags": [],
+    "additionalCpvs": [],
+    "lots": [],
+    "placesOfDeliveryOrPerformance": []
+   }
+  ]
+ }
+}

@@ -1,4 +1,7 @@
 # Runtime deps of both scripts, plus the test runner.
 requests
 beautifulsoup4
+# Streams the 130 MB EU reference dataset one record at a time; json.load on it
+# peaks past 1.5 GB, which a GitHub-hosted runner will not always survive.
+ijson
 pytest
