@@ -65,10 +65,34 @@ from urllib3.util.retry import Retry
 
 from calls_store import atomic_write_text, write_source_calls
 from provenance import Recorder, sha256_of
+from warehouse import Warehouse
 
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
+
+
+def _user_agent() -> str:
+    """The contact string every outbound request carries.
+
+    A User-Agent is a contact address for whoever operates the crawler, and this
+    crawler serves the whole warehouse rather than any one organisation — so it
+    names the repository, not a tenant. Putting one org's office address on a
+    request to the EU portal is the identity leak most visible from outside this
+    repo, and the hardest to withdraw once it is in someone's access log.
+
+    `GITHUB_REPOSITORY` is set automatically inside Actions. Locally it is
+    absent and the bare product string is sent: an invented URL would be worse
+    than no URL, because a contact address that goes nowhere is not a contact
+    address. `mipe_watch.py` carries a copy of this — four lines duplicated, in
+    keeping with "every other shared helper is duplicated by design"; a fourth
+    shared module for a string is not a trade worth making.
+    """
+    repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    if repo:
+        return f"FundingRadar/1.0 (+https://github.com/{repo})"
+    return "FundingRadar/1.0"
+
 
 CONFIG = {
     "seen_store_path": "seen_calls.json",
@@ -251,7 +275,7 @@ CONFIG = {
         "ong",
     ],
 
-    "user_agent": "VerticalFreedom-FundingRadar/1.0 (+office@verticalfreedom.org)",
+    "user_agent": _user_agent(),
 
     "github_issue_labels": ["funding-radar"],
 
@@ -1241,6 +1265,25 @@ def main() -> None:
     session = create_resilient_session()
     recorder = Recorder(args.evidence, full_bodies=args.evidence_full)
 
+    # Unconfigured — locally, and in any test — this is a fully working no-op:
+    # every method below returns as if on an empty result and nothing is sent.
+    # That is the Recorder(None) contract, and it is why wiring the warehouse in
+    # here cannot change what this run does.
+    #
+    # `--no-state` deliberately does NOT disable it. That flag protects
+    # seen_calls.json and calls.json, because a verification run that wrote them
+    # would suppress the next scheduled run's alerts. The warehouse is not that
+    # kind of state: upsert-plus-sweep is idempotent, it does not feed the
+    # new-call diff, and a verification run putting fresh rows in it is the
+    # correct outcome rather than a poisoned one.
+    warehouse = Warehouse(
+        url=os.environ.get("SUPABASE_URL"),
+        service_key=os.environ.get("SUPABASE_SERVICE_ROLE_KEY"),
+        session=session,
+        recorder=recorder,
+        user_agent=CONFIG["user_agent"],
+    )
+
     all_calls: list[FundingCall] = []
     # reason: owned_sources drives merge_calls, which DELETES every row of a
     # source it is given. A source that failed returned no rows, so naming it
@@ -1306,6 +1349,29 @@ def main() -> None:
             owned_sources=succeeded,
         )
         log.info("calls.json now holds %d call(s) across all sources", total)
+
+    # -- the warehouse ------------------------------------------------------
+    # Same invariant as owned_sources above, one storage layer along. Upsert
+    # first so every row this run returned carries this run's id, THEN sweep:
+    # the sweep is "everything from this source not stamped with this run",
+    # which is a single statement only because the upsert already happened.
+    rows_by_source: dict[str, int] = {}
+    for call in all_calls:
+        rows_by_source[call.source] = rows_by_source.get(call.source, 0) + 1
+
+    warehouse.upsert_calls([call.to_record() for call in all_calls])
+    # reason: `succeeded`, never `attempted`. A failed source returned no rows,
+    # so sweeping it would mark its entire live inventory withdrawn while the
+    # run still exits 0 — the same silent-green failure `owned_sources` guards
+    # against above, and the one fixed for mipe_watch in 6712dfe. A failed
+    # source is upserted-not-swept: its rows keep their previous
+    # last_seen_run_id, stay open, and are simply not refreshed this run.
+    for source in sorted(succeeded):
+        warehouse.sweep_withdrawn(source, rows_by_source.get(source, 0))
+    # Expiry is source-independent — a passed deadline is a fact about the call,
+    # not about whether anyone fetched it — so it runs outside the loop and is
+    # not gated on `succeeded`.
+    warehouse.sweep_expired()
 
     recorder.write()
 

@@ -112,6 +112,52 @@ Both sources were calibrated against live responses; the numbers below are from 
 
 The search index is still queried, but only for enrichment, one identifier at a time. Its quirks are listed below and now cost at most a budget line.
 
+## Multi-org migration — deviations from the approved plan
+
+The migration to a multi-org Supabase warehouse is being built in phases against an approved
+written plan. Where the implementation departs from that plan, the departure is recorded here
+rather than absorbed silently — the plan is the thing that was reviewed, so a change to it is a
+change to what was agreed.
+
+The eight conflicts between that plan and decisions already documented in this file (the
+GitHub-Issues-only notification constraint, `merge_calls`'s hard delete, the `owned_sources`
+rule, triage's location, the two-shared-modules rule, the single-secret claim, this filtering
+section, and `mipe_watch`'s change-detection-only shape) are recorded in Phase G, when the
+sections they contradict are rewritten. This section is for the other class: places where the
+plan itself turned out to be wrong.
+
+**1. Per-language matching terms, not one flat list. (2026-09-08, Phase A.)**
+
+*The plan specified* an organisation profile carrying flat `core_keywords`, `wide_keywords` and
+`context_guards` arrays — one set of terms, applied to every call regardless of source.
+
+*Why that does not hold.* The plan's own acceptance gate for Phase C is that matching Vertical
+Freedom's profile against the warehouse returns **exactly** the call_ids today's
+`funding_radar.py --no-state` returns. Merging the Romanian and English lists cannot satisfy
+that gate, because the two were calibrated independently against text in two different
+languages and are not interchangeable:
+
+- `screening` is a **CORE** term in the adieuronest list and a **WIDE** term in the EU list. As
+  one merged CORE list it starts matching EU `callTitle`, which widens the EU feed past its
+  calibrated 24.
+- `animal` is an EU **context guard** — the generalisation of the "sănătate animală" lesson —
+  and is a substring of the Romanian `animală`. As a shared guard it would veto Romanian rows
+  the current code accepts.
+- `holistic` and `tumor` are Romanian CORE terms that also match English prose, so merging them
+  changes the EU result set in the other direction.
+
+*What was built instead.* `organizations.profile.matching` is keyed by language:
+`{ "ro": { core, wide, guards }, "en": { core, wide, guards } }`. `public.calls` gains a `lang`
+column (`'ro' | 'en'`, `not null default 'ro'`), stamped at ingest — `eu_sedia` is `en`, the two
+Romanian sources are `ro`. `warehouse.SOURCE_LANG` is the fallback for a record that does not
+carry one, because the language of a source is a property of the source. The matcher selects the
+term set by the call's `lang`.
+
+The two-tier CORE/WIDE split, the diacritic and non-diacritic spellings, and the stem matching
+are all unchanged — this splits the lists by language, it does not re-calibrate them. Terms are
+still copied verbatim out of `CONFIG` into `0004_seed_vertical_freedom.sql`, so the Phase C
+comparison stays meaningful.
+
 ## Source quirks that will bite you
 
 Both parsers are now pinned to captured live payloads in `tests/fixtures/`. These are the non-obvious things that cost a debugging cycle each:

@@ -50,6 +50,7 @@ from urllib3.util.retry import Retry
 
 from calls_store import atomic_write_text, write_source_calls
 from provenance import Recorder, sha256_of
+from warehouse import Warehouse
 
 logging.basicConfig(
     level=logging.INFO,
@@ -78,7 +79,31 @@ PAGE_LABELS = {
 
 HASH_STORE_PATH = "mipe_page_hashes.json"
 GITHUB_ISSUE_LABELS = ["mipe-watch"]
-USER_AGENT = "VerticalFreedom-MIPEWatch/1.0 (+office@verticalfreedom.org)"
+
+
+def _user_agent() -> str:
+    """The contact string every outbound request carries.
+
+    A User-Agent is a contact address for whoever operates the crawler, and this
+    crawler serves the whole warehouse rather than any one organisation — so it
+    names the repository, not a tenant. Putting one org's office address on a
+    request to mfe.gov.ro is the identity leak most visible from outside this
+    repo, and the hardest to withdraw once it is in someone's access log.
+
+    `GITHUB_REPOSITORY` is set automatically inside Actions. Locally it is
+    absent and the bare product string is sent: an invented URL would be worse
+    than no URL, because a contact address that goes nowhere is not a contact
+    address. `funding_radar.py` carries a copy of this — four lines duplicated,
+    in keeping with "every other shared helper is duplicated by design"; a
+    fourth shared module for a string is not a trade worth making.
+    """
+    repo = os.environ.get("GITHUB_REPOSITORY", "").strip()
+    if repo:
+        return f"FundingRadar/1.0 (+https://github.com/{repo})"
+    return "FundingRadar/1.0"
+
+
+USER_AGENT = _user_agent()
 
 RETRY_TOTAL = 5
 RETRY_BACKOFF_FACTOR = 2   # sleeps ~2s, 4s, 8s, 16s, 32s between attempts
@@ -219,6 +244,17 @@ def main() -> None:
     session = create_resilient_session()
     recorder = Recorder(args.evidence, full_bodies=args.evidence_full)
 
+    # Unconfigured, this is a fully working no-op — same contract as
+    # Recorder(None). See the block in funding_radar.main() for why --no-state
+    # does not gate it.
+    warehouse = Warehouse(
+        url=os.environ.get("SUPABASE_URL"),
+        service_key=os.environ.get("SUPABASE_SERVICE_ROLE_KEY"),
+        session=session,
+        recorder=recorder,
+        user_agent=USER_AGENT,
+    )
+
     previous_hashes = {} if args.no_state else load_hashes(HASH_STORE_PATH)
 
     # reason: seeding from previous_hashes (instead of starting empty) keeps the
@@ -272,38 +308,49 @@ def main() -> None:
             log.info("CHANGE DETECTED: '%s' (%s)", name, url)
             changed_pages.append(name)
 
+    # A MIPE row is a change-alert, not a funding call: it has no deadline and
+    # no budget, and stays in the feed until a human resolves it. Only pages
+    # that actually changed become rows — an unchanged page is not news, and a
+    # page whose fetch failed has nothing to say either way.
+    change_rows = [
+        {
+            "call_id": f"mipe:{name}",
+            "source": "mipe",
+            "title": f"{PAGE_LABELS.get(name, name)} — calendar modificat",
+            "programme": "MIPE",
+            "deadline": None,
+            "announced": False,
+            "budget": "",
+            "tags": ["pagină modificată"],
+            "match_reason": "text modificat",
+            "link": WATCHED_PAGES[name],
+            "first_seen": datetime.now().strftime("%Y-%m-%d"),
+        }
+        for name in changed_pages
+    ]
+
     if args.no_state:
         log.info("--no-state: nothing written, no page hash stored, no feed row.")
     else:
         save_hashes(HASH_STORE_PATH, current_hashes)
 
-        # A MIPE row is a change-alert, not a funding call: it has no deadline
-        # and no budget, and stays in the feed until a human resolves it. Only
-        # pages that actually changed become rows — an unchanged page is not
-        # news, and a page whose fetch failed has nothing to say either way.
         write_source_calls(
-            [
-                {
-                    "call_id": f"mipe:{name}",
-                    "source": "mipe",
-                    "title": f"{PAGE_LABELS.get(name, name)} — calendar modificat",
-                    "programme": "MIPE",
-                    "deadline": None,
-                    "announced": False,
-                    "budget": "",
-                    "tags": ["pagină modificată"],
-                    "match_reason": "text modificat",
-                    "link": WATCHED_PAGES[name],
-                    "first_seen": datetime.now().strftime("%Y-%m-%d"),
-                }
-                for name in changed_pages
-            ],
+            change_rows,
             owned_sources={"mipe"},
             # reason: this script reports only the pages that changed on this run, so
             # a quiet day passes an empty list. Replacing would delete every
             # outstanding alert the moment a page stopped changing.
             replace=False,
         )
+
+    # The warehouse gets the same rows and, deliberately, NO sweep. There is no
+    # `sweep_withdrawn` call anywhere in this file and there must never be one:
+    # this watcher reports only the pages that changed, so absence from a run
+    # means "no change", not "gone". A sweep here would withdraw every
+    # outstanding alert on the first quiet day — the warehouse expression of
+    # exactly the same defect `replace=False` prevents above. That asymmetry
+    # between the two watchers is the ownership contract, not an oversight.
+    warehouse.upsert_calls(change_rows)
 
     recorder.funnel(
         "mipe",

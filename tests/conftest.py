@@ -2,6 +2,7 @@
 scripts (funding_radar.py, mipe_watch.py) import as plain modules — they are
 standalone scripts, not a package, so there is nothing to pip install."""
 
+import json
 import sys
 from pathlib import Path
 
@@ -94,6 +95,7 @@ class FakeSession:
         self.calls = []
         self.posted_queries = []
         self.request_headers = []
+        self.bodies = []
 
     def _resolve(self, url, params):
         key = (url, params["text"]) if params and "text" in params else url
@@ -113,6 +115,21 @@ class FakeSession:
         self.calls.append(("POST", url, params))
         if files and "query" in files:
             self.posted_queries.append(files["query"])
+        return self._resolve(url, params)
+
+    def request(self, method, url, params=None, data=None, timeout=None, headers=None):
+        """`warehouse.py` calls session.request() because it needs PATCH as well
+        as GET and POST, and PostgREST takes a JSON body rather than multipart.
+
+        Routing is by URL only — a PostgREST route is `.../rest/v1/calls` with
+        the filters in `params` — so a test that wants to distinguish a sweep
+        from an upsert asserts on `calls`/`bodies` rather than adding a route
+        per query string. The decoded request body is recorded because every
+        warehouse assertion worth making (merge-duplicates batching, the
+        first_seen omission, withdrawn_at being set) is about what was sent."""
+        self.calls.append((method, url, params))
+        self.request_headers.append(dict(headers or {}))
+        self.bodies.append(json.loads(data.decode("utf-8")) if data else None)
         return self._resolve(url, params)
 
 
