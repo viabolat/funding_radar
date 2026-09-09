@@ -25,3 +25,10 @@ web/*.tsbuildinfo
 # the watchers — evidence belongs in an Actions artifact, not in history.
 evidence/
 .cache/
+
+# Mockup outputs, and the base bundle they are built from. The bundle is 6.9 MB
+# of embedded fonts and React that build_variants.py lifts verbatim — a sales
+# asset, not product source, and not worth carrying in every clone forever. It
+# has to be present at the repo root to build; see mockup/README.md.
+mockup/dist/
+/Radar Finanțări - machetă.html
