@@ -43,11 +43,11 @@ Both scripts are idempotent-ish but **stateful**: running locally rewrites `seen
 
 1. `fetch_adieuronest_calls()` — downloads a CSV feed from adieuronest.ro (Romania national + RO/MD/UA cross-border).
 2. `fetch_eu_calls()` — the EU Funding & Tenders Portal, in two halves that use the two endpoints listed on the portal's own [API page](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/support/apis) for the jobs each is good at.
-   - **Discovery** streams the bulk reference dataset (`data/referenceData/grantsTenders.json`, ~130 MB, ~11,160 records, refreshed daily) with `ijson` and filters it locally: grants only, Open/Forthcoming, deadline still ahead, then a CORE/WIDE keyword gate. Coverage is an *enumeration*, not a relevance ranking.
+   - **Discovery** streams the bulk reference dataset (`data/referenceData/grantsTenders.json`, ~130 MB, ~11,160 records, refreshed daily) with `ijson` and filters it locally to a **structural** bar only: grants (`type == 1`), Open/Forthcoming, deadline still ahead. No keyword gate — since Phase C that is `match.py`'s job, against an organisation's profile, after collection. Coverage is an *enumeration*, not a relevance ranking.
    - **Enrichment** then sends one small POST per matched topic to the search index (`api.tech.ec.europa.eu/search-api/prod/rest/search`) for the budget and the canonical topic URL, which the bulk file does not carry. `enrich_eu_call` never raises: a search-index failure costs a budget line, not a call. That asymmetry is the entire point of the split — discovery must not depend on the index.
 
    Net traffic is one conditional GET plus ~24 small POSTs, replacing up to 33 broad keyword POSTs.
-3. New = fetched ids minus `seen_calls.json`. Digest is written to `digests/digest_{date}.md`, an Issue opens only when the new count is non-zero, then **all** fetched ids (not just new ones) are merged into the seen store.
+3. The export profile is applied (`apply_profile`), and everything downstream runs on the **matched** calls. New = matched ids minus `seen_calls.json`. Digest is written to `digests/digest_{date}.md`, an Issue opens only when the new count is non-zero, then **all** matched ids (not just new ones) are merged into the seen store. Matched, not collected: recording all ~1,750 collected ids would mean that widening the profile later surfaces nothing, because every call would already be "seen". The warehouse gets the collected set; the seen store and `calls.json` get the matched one.
 
 **`mipe_watch.py`** — MIPE (mfe.gov.ro) publishes its call calendar as an unparseable page/PDF, so this intentionally does *not* extract structured data. It strips markup with BeautifulSoup, collapses whitespace, SHA-256s the visible text, and compares to `mipe_page_hashes.json`. Changed → Issue asking a human to look and manually add anything relevant to the radar. Unchanged → a quiet log line, nothing else. Keep this change-detection-only shape; parsing that source is not worth the maintenance.
 
@@ -72,7 +72,13 @@ Both scripts share the same `create_resilient_session()` pattern (5 retries, bac
 
 Nothing in a digest distinguishes "these rows came off the wire" from "these rows came out of a file someone put there". `--evidence DIR` closes that without requiring anyone to trust the run: it writes `manifest.json` with, per request, the URL, status, `response_bytes`, the **sha256 of the exact bytes that were parsed** (hashed chunk by chunk during the stream, not re-serialised afterwards), the upstream server's own `Date`/`ETag`/`Last-Modified`, and elapsed ms — plus a bounded raw sample under `raw/`. `--evidence-full` keeps whole bodies (opt-in: the EU dataset is ~130 MB).
 
-Each source also emits a **funnel** (`records → grants → open_or_forthcoming → deadline_ahead → keyword_matched → emitted`), which is what makes the final count re-derivable by hand from the raw body.
+Each source also emits a **funnel**, which is what makes the final count re-derivable by hand from the raw body. Since Phase C the relevance step has its own, so collection and matching can be audited separately:
+
+```
+eu           records → grants → open_or_forthcoming → deadline_ahead → emitted
+adieuronest  rows → not_closed → emitted
+match        collected → matched (+ core / wide)
+```
 
 Two rules about it:
 
@@ -93,24 +99,100 @@ The suite is wired to `.github/workflows/tests.yml` on push/PR.
 
 ## Filtering behavior
 
-Both sources were calibrated against live responses; the numbers below are from the real feeds and are the baseline to compare against if a change makes the digest swing.
+**Since Phase C, none of this is global configuration.** Scraping is organisation-agnostic and
+collects every live grant; relevance is a separate step. The keyword lists below are **one
+organisation's profile data** — the seed tenant's — and they are reproduced here because they
+are the only set calibrated against live responses, so they are the baseline any change is
+compared against. They are not what the product does to everybody.
 
-**adieuronest** (`CONFIG` in `funding_radar.py`) — a row must be BOTH applicable AND relevant:
+**Where the terms live.** `organizations.profile` in Postgres:
 
-- *Applicable*: `categorii` intersects `{ong, sanatate}` and `stare` is not `inchis`. The live vocabulary is exactly `companii, universitati, autoritati, ong, persoane, scoli, cultura, sanatate` — note `sanatate` appears on only 3 of 1162 rows, so `ong` carries the gate.
-- *Relevant*: a CORE keyword anywhere in `titlu + program + solicitanti + finanteaza + conditii`, **or** a WIDE keyword in `titlu + program` only. The two-tier split is load-bearing: WIDE terms like `sănătate` are everywhere in boilerplate scope text (the PowerUp NetZero call matched on "sănătate animală"), so matching them in body prose alone pulled in 32 junk rows. In a title they are signal.
-- Result: **37 of 1162 rows**, down from 495 under the old category-OR-keyword rule. Widen by moving a term from WIDE to CORE; narrow by dropping WIDE terms.
-- Romanian keywords carry both diacritic and non-diacritic spellings, and match on stems (`oncolog`, `nutriți`) since Romanian inflects — `sănătate` does not match `sănătății`.
+```
+profile.eligible_as                       -- ["ong", "sanatate"]
+profile.matching.{ro,en}.{core,wide,guards}
+```
 
-**EU** (`eu_core_keywords` / `eu_wide_keywords` / `eu_context_guards` in `CONFIG`) — the gate is local now, so changing a keyword costs no network round-trip. Same two-tier shape as adieuronest, one layer down:
+`funding_radar.SEED_PROFILE` is a **bootstrap copy** of
+`supabase/migrations/0004_seed_vertical_freedom.sql`, not a second source of truth. It is used
+only when there is no database to disagree with — a local run and the offline suite, neither of
+which has a dashboard that could have edited anything. Whenever the warehouse is configured and
+an export org is named, the stored profile wins outright, so editing a profile changes
+`calls.json` on the next run. That one copy pair is held by a test that parses the SQL and
+compares the lists term for term, **in order** — `match.match_reason` renders terms in profile
+order, and that ordering is what the digest says.
 
-- *CORE* matches `title + callTitle` — the topic's own name and its parent call's.
-- *WIDE* matches `title` only, and only when no **context guard** fires. The guard list (`soil`, `animal`, `ecosystem`, `crime`, `forest`, `biodivers`, …) is the generalisation of the "sănătate animală" lesson: "Health of ecosystems and wild species, predictions and impacts on human health" is a biodiversity call, not a health one.
-- **`tags` and `keywords` are never matched against.** They are a ~40-term marketing keyword dump ("opportunities", "funding", "partners"); matching them made "mental health" hit a call about eradicating invasive species and "nutrition" hit livestock feed.
-- Bare substrings were the other trap: `health` matched soil/plant/crime/fire calls, and `mental` is a substring of *environmental*, *experimental* and *fundamental* — it matched a quantum-computing pilot line. WIDE terms are therefore phrases (`mental well`, `public health`, `human health`).
-- Live funnel, 2026-09-08: **11,160 records → 10,161 grants → 647 Open/Forthcoming → 627 with a deadline still ahead → 24 matched.** Comparable in volume to the 22 the keyword search returned, with far better precision and a receipt behind it.
+**Terms are per language, not per source.** `profile.matching` is keyed `ro` / `en` and the
+matcher selects by `calls.lang`, stamped at ingest (`warehouse.SOURCE_LANG` is the fallback,
+because the language of a source is a property of the source). The two lists are not
+interchangeable: `screening` is CORE in Romanian and WIDE in English, and the English guard
+`animal` is a substring of Romanian `animală`, so a merged list would veto Romanian rows the
+calibration accepts.
 
-The search index is still queried, but only for enrichment, one identifier at a time. Its quirks are listed below and now cost at most a budget line.
+**The two-tier split, now in `match.py`.** It reads two surfaces built at ingest by the fetcher
+that knows the source's shape — which is what lets one source-agnostic matcher keep the
+distinction:
+
+| | `search_core` | `search_wide` |
+|---|---|---|
+| adieuronest | `titlu + program + solicitanti + finanteaza + conditii` | `titlu + program` |
+| EU | `title + callTitle` — the topic's own name and its parent call's | `title` only |
+
+- CORE hits anywhere in `search_core`. WIDE hits only `search_wide`, and only when no **context
+  guard** fires in it. A guard vetoes the WIDE contribution and **never** a CORE hit — that
+  preserves `_eu_matches()`'s early return on a core term.
+- The split is load-bearing. WIDE terms like `sănătate` are everywhere in boilerplate scope text
+  (the PowerUp NetZero call matched on "sănătate animală"), so matching them in body prose alone
+  pulled in 32 junk rows. In a title they are signal. The English guard list (`soil`, `animal`,
+  `ecosystem`, `crime`, `forest`, `biodivers`, …) generalises that lesson: "Health of ecosystems
+  and wild species, predictions and impacts on human health" is a biodiversity call.
+- **`tags` and `keywords` are never matched against**, and are not in either surface. They are a
+  ~40-term marketing dump ("opportunities", "funding", "partners"); matching them made "mental
+  health" hit a call about eradicating invasive species and "nutrition" hit livestock feed.
+- Bare substrings were the other trap: `health` matched soil/plant/crime/fire calls, and `mental`
+  is a substring of *environmental*, *experimental* and *fundamental* — it matched a
+  quantum-computing pilot line. WIDE terms are therefore phrases (`mental well`, `public health`,
+  `human health`).
+- Romanian terms carry both diacritic and non-diacritic spellings and match on stems (`oncolog`,
+  `nutriți`) since Romanian inflects — `sănătate` does not match `sănătății`. **The matcher does
+  no diacritic folding**; both spellings are listed in the profile instead. Folding exists only
+  for `--calibrate` and dedup.
+
+**Eligibility is a profile question, not a fetcher gate.** `categorii ∩ {ong, sanatate}` used to
+be applied during the scrape; it is now `profile.eligible_as`, matched against the call's own
+`eligible_as`. A call with an **empty** vocabulary is *unknown*, not closed — `match.py` does not
+filter on it. The EU dataset publishes no applicant vocabulary at all, so reading empty as
+"open to nobody" would drop the entire EU feed. The live adieuronest vocabulary is exactly
+`companii, universitati, autoritati, ong, persoane, scoli, cultura, sanatate`; `ong` carries the
+gate at 439 rows, `sanatate` at 4.
+
+### The numbers, and why they carry a date
+
+Measured live on **2026-09-09**. Re-measure and re-date rather than trusting these; the upstream
+feeds move.
+
+| | collected (org-agnostic) | matched (seed profile) |
+|---|---|---|
+| adieuronest | 1,124 of 1,131 rows (`stare != inchis`) | **34** |
+| EU | 626 — 11,160 records → 10,161 grants → 635 Open/Forthcoming → 626 deadline ahead | **24** |
+| warehouse total | 1,750 | **58** (23 core, 35 wide) |
+
+The EU 24 is unchanged from the pre-refactor number. The Romanian 34 was **37 of 1162** at first
+calibration; the feed itself shrank to 1,131 rows, and the pre-refactor code returns the same 34
+on the same feed with an identical id set. So that drop is upstream, not a regression here.
+Against the original 1,162-row feed the old category-OR-keyword rule returned 495 — the
+comparison the two-tier split was adopted on, not re-measured since.
+
+**How to check a swing.** Absolute counts drift, so comparing today's run to a number written
+weeks ago proves nothing. Pin one snapshot and run both versions against it: the EU fetcher takes
+`dataset_path=`, and the receipt's `sha256` is what proves both runs parsed the same bytes.
+Compare **id sets**, not totals.
+
+To widen or narrow, edit the organisation's profile — move a term between `wide` and `core`, or
+drop a WIDE term. This is a data change now, not a code change, and `profile_hash` triggers the
+rematch.
+
+The search index is still queried, but only for enrichment, one identifier at a time. Its quirks
+are listed below and now cost at most a budget line.
 
 ## Multi-org migration — deviations from the approved plan
 
