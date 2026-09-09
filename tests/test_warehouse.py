@@ -17,6 +17,7 @@ import pytest
 
 import funding_radar
 import mipe_watch
+from match import match_all
 from provenance import Recorder
 from warehouse import SQLSTATE_UNIQUE_VIOLATION, Warehouse, WarehouseError
 
@@ -134,6 +135,85 @@ def test_lang_is_stamped_per_source(fake_session, fake_response):
 
     langs = {row["call_id"]: row["lang"] for row in session.bodies[0]}
     assert langs == {"eu_sedia:A": "en", "adieuronest:B": "ro"}
+
+
+# ---------------------------------------------------------------------------
+# 2b — the matching surfaces must survive the write path
+#
+# This is the quietest total-failure mode in the whole restructure. `to_record()`
+# and `to_warehouse_row()` differ by exactly the four fields the matcher reads,
+# and `to_record()` is the older, more familiar call — so substituting it is a
+# plausible edit. Nothing would raise. The upsert would succeed, every row would
+# land with `search_core = ''`, and `match.py` would return zero matches for
+# every organisation, forever, because an empty surface matches no term. From
+# the outside that is indistinguishable from "no relevant funding exists".
+#
+# So the assertion is not "the field is present" — it is "a call that matches
+# in-process still matches after a round trip through the warehouse payload".
+# ---------------------------------------------------------------------------
+
+def _eu_from_fixture(dataset_path):
+    """The real EU fetcher against the captured dataset. `session` is None
+    because discovery never touches it — enrichment is a separate half now, and
+    that separation is what makes this offline."""
+    return funding_radar.fetch_eu_calls(None, dataset_path=dataset_path), None
+
+
+def test_the_calls_json_record_is_not_a_valid_warehouse_row(eu_reference_path):
+    """The two serialisers are not interchangeable, and this states the
+    difference as a fact rather than leaving it to a comment.
+
+    `to_record()` is the calls.json shape and deliberately omits the matching
+    surfaces — they are ~2 MB of eligibility prose that no dashboard reader
+    wants in a download. That omission is correct there and fatal here."""
+    calls, _ = _eu_from_fixture(eu_reference_path)
+    call = next(c for c in calls if c.call_id.endswith("HORIZON-MISS-2026-02-CANCER-05"))
+
+    warehouse_row = call.to_warehouse_row()
+    assert warehouse_row["search_core"]        # non-empty, or nothing can match
+    assert warehouse_row["search_wide"]
+    assert warehouse_row["lang"] == "en"
+    assert warehouse_row["eligible_as"] == []  # the EU feed publishes no vocabulary
+
+    for field in ("search_core", "search_wide", "lang", "eligible_as"):
+        assert field not in call.to_record()
+
+
+def test_what_main_upserts_still_matches_after_the_round_trip(
+    monkeypatch, tmp_path, eu_reference_path
+):
+    """The load-bearing one: the rows main() hands the warehouse must reproduce
+    the same matches the run itself reported.
+
+    Swap `to_warehouse_row()` for `to_record()` in main() and this fails — the
+    digest still names its calls, the upsert still succeeds, and `match_all`
+    over the payload returns nothing. That gap between the two counts is the
+    entire defect, and it is invisible anywhere else."""
+    spy = _stub_warehouse(monkeypatch)
+    monkeypatch.chdir(tmp_path)
+
+    # reason: capture the original BEFORE patching. Referring to
+    # `funding_radar.fetch_eu_calls` inside the replacement resolves the patched
+    # name at call time, so the lambda calls itself — RecursionError, not a
+    # fixture read.
+    real_fetch = funding_radar.fetch_eu_calls
+    monkeypatch.setattr(
+        funding_radar,
+        "fetch_eu_calls",
+        lambda session, **kwargs: real_fetch(session, dataset_path=eu_reference_path),
+    )
+    monkeypatch.setattr("sys.argv", ["funding_radar.py", "--source", "eu", "--no-state"])
+    funding_radar.main()
+
+    # What the run itself decided was relevant, read back off the digest path.
+    reported = {row["call_id"] for row in spy.upserted if row.get("match_reason")}
+    assert reported, "fixture produced no matches — the test would pass vacuously"
+
+    # And what a matcher can still derive from the payload alone.
+    rematched = {
+        m.call_id for m in match_all(spy.upserted, funding_radar.SEED_PROFILE)
+    }
+    assert rematched == reported
 
 
 # ---------------------------------------------------------------------------

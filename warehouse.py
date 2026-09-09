@@ -294,6 +294,11 @@ class Warehouse:
             "link": record.get("link", "") or "",
             "raw": record.get("raw") or {},
             "lang": record.get("lang") or SOURCE_LANG.get(record["source"], "ro"),
+            # What the SOURCE says the call is open to, not what any org is.
+            # Empty means the source publishes no applicant vocabulary (the EU
+            # dataset does not), which the matcher reads as "unknown", never as
+            # "open to nobody".
+            "eligible_as": record.get("eligible_as") or [],
             "search_core": record.get("search_core", "") or "",
             "search_wide": record.get("search_wide", "") or "",
             "status": "open",
@@ -409,6 +414,29 @@ class Warehouse:
         if not self.enabled:
             return []
         return self._paged("organizations", {"select": "id,name,profile", "order": "created_at"})
+
+    def update_org_profile(self, org_id: str, profile: dict) -> int:
+        """Replace one organisation's profile document.
+
+        The only write to `organizations` this client makes, and it exists for
+        `match.py --calibrate`, which writes `suggested_terms` and nothing else.
+        The whole document is sent because jsonb has no partial-update verb in
+        PostgREST; the caller is responsible for having read the profile first
+        and edited a copy of it.
+        """
+        if not self.enabled:
+            return 0
+        if self.dry_run:
+            self.writes.append({"org_id": org_id, "profile": profile})
+            return 1
+        self._request(
+            "PATCH",
+            "organizations",
+            params={"id": f"eq.{org_id}"},
+            payload={"profile": profile},
+            prefer="return=minimal",
+        )
+        return 1
 
     def fetch_matches(self, org_id: str) -> list[dict]:
         if not self.enabled:

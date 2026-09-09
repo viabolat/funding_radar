@@ -1,0 +1,44 @@
+{
+  "adieuronest": [
+    {
+      "call_id": "adieuronest:misiunea-cancer-orizont-europa-apelurile-2026",
+      "tags": [
+        "autoritati",
+        "cancer",
+        "companii",
+        "oncolog",
+        "ong",
+        "paliativ",
+        "sănătate mintal",
+        "universitati"
+      ],
+      "match_reason": "Cuvinte cheie potrivite „cancer”, „oncolog”, „paliativ”, „sănătate mintal”."
+    }
+  ],
+  "eu_sedia": [
+    {
+      "call_id": "eu_sedia:DIGITAL-2026-AI-PILOTING-10-SCREENING",
+      "tags": [
+        "screening"
+      ],
+      "match_reason": "Cuvânt cheie potrivit „screening”."
+    },
+    {
+      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-05",
+      "tags": [
+        "cancer",
+        "cancer survivor",
+        "mental health"
+      ],
+      "match_reason": "Cuvinte cheie potrivite „cancer”, „mental health”, „cancer survivor”."
+    },
+    {
+      "call_id": "eu_sedia:HORIZON-MISS-2027-02-CANCER-06",
+      "tags": [
+        "cancer",
+        "cancer survivor"
+      ],
+      "match_reason": "Cuvinte cheie potrivite „cancer”, „cancer survivor”."
+    }
+  ]
+}

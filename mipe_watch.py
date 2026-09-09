@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-MIPE Calendar Watcher — Vertical Freedom
-=========================================
+MIPE Calendar Watcher
+=====================
 
 MIPE (Ministerul Investițiilor și Proiectelor Europene) publishes its estimated
 call calendar as a plain webpage/PDF, with no API and no RSS feed. This script
@@ -66,8 +66,11 @@ WATCHED_PAGES = {
     "calendar_apeluri_general": "https://mfe.gov.ro/calendar-apeluri-de-proiecte/",
     # NOTE: add the specific managing-authority calendar subpages once you've
     # confirmed their exact URLs — e.g. the ones for Programul Incluziune și
-    # Demnitate Socială and Programul Regional Nord-Vest, which are more
-    # directly relevant to Vertical Freedom's mission than the general page.
+    # Demnitate Socială and Programul Regional Nord-Vest, which are narrower and
+    # change less often than the general page, so a hash change on one of them
+    # is a stronger signal. Which subpages are worth watching is a question
+    # about the source, not about any one organisation: this watcher reports a
+    # page changed, and relevance is decided per organisation downstream.
     # "incluziune_si_demnitate_sociala": "https://mfe.gov.ro/.../calendar-apeluri-de-proiecte/",
     # "programul_regional_nord_vest": "https://mfe.gov.ro/.../calendar-apeluri-de-proiecte/",
 }

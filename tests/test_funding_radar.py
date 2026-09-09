@@ -43,10 +43,25 @@ def feed(*rows, bom=True):
 
 
 def fetch_csv(fake_session, fake_response, payload):
+    """What the fetcher COLLECTS. Since Phase C that is every row the source
+    publishes above a structural bar — no keyword gate, no eligibility gate."""
     session = fake_session(
         {fr.CONFIG["adieuronest_csv_url"]: fake_response(content=payload)}
     )
     return fr.fetch_adieuronest_calls(session)
+
+
+def matched_csv(fake_session, fake_response, payload):
+    """What one organisation SEES: collection, then the seed profile applied.
+
+    Relevance moved out of the fetcher in Phase C, so a test asserting a row is
+    "dropped" has to run the second half too — `fetch_csv` alone now returns
+    that row and the assertion would pass or fail for the wrong reason.
+
+    This calls `fr.apply_profile`, the same function `main()` calls, rather than
+    re-implementing the match loop: a copy here could agree with a broken
+    pipeline."""
+    return fr.apply_profile(fetch_csv(fake_session, fake_response, payload), fr.SEED_PROFILE)
 
 
 def test_utf8_bom_does_not_swallow_the_id_column(fake_session, fake_response):
@@ -91,7 +106,7 @@ def test_announced_calls_keep_a_clean_date_and_set_the_announced_flag(
     line and as a tag."""
     payload = feed(csv_row(titlu="Program cancer", stare="anuntat", termen_iso="2026-12-01"))
 
-    call = fetch_csv(fake_session, fake_response, payload)[0]
+    call = matched_csv(fake_session, fake_response, payload)[0]
 
     assert call.deadline == "2026-12-01"
     assert call.announced is True
@@ -155,7 +170,7 @@ def test_calls_an_ngo_cannot_apply_for_are_dropped(fake_session, fake_response):
     persoane, scoli, cultura, sanatate. A companies-only call is not a lead."""
     payload = feed(csv_row(titlu="Program cancer", categorii="companii"))
 
-    assert fetch_csv(fake_session, fake_response, payload) == []
+    assert matched_csv(fake_session, fake_response, payload) == []
 
 
 def test_ngo_eligibility_alone_is_not_enough(fake_session, fake_response):
@@ -163,7 +178,7 @@ def test_ngo_eligibility_alone_is_not_enough(fake_session, fake_response):
     and vocational training. Relevance is now required as well."""
     payload = feed(csv_row(titlu="Digitalizare industriala", categorii="ong"))
 
-    assert fetch_csv(fake_session, fake_response, payload) == []
+    assert matched_csv(fake_session, fake_response, payload) == []
 
 
 def test_core_keyword_matches_anywhere_in_the_record(fake_session, fake_response):
@@ -174,7 +189,7 @@ def test_core_keyword_matches_anywhere_in_the_record(fake_session, fake_response
         csv_row(titlu="Apel generic", finanteaza="sprijin pentru pacienti oncologici")
     )
 
-    assert len(fetch_csv(fake_session, fake_response, payload)) == 1
+    assert len(matched_csv(fake_session, fake_response, payload)) == 1
 
 
 def test_wide_keyword_in_body_prose_is_ignored(fake_session, fake_response):
@@ -192,13 +207,13 @@ def test_wide_keyword_in_body_prose_is_ignored(fake_session, fake_response):
         )
     )
 
-    assert fetch_csv(fake_session, fake_response, payload) == []
+    assert matched_csv(fake_session, fake_response, payload) == []
 
 
 def test_wide_keyword_in_the_title_still_passes(fake_session, fake_response):
     payload = feed(csv_row(titlu="Fondul de sănătate — Fundația Comunitară Bacău"))
 
-    assert len(fetch_csv(fake_session, fake_response, payload)) == 1
+    assert len(matched_csv(fake_session, fake_response, payload)) == 1
 
 
 @pytest.mark.parametrize("term", ["sănătate mintal", "sanatate mintal"])
@@ -207,7 +222,7 @@ def test_romanian_keywords_match_with_and_without_diacritics(
 ):
     payload = feed(csv_row(titlu="Apel generic", finanteaza=f"proiecte de {term}"))
 
-    assert len(fetch_csv(fake_session, fake_response, payload)) == 1
+    assert len(matched_csv(fake_session, fake_response, payload)) == 1
 
 
 def test_real_feed_sample_is_filtered_as_expected(
@@ -215,7 +230,7 @@ def test_real_feed_sample_is_filtered_as_expected(
 ):
     """Four unedited rows from the live feed: a cancer call, a closed call, a
     blank-`cod` call, and a companies-only call."""
-    calls = fetch_csv(fake_session, fake_response, adieuronest_csv_bytes)
+    calls = matched_csv(fake_session, fake_response, adieuronest_csv_bytes)
 
     titles = [c.title for c in calls]
     assert any("Misiunea Cancer" in t for t in titles)
@@ -249,8 +264,19 @@ def eu_calls(dataset_path, session=None):
 
 
 def eu_ids(dataset_path, session=None):
+    """What discovery COLLECTS — every live grant, no keyword gate."""
     calls, _ = eu_calls(dataset_path, session)
     return {call.call_id for call in calls}
+
+
+def eu_matched(dataset_path, session=None):
+    """What one organisation SEES. See `matched_csv` — same reason, EU side."""
+    calls, _ = eu_calls(dataset_path, session)
+    return fr.apply_profile(calls, fr.SEED_PROFILE)
+
+
+def eu_matched_ids(dataset_path, session=None):
+    return {call.call_id for call in eu_matched(dataset_path, session)}
 
 
 def eu_record(dataset_path, identifier):
@@ -262,8 +288,9 @@ def eu_record(dataset_path, identifier):
 
 def test_procurement_tenders_are_excluded(eu_reference_path):
     """type 0 is a procurement tender (999 in the live dataset), type 1 a grant
-    topic (10,161). Vertical Freedom applies for grants; a tender in the digest
-    is noise the office cannot act on."""
+    topic (10,161). A tender is a contract to supply the Commission, not funding
+    an applicant organisation can bid for, so it is not a lead for anyone — which
+    is why this bar stays in the fetcher rather than moving into a profile."""
     assert "eu_sedia:INTPA/2023/EA-RP/0177-PIN" not in eu_ids(eu_reference_path)
     assert any(c.startswith("eu_sedia:HORIZON-MISS") for c in eu_ids(eu_reference_path))
 
@@ -316,44 +343,118 @@ def test_topic_url_is_built_from_the_identifier(eu_reference_path):
 
 
 def test_core_keywords_match_the_topic_and_its_parent_call(eu_reference_path):
-    calls, _ = eu_calls(eu_reference_path)
-    tags = next(c.tags for c in calls if c.call_id.endswith("HORIZON-MISS-2026-02-CANCER-05"))
+    """CORE searches title + callTitle. "mental health" is in the topic's own
+    name; the parent call is what carries a term the topic title omits."""
+    tags = next(
+        c.tags for c in eu_matched(eu_reference_path)
+        if c.call_id.endswith("HORIZON-MISS-2026-02-CANCER-05")
+    )
 
     assert "cancer" in tags
     assert "mental health" in tags
 
 
+def test_the_matching_surfaces_are_built_from_the_untruncated_title(tmp_path):
+    """Regression, introduced and caught during the Phase C refactor: `title` on
+    the FundingCall is shortened to 200 characters for the digest line, but live
+    titles run to 323. Building `search_wide` from the shortened title silently
+    stops matching any term past the cut, and the loss is indistinguishable from
+    the call simply not being relevant.
+
+    Every title in `eu_reference_sample.json` is comfortably under 200
+    characters, so the shortening is a no-op there and the fixture cannot
+    exercise this at all. Hence a purpose-built record whose only keyword sits
+    past the cut — the assertion is that it still matches."""
+    deadline = int((datetime.now() + timedelta(days=90)).timestamp() * 1000)
+    padding = "Coordination and support action on regional capacity building "
+    title = padding * 4 + "for cancer patients"     # keyword past character 200
+    assert len(title) > 250 and title.index("cancer") > 200
+
+    dataset = tmp_path / "reference.json"
+    dataset.write_text(json.dumps({"fundingData": {"GrantTenderObj": [{
+        "identifier": "TEST-LONG-TITLE-01",
+        "type": 1,      # int, not a string — see the quirks section
+        "status": {"id": 31094502, "abbreviation": "Open", "description": "Open"},
+        "title": title,
+        "callTitle": "",
+        "deadlineDatesLong": [deadline],
+    }]}}), encoding="utf-8")
+
+    calls = fr.fetch_eu_calls(None, dataset_path=dataset)
+
+    assert len(calls) == 1
+    assert calls[0].title.endswith("…"), "the display title must still be shortened"
+    assert calls[0].search_wide == title.lower()
+    assert fr.apply_profile(calls, fr.SEED_PROFILE), "a term past char 200 must still match"
+
+
 def test_wide_keyword_alone_still_matches_in_a_title(eu_reference_path):
     """"screening" is a WIDE term: signal in a title, noise in body prose."""
-    assert "eu_sedia:DIGITAL-2026-AI-PILOTING-10-SCREENING" in eu_ids(eu_reference_path)
+    assert "eu_sedia:DIGITAL-2026-AI-PILOTING-10-SCREENING" in eu_matched_ids(eu_reference_path)
 
 
 def test_context_guard_rejects_a_wide_match_in_the_wrong_domain(eu_reference_path):
     """Regression: "Health of ecosystems and wild species, predictions and
     impacts on human health" matches the WIDE term "human health" and is a
-    biodiversity call. Same failure as "sănătate animală" on the Romanian side."""
-    assert "eu_sedia:HORIZON-CL6-2027-01-BIODIV-07" not in eu_ids(eu_reference_path)
+    biodiversity call. Same failure as "sănătate animală" on the Romanian side.
+
+    Discovery now COLLECTS this call — it is a live grant, and some other
+    organisation may want it. The guard moved to the matcher, so the assertion
+    is that no match is produced, not that no row exists."""
+    assert "eu_sedia:HORIZON-CL6-2027-01-BIODIV-07" in eu_ids(eu_reference_path)
+    assert "eu_sedia:HORIZON-CL6-2027-01-BIODIV-07" not in eu_matched_ids(eu_reference_path)
 
 
 def test_tags_are_never_matched_against(eu_reference_path):
     """Regression: `tags` is a ~40-term marketing keyword dump. Matching it made
-    an invasive-species call hit on "mental health"."""
+    an invasive-species call hit on "mental health".
+
+    The guarantee is now structural rather than a rule inside the matcher: the
+    matcher only ever reads `search_core`/`search_wide`, and the fetcher builds
+    those from title and callTitle alone. So the check is that a record's own
+    `tags` never reach either surface — which no matcher change can undo."""
     record = eu_record(eu_reference_path, "HORIZON-CL6-2027-01-BIODIV-07")
     record["tags"] = ["cancer", "oncology", "palliative"]
     record["keywords"] = ["cancer"]
 
-    assert fr._eu_matches(record) == []
+    calls, _ = eu_calls(eu_reference_path)
+    call = next(c for c in calls if c.call_id.endswith("HORIZON-CL6-2027-01-BIODIV-07"))
+
+    assert "oncology" not in call.search_core
+    assert "oncology" not in call.search_wide
+    assert fr.match_all([call.to_warehouse_row()], fr.SEED_PROFILE) == []
 
 
 def test_enrichment_failure_keeps_the_call_without_a_budget(eu_reference_path):
     """Discovery already established the call exists and is relevant. A search
     index failure must cost a budget line, not a call — that asymmetry is the
-    whole reason discovery and enrichment use different endpoints."""
-    calls, session = eu_calls(eu_reference_path)
+    whole reason discovery and enrichment use different endpoints.
+
+    Enrichment is its own pass since Phase C, so this drives `enrich_eu_calls`
+    explicitly rather than relying on `fetch_eu_calls` to do it."""
+    calls, _ = eu_calls(eu_reference_path)
+    session = OfflineEnrichment()
+
+    fr.enrich_eu_calls(session, calls)
 
     assert calls, "every call was dropped when enrichment failed"
     assert all(c.budget == "" for c in calls)
-    assert len(session.calls) == len(calls), "one enrichment attempt per matched call"
+    assert len(session.calls) == len(calls), "one enrichment attempt per call given"
+
+
+def test_enrichment_is_driven_by_matches_not_by_everything_collected(eu_reference_path):
+    """Discovery keeps ~650 live grants where it used to keep 24. Enriching all
+    of them is one POST each — a twenty-sevenfold increase in outbound traffic
+    for budget lines no organisation asked to see. `main()` therefore enriches
+    the matched calls only, and this pins that ratio on the fixture."""
+    calls, _ = eu_calls(eu_reference_path)
+    matched = fr.apply_profile(calls, fr.SEED_PROFILE)
+    session = OfflineEnrichment()
+
+    fr.enrich_eu_calls(session, matched)
+
+    assert len(matched) < len(calls), "fixture must contain an unmatched live grant"
+    assert len(session.calls) == len(matched)
 
 
 def test_enrichment_fills_in_the_budget(eu_reference_path, fake_session, fake_response, sedia_payload):
@@ -660,15 +761,28 @@ def main_routes(fake_response, csv_payload=None, eu=EMPTY_DATASET):
         )
     return routes
 
-def test_main_reports_only_new_calls_and_records_every_fetched_id(
+def test_main_reports_only_new_calls_and_records_every_matched_id(
     tmp_path, monkeypatch, fake_session, fake_response, capture_post
 ):
+    """The seen store answers "has the office been told about this call", and
+    the office is only told about matches.
+
+    Both rows below are COLLECTED — the fetcher has no keyword gate any more, so
+    both reach the warehouse. Only the first is matched, and only the first may
+    enter the seen store. Recording every collected id instead would mean that
+    widening the export profile later surfaces nothing: every newly relevant
+    call would already be marked seen and would never appear in a digest. Under
+    the old single-tenant shape the two sets were identical, because collection
+    *was* matching — which is exactly why this needs stating now."""
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("GITHUB_TOKEN", "t")
     monkeypatch.setenv("GITHUB_REPOSITORY", "o/r")
     monkeypatch.setattr("sys.argv", ["funding_radar.py", "--create-issue"])
 
-    payload = feed(csv_row(id="slug-100", titlu="Sprijin pacienti cancer", url="http://c"))
+    payload = feed(
+        csv_row(id="slug-100", titlu="Sprijin pacienti cancer", url="http://c"),
+        csv_row(id="slug-200", titlu="Digitalizare industriala", url="http://d"),
+    )
     routes = main_routes(fake_response, payload)
     monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
 
@@ -677,10 +791,43 @@ def test_main_reports_only_new_calls_and_records_every_fetched_id(
     fr.main()
     assert len(posted) == 1
     assert "Sprijin pacienti cancer" in posted[0]["json"]["body"]
+    assert "Digitalizare industriala" not in posted[0]["json"]["body"]
     assert fr.load_seen_ids(fr.CONFIG["seen_store_path"]) == {"adieuronest:slug-100"}
 
     fr.main()
     assert len(posted) == 1, "second run over an unchanged feed must stay silent"
+
+
+def test_a_collected_but_unmatched_call_can_still_be_reported_later(
+    tmp_path, monkeypatch, fake_session, fake_response, capture_post
+):
+    """The consequence of the rule above, stated as the behaviour it buys.
+
+    A call the profile rejected today must still be reportable the day the
+    profile widens. If `main()` writes collected ids to the seen store, this
+    second run reports nothing and the widening looks like it did not work."""
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("GITHUB_TOKEN", "t")
+    monkeypatch.setenv("GITHUB_REPOSITORY", "o/r")
+    monkeypatch.setattr("sys.argv", ["funding_radar.py", "--create-issue"])
+
+    payload = feed(csv_row(id="slug-200", titlu="Digitalizare industriala", url="http://d"))
+    routes = main_routes(fake_response, payload)
+    monkeypatch.setattr(fr, "create_resilient_session", lambda: fake_session(routes))
+    posted = capture_post(fr)
+
+    fr.main()
+    assert posted == [], "nothing matched, so nothing is reported"
+    assert fr.load_seen_ids(fr.CONFIG["seen_store_path"]) == set()
+
+    # The operator widens the profile. Nothing else changes — same feed, same run.
+    widened = json.loads(json.dumps(fr.SEED_PROFILE))
+    widened["matching"]["ro"]["core"].append("digitalizare")
+    monkeypatch.setattr(fr, "SEED_PROFILE", widened)
+
+    fr.main()
+    assert len(posted) == 1, "the newly relevant call must surface"
+    assert "Digitalizare industriala" in posted[0]["json"]["body"]
 
 
 def test_main_survives_a_totally_dead_source(

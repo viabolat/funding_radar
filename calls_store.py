@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 """
-Shared calls.json store — Vertical Freedom
-==========================================
+Shared calls.json store — the single-organisation export
+========================================================
 
 Both watchers write into ONE file, `calls.json`, which is the machine-readable
 feed the staff dashboard reads. The GitHub Issues remain the notification path;
 this file is the data behind the UI.
+
+Since Phase C this file is a *generated export for one organisation*, not the
+store of record — Postgres is. It holds what the export profile matched, which
+is a subset of what the run collected, and the warehouse keeps the rest. It
+survives because it is what the GitHub Issues path and the current dashboard
+build read, and because its merge contract is still the thing that must not
+drift.
 
 This is the only module both scripts import. They otherwise duplicate their
 helpers on purpose (see CLAUDE.md), but the merge contract below cannot be

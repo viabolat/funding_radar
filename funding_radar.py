@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Funding Radar — Vertical Freedom
-=================================
+Funding Radar — the collector
+=============================
 
 Pulls open funding calls from two free, confirmed sources:
 
@@ -16,15 +16,23 @@ SEDIA search API is asked about the handful that matched (enrichment). Asking
 the dataset rather than the search index is what makes coverage a fact rather
 than a function of how eleven keyword queries happen to rank.
 
-Filters both for calls relevant to Vertical Freedom's actual mission — holistic
-support for cancer patients: complementary/integrative therapies, psychotherapy, emotional
-support, nutrition, and prevention — plus general health/mental-health/social-inclusion
-terms as a wider net. A Romanian row must be BOTH applicable (NGO-eligible category, not
-closed) AND relevant (mission term anywhere, or a broad health term in the title);
-matching on the broad terms in body prose produced unusable digests. Remembers what it
-has already reported (via seen_calls.json,
-committed back to the repo by the GitHub Actions workflow) so re-runs only surface NEW
-matches, and opens a GitHub Issue per run when there's something new to report.
+**Scraping is organisation-agnostic.** Both fetchers keep everything above a low
+structural bar — a grant, not already closed, deadline still ahead — and no
+further. Relevance is not their job: they compute two matching surfaces per call
+(`search_core`, `search_wide`) and record what the source says the call is open
+to (`eligible_as`), and `match.py` decides per organisation from a profile. What
+a fetcher discards is discarded for every tenant forever, so the bar it applies
+has to be a fact about the call rather than an opinion about an applicant.
+
+`calls.json`, the digest and the GitHub Issue are still ONE organisation's
+export — they always were — so this script matches inline before writing them.
+It matches with the same profile document `match.py` uses, read out of
+`organizations`; see `export_profile()` for the precedence and for why the
+built-in seed copy is a bootstrap value rather than a second source of truth.
+
+Remembers what it has already reported (via seen_calls.json, committed back to
+the repo by the GitHub Actions workflow) so re-runs only surface NEW matches,
+and opens a GitHub Issue per run when there's something new to report.
 
 Delivery is GitHub Issues only — no Slack, no Telegram, no email/SMTP. GitHub
 auto-emails anyone watching the repo when an issue opens, so that's the whole
@@ -64,6 +72,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 from calls_store import atomic_write_text, write_source_calls
+from match import match_all
 from provenance import Recorder, sha256_of
 from warehouse import Warehouse
 
@@ -122,9 +131,11 @@ CONFIG = {
     # `type` in that dataset is exactly two values, confirmed by counting all
     # 11,160 records: 1 = grant topic (10,161 of them; carries callIdentifier and
     # frameworkProgramme), 0 = procurement tender (999; carries lots, CPV codes
-    # and placesOfDeliveryOrPerformance instead). Vertical Freedom applies for
-    # grants, so tenders are dropped. The old ["1","2","8"] was a guess against a
-    # different vocabulary — the search index's, not the dataset's.
+    # and placesOfDeliveryOrPerformance instead). The warehouse collects grants;
+    # a tender is a contract to supply the Commission, not something an applicant
+    # organisation applies to, so it is out of scope for every tenant rather than
+    # filtered per tenant. The old ["1","2","8"] was a guess against a different
+    # vocabulary — the search index's, not the dataset's.
     "eu_grant_type": 1,
 
     # Forthcoming is kept on purpose: it is the call you still have time to
@@ -132,77 +143,6 @@ CONFIG = {
     # 10,513 Closed. The deadline is checked SEPARATELY and always — see
     # _eu_deadline; the portal's status has been wrong before.
     "eu_statuses": {"Open", "Forthcoming"},
-
-    # CORE terms are matched against title + callTitle: the topic's own name and
-    # its parent call's. Deliberately NOT against `tags`, which is a marketing
-    # keyword dump — matching it made "mental health" hit a call about
-    # eradicating invasive species and "nutrition" hit livestock feed. Same
-    # failure as the adieuronest WIDE terms in body prose, one layer down.
-    "eu_core_keywords": [
-        "cancer",
-        "oncolog",
-        "tumour",
-        "palliative",
-        "psychosocial",
-        "psychotherap",
-        "mental health",
-        "integrative medicine",
-        "complementary medicine",
-        "patient support",
-        "patient empowerment",
-        "patient-centred",
-        "cancer survivor",
-        "caregiver",
-        "informal carer",
-        "health promotion",
-        "health literacy",
-        "hospice",
-        "cancer patients",
-        "chronic disease",
-        "non-communicable disease",
-    ],
-
-    # WIDE terms are matched against the TITLE ONLY, and are phrases rather than
-    # bare words. A bare "health" matches soil health, plant health, livestock
-    # health and ecosystem health; a bare "prevention" matches crime, fire and
-    # food-waste prevention. Bare "mental" is worse still — it is a substring of
-    # environmental, experimental and fundamental, which is how a quantum
-    # computing pilot line ended up in a cancer-charity digest during calibration.
-    "eu_wide_keywords": [
-        "public health",
-        "human health",
-        "healthcare",
-        "health care",
-        "health system",
-        "mental well",
-        "psycholog",
-        "wellbeing",
-        "well-being",
-        "social inclusion",
-        "disease prevention",
-        "screening",
-    ],
-
-    # A title carrying a WIDE term AND one of these is about something else.
-    # This is the cheap generalisation of the "sănătate animală" lesson: the
-    # health vocabulary is shared with agriculture, ecology and security.
-    "eu_context_guards": [
-        "soil",
-        "plant health",
-        "animal",
-        "livestock",
-        "veterinar",
-        "ecosystem",
-        "crime",
-        "food waste",
-        "forest",
-        "biodivers",
-        "wildlife",
-        "construction",
-        "renovation",
-        "footwear",
-        "vehicle",
-    ],
 
     # Grant records carry no url of their own (only tenders do), so the topic
     # page is built from the identifier. Enrichment overwrites this with the
@@ -223,57 +163,16 @@ CONFIG = {
     "eu_sedia_language_preference": ["en", "ro"],
     "eu_sedia_page_size": 20,
 
-    # Vertical Freedom is an NGO, so a call it cannot apply for is not a lead.
-    # Live vocabulary of the `categorii` column is exactly:
-    # companii, universitati, autoritati, ong, persoane, scoli, cultura, sanatate.
-    "adieuronest_eligible_categories": {"ong", "sanatate"},
-
-    # `stare` is one of: activ, anuntat, inchis. Closed calls are dead weight.
+    # `stare` is one of: activ, anuntat, inchis. A closed call is closed for
+    # every organisation, so this is a structural bar and stays in the fetcher.
     "adieuronest_excluded_stare": {"inchis"},
 
-    # CORE terms are matched against the full record including the long
-    # eligibility/funding prose.
-    "adieuronest_core_keywords": [
-        "cancer",
-        "oncolog",
-        "tumor",
-        "paliativ",
-        "terapii complementare",
-        "terapii alternative",
-        "terapii integrative",
-        "abordare holistica",
-        "abordare holistă",
-        "holistic",
-        "psihoterapie",
-        "sprijin emotional",
-        "sprijin emoțional",
-        "sănătate mintal",
-        "sanatate mintal",
-        "pacient",
-        "screening",
-        "boli cronice",
-        "nutriție",
-        "nutritie",
-    ],
-
-    # WIDE terms are matched against the TITLE AND PROGRAMME ONLY. These words
-    # turn up constantly in generic boilerplate ("beneficiarii din domeniul
-    # sănătății pot..."), so full-text matching on them pulled in NetZero
-    # innovation and textile-SME calls. In a title they are signal; in the fine
-    # print they are noise. This is the dial to turn if the digest gets thin.
-    "adieuronest_wide_keywords": [
-        "sănătate",
-        "sanatate",
-        "medical",
-        "spital",
-        "psiholog",
-        "consiliere",
-        "prevenție",
-        "preventie",
-        "incluziune",
-        "vindecare",
-        "ong",
-    ],
+    # Which organisation's matches become calls.json, the digest and the Issue.
+    # An id rather than a name, and an environment value rather than a literal,
+    # so no tenant's identity is compiled into this file. Set as an Actions
+    # variable; unset means the export falls back to SEED_PROFILE — see
+    # export_profile().
+    "export_org_id": os.environ.get("EXPORT_ORG_ID", "").strip(),
 
     "user_agent": _user_agent(),
 
@@ -300,6 +199,119 @@ CONFIG = {
         "api.tech.ec.europa.eu",
     },
 }
+
+# ---------------------------------------------------------------------------
+# THE EXPORT PROFILE
+#
+# Until Phase C these term lists were CONFIG — global product configuration that
+# every scrape applied to every row. They are now one organisation's data, and
+# the copy that counts lives in `organizations.profile`, which is also what the
+# dashboard edits and what match.py reads.
+#
+# SEED_PROFILE below is a BOOTSTRAP COPY of supabase/migrations/0004, not a
+# second source of truth. It is used only when there is no database to disagree
+# with — a local run, and the offline test suite, neither of which has a
+# dashboard that could have edited anything. Whenever the warehouse is
+# configured and an export org is named, the stored profile wins outright, so
+# editing a profile changes calls.json on the very next run.
+#
+# The one copy pair this leaves — this constant against the migration — is
+# covered by a test that parses the SQL and compares the lists term for term,
+# in order. Order matters: `match.match_reason` renders terms in profile order,
+# and that ordering is what today's digest says.
+# ---------------------------------------------------------------------------
+
+SEED_PROFILE = {
+    "eligible_as": ["ong", "sanatate"],
+    "matching": {
+        # Romanian: adieuronest and mipe_calendar. CORE is matched against the
+        # full record including the long eligibility and funding prose.
+        "ro": {
+            "core": [
+                "cancer", "oncolog", "tumor", "paliativ",
+                "terapii complementare", "terapii alternative", "terapii integrative",
+                "abordare holistica", "abordare holistă", "holistic",
+                "psihoterapie", "sprijin emotional", "sprijin emoțional",
+                "sănătate mintal", "sanatate mintal",
+                "pacient", "screening", "boli cronice", "nutriție", "nutritie",
+            ],
+            # WIDE is matched against TITLE AND PROGRAMME ONLY. These words turn
+            # up constantly in generic boilerplate ("beneficiarii din domeniul
+            # sănătății pot..."), so full-text matching on them pulled in NetZero
+            # innovation and textile-SME calls. In a title they are signal.
+            # Both diacritic and non-diacritic spellings are listed, and terms
+            # are stems: Romanian inflects, so 'sănătate' does not match
+            # 'sănătății'. They are NOT folded at match time — see match.py.
+            "wide": [
+                "sănătate", "sanatate", "medical", "spital", "psiholog",
+                "consiliere", "prevenție", "preventie", "incluziune",
+                "vindecare", "ong",
+            ],
+            "guards": [],
+        },
+        # English: the EU reference dataset.
+        "en": {
+            # Matched against title + callTitle. Deliberately NOT against `tags`
+            # or `keywords`, which are a ~40-term marketing dump — matching them
+            # made "mental health" hit a call about eradicating invasive species
+            # and "nutrition" hit livestock feed.
+            "core": [
+                "cancer", "oncolog", "tumour", "palliative", "psychosocial",
+                "psychotherap", "mental health", "integrative medicine",
+                "complementary medicine", "patient support", "patient empowerment",
+                "patient-centred", "cancer survivor", "caregiver", "informal carer",
+                "health promotion", "health literacy", "hospice", "cancer patients",
+                "chronic disease", "non-communicable disease",
+            ],
+            # Matched against the TITLE ONLY, and phrases rather than bare words.
+            # Bare "health" matches soil, plant, livestock and ecosystem health;
+            # bare "mental" is a substring of environmental, experimental and
+            # fundamental, which is how a quantum-computing pilot line reached a
+            # cancer-charity digest during calibration.
+            "wide": [
+                "public health", "human health", "healthcare", "health care",
+                "health system", "mental well", "psycholog", "wellbeing",
+                "well-being", "social inclusion", "disease prevention", "screening",
+            ],
+            # A title carrying a WIDE term AND one of these is about something
+            # else. The health vocabulary is shared with agriculture, ecology and
+            # security: "Health of ecosystems and wild species, predictions and
+            # impacts on human health" is a biodiversity call, not a health one.
+            "guards": [
+                "soil", "plant health", "animal", "livestock", "veterinar",
+                "ecosystem", "crime", "food waste", "forest", "biodivers",
+                "wildlife", "construction", "renovation", "footwear", "vehicle",
+            ],
+        },
+    },
+}
+
+
+def export_profile(warehouse: Warehouse) -> dict:
+    """The profile calls.json, the digest and the Issue are produced from.
+
+    Precedence, and the reason for it: the stored profile is the one the
+    dashboard edits and the one match.py matches with, so if it exists it wins.
+    Falling back to SEED_PROFILE while a database row also existed would let the
+    export and the dashboard disagree about what the organisation sees, with
+    both looking live — the exact drift a single document exists to prevent.
+
+    The fallback therefore fires only where no stored profile is reachable: a
+    local run, or the offline suite. It logs which one it used, because "why is
+    the digest different on the runner" is otherwise an unanswerable question.
+    """
+    org_id = CONFIG["export_org_id"]
+    if warehouse.enabled and org_id:
+        for org in warehouse.fetch_organizations():
+            if org.get("id") == org_id:
+                log.info("export profile: %s (from the warehouse)", org.get("name") or org_id)
+                return org.get("profile") or {}
+        # Named but absent is a misconfiguration, not a reason to silently
+        # export someone else's idea of relevance.
+        raise ValueError(f"EXPORT_ORG_ID {org_id!r} is not an organisation in the warehouse")
+    log.info("export profile: built-in seed (no warehouse export org configured)")
+    return SEED_PROFILE
+
 
 # Prefix -> readable name. The reference dataset carries the programme as a named
 # object, so this is no longer the primary path — it is the fallback for the
@@ -475,6 +487,35 @@ class FundingCall:
     match_reason: str = ""
     raw: dict = field(default_factory=dict)
 
+    # -- organisation-agnostic matching inputs, computed at ingest -------------
+    # The fetcher is the only code that knows a source's shape, so it is the
+    # only code that can say which prose is a name and which is fine print.
+    # It writes the two surfaces and stops; what counts as relevant in them is
+    # match.py's question, asked once per organisation.
+    lang: str = ""
+    search_core: str = ""
+    search_wide: str = ""
+    # What the SOURCE says the call is open to. Empty means the source publishes
+    # no applicant vocabulary — the EU dataset does not — which is "unknown",
+    # never "open to nobody".
+    eligible_as: list[str] = field(default_factory=list)
+    # Tags that stay at the end of the list after matched terms are merged in.
+    # Today only adieuronest publishes one ("anunțat"); the EU side carries the
+    # same fact in `announced` and renders it in the digest line instead. That
+    # asymmetry is inherited, not designed — it is preserved here rather than
+    # tidied because tidying it would rewrite tag order for live rows.
+    status_tags: list[str] = field(default_factory=list)
+
+    def apply_match(self, match) -> None:
+        """Fold one organisation's match result back onto the call.
+
+        Matched terms join the source's own vocabulary in one sorted set, which
+        is what the pre-Phase-C fetchers produced, and the status tags are
+        appended after the sort so their position does not move.
+        """
+        self.match_reason = match.match_reason
+        self.tags = sorted(set(match.matched_terms) | set(self.tags)) + list(self.status_tags)
+
     def digest_line(self) -> str:
         parts = [f"**{self.title}**"]
         if self.programme:
@@ -508,21 +549,28 @@ class FundingCall:
             "first_seen": datetime.now().strftime("%Y-%m-%d"),
         }
 
+    def to_warehouse_row(self) -> dict:
+        """The warehouse row: the feed record plus what matching needs.
+
+        Kept separate from `to_record()` on purpose. That one is the calls.json
+        contract, mirrored field for field by web/src/types.ts and pinned by
+        FEED_VERSION; adding the matching surfaces to it would push a megabyte
+        of eligibility prose into the dashboard's download and force a version
+        bump for data no reader wants.
+        """
+        return dict(
+            self.to_record(),
+            lang=self.lang,
+            search_core=self.search_core,
+            search_wide=self.search_wide,
+            eligible_as=self.eligible_as,
+            raw=self.raw,
+        )
+
 
 # ---------------------------------------------------------------------------
 # SOURCE 1 — adieuronest.ro
 # ---------------------------------------------------------------------------
-
-def _match_reason(matched: list[str]) -> str:
-    """Romanian copy for the dashboard's "De ce a apărut" callout — the office's
-    working language, per the design handoff."""
-    if not matched:
-        return ""
-    terms = ", ".join(f"„{term}”" for term in matched[:4])
-    if len(matched) == 1:
-        return f"Cuvânt cheie potrivit {terms}."
-    return f"Cuvinte cheie potrivite {terms}."
-
 
 def _adieuronest_budget(row: dict) -> str:
     """Renders the three money columns into one human line, skipping blanks."""
@@ -558,9 +606,14 @@ def fetch_adieuronest_calls(
     recorder: Recorder | None = None,
 ) -> list[FundingCall]:
     """
-    Downloads the full CSV feed and keeps a row only when it is BOTH applicable
-    (an NGO-eligible category, not already closed) AND relevant (a mission term
-    in the full record, or a broader health term in the title).
+    Downloads the full CSV feed and keeps every row that is not already closed.
+
+    That is the whole gate, and it is deliberately structural: a closed call is
+    closed for every organisation. The `categorii` column used to be applied
+    here as an eligibility gate against one organisation's answer; it is now
+    carried on the row as `eligible_as`, and the intersection is taken per
+    organisation in match.py. Whatever this function drops is dropped for every
+    future tenant, so it drops only facts.
 
     Field names below are the live header, confirmed against the real feed:
         id, titlu, program, cod, tip, stare, tara, si_md, si_ua, regiune,
@@ -569,7 +622,9 @@ def fetch_adieuronest_calls(
         depunere, url, ghid_url, fisa_url, adaugat, verificat_la, stadiu, sursa
 
     There is no `descriere` column; the prose lives in solicitanti / finanteaza
-    / conditii, which is what the CORE keywords are matched against.
+    / conditii, which is why `search_core` is built from them. The whole row is
+    kept in `raw`, so the columns nothing reads yet — the geography ones above
+    all — are preserved rather than discarded at the door.
     """
     recorder = recorder or Recorder(None)
     url = CONFIG["adieuronest_csv_url"]
@@ -601,43 +656,21 @@ def fetch_adieuronest_calls(
     text = body.decode("utf-8-sig")
     reader = csv.DictReader(io.StringIO(text))
 
-    core_keywords = [k.lower() for k in CONFIG["adieuronest_core_keywords"]]
-    wide_keywords = [k.lower() for k in CONFIG["adieuronest_wide_keywords"]]
-    eligible_categories = CONFIG["adieuronest_eligible_categories"]
     excluded_stare = CONFIG["adieuronest_excluded_stare"]
 
     calls: list[FundingCall] = []
     rows = 0
-    applicable = 0
 
     for row in reader:
         rows += 1
-        categories = {
-            c.strip().lower()
-            for c in (row.get("categorii") or "").split("|")
-            if c.strip()
-        }
-        if not categories & eligible_categories:
-            continue
-
         if (row.get("stare") or "").strip().lower() in excluded_stare:
             continue
-        applicable += 1
 
         title = (row.get("titlu") or "").strip()
         programme = (row.get("program") or "").strip()
-
-        full_text = " ".join(
-            (row.get(f) or "")
-            for f in ("titlu", "program", "solicitanti", "finanteaza", "conditii")
-        ).lower()
-        title_text = f"{title} {programme}".lower()
-
-        matched_core = [kw for kw in core_keywords if kw in full_text]
-        matched_wide = [kw for kw in wide_keywords if kw in title_text]
-
-        if not (matched_core or matched_wide):
-            continue
+        categories = sorted(
+            {c.strip().lower() for c in (row.get("categorii") or "").split("|") if c.strip()}
+        )
 
         link = (row.get("url") or "").strip()
         # `cod` is blank on roughly half the feed, so it cannot stand alone.
@@ -647,11 +680,6 @@ def fetch_adieuronest_calls(
         # kept so the dashboard can compare it against today.
         deadline = (row.get("termen_iso") or "").strip()
         announced = (row.get("stare") or "").strip().lower() == "anuntat"
-
-        matched = matched_core + matched_wide
-        tags = sorted(set(matched + sorted(categories)))
-        if announced:
-            tags.append("anunțat")
 
         calls.append(
             FundingCall(
@@ -663,8 +691,19 @@ def fetch_adieuronest_calls(
                 budget=_adieuronest_budget(row),
                 programme=programme,
                 link=link,
-                tags=tags,
-                match_reason=_match_reason(matched),
+                # The source's own vocabulary, and nothing derived from any
+                # organisation. Matched terms are merged in by apply_match.
+                tags=list(categories),
+                status_tags=["anunțat"] if announced else [],
+                lang="ro",
+                # CORE sees the fine print, WIDE sees only the names. Lowercased
+                # once here rather than on every term comparison in every run.
+                search_core=" ".join(
+                    (row.get(f) or "")
+                    for f in ("titlu", "program", "solicitanti", "finanteaza", "conditii")
+                ).lower(),
+                search_wide=f"{title} {programme}".lower(),
+                eligible_as=list(categories),
                 raw=row,
             )
         )
@@ -672,11 +711,14 @@ def fetch_adieuronest_calls(
     recorder.funnel(
         "adieuronest",
         rows=rows,
-        applicable=applicable,
-        relevant=len(calls),
+        # reason: `applicable` and `relevant` were counts of one organisation's
+        # gate, and reporting them from an organisation-agnostic scrape would be
+        # a receipt for a decision this code no longer makes. The per-org funnel
+        # is recorded where that decision now happens — see main() and match.py.
+        not_closed=len(calls),
         emitted=len(calls),
     )
-    log.info("adieuronest.ro: %d matching calls after filtering", len(calls))
+    log.info("adieuronest.ro: %d open call(s) collected", len(calls))
     return calls
 
 
@@ -825,36 +867,6 @@ def _eu_topic_url(identifier: str) -> str:
     """Grant records carry no url of their own — only tenders do — so the topic
     page is built from the identifier, which is what the portal itself uses."""
     return CONFIG["eu_topic_url"].format(identifier=identifier.lower())
-
-
-def _eu_matches(record: dict) -> list[str]:
-    """
-    Returns the matched terms, or [] when the record is not relevant.
-
-    Two tiers, for the same reason the adieuronest side has two: a mission term
-    is signal wherever it appears, a broad health term is signal only in a name.
-
-      CORE  -> title + callTitle
-      WIDE  -> title only, and only when no context guard fires
-
-    `tags` and `keywords` are excluded from both. They are a marketing keyword
-    dump (~40 terms per record, "opportunities", "funding", "partners"), and
-    matching them turned an invasive-species call into a mental-health hit.
-    """
-    title = str(record.get("title") or "").lower()
-    call_title = str(record.get("callTitle") or "").lower()
-    core_surface = f"{title} {call_title}"
-
-    matched_core = [kw for kw in CONFIG["eu_core_keywords"] if kw in core_surface]
-    if matched_core:
-        return matched_core
-
-    matched_wide = [kw for kw in CONFIG["eu_wide_keywords"] if kw in title]
-    if not matched_wide:
-        return []
-    if any(guard in title for guard in CONFIG["eu_context_guards"]):
-        return []
-    return matched_wide
 
 
 # -- Reference dataset: fetch and iterate ------------------------------------
@@ -1041,7 +1053,17 @@ def fetch_eu_calls(
     dataset_path: Path | None = None,
 ) -> list[FundingCall]:
     """
-    Enumerate the reference dataset, keep the grants that matter, then enrich.
+    Enumerate the reference dataset and keep every live grant.
+
+    Three structural bars and no fourth: a grant rather than a tender, a status
+    of Open or Forthcoming, and a deadline still ahead. All three are facts
+    about the call. The keyword gate that used to run here as well is gone —
+    it was one organisation's, it rejected 10,137 of 10,161 grants, and every
+    rejection was permanent for every tenant that would ever exist.
+
+    Enrichment does NOT happen here any more; see `enrich_eu_calls`. Asking the
+    search index about all ~650 survivors would be ~650 POSTs a run in place of
+    today's ~24, so it is driven by what actually matched instead.
 
     `dataset_path` bypasses the download entirely — that is how the tests drive
     this against a captured fixture without a network stub for a 130 MB body.
@@ -1080,13 +1102,18 @@ def fetch_eu_calls(
                 continue
             unexpired += 1
 
-            matched = _eu_matches(record)
-            if not matched:
-                continue
-
             identifier = str(record.get("identifier") or "").strip()
             if not identifier:
                 continue
+
+            # reason: the matching surfaces are built from the RAW record, not
+            # from the shortened title below. `_eu_matches()` searched the full
+            # `record["title"]`, which runs to 323 characters in the live
+            # dataset; building the surface from the 200-character display title
+            # would silently stop matching any term past that cut, and the loss
+            # would look like a call that simply was not relevant.
+            full_title = str(record.get("title") or "")
+            call_title = str(record.get("callTitle") or "")
 
             calls.append(
                 FundingCall(
@@ -1099,20 +1126,40 @@ def fetch_eu_calls(
                     call_id=f"eu_sedia:{identifier}",
                     # Titles run to 323 characters in the live dataset, which
                     # takes a digest line off the page the way `alocare` did.
-                    title=_shorten(str(record.get("title") or "").strip(), 200) or "(no title)",
+                    title=_shorten(full_title.strip(), 200) or "(no title)",
                     deadline=deadline,
                     announced=status == "Forthcoming",
                     programme=_eu_programme(record),
                     link=_eu_topic_url(identifier),
-                    tags=sorted(set(matched)),
-                    match_reason=_match_reason(matched),
-                    raw={"identifier": identifier, "callIdentifier": record.get("callIdentifier")},
+                    # No source vocabulary to seed these with. `tags` and
+                    # `keywords` on an EU record are a ~40-term marketing dump
+                    # ("opportunities", "funding", "partners") and matching them
+                    # turned an invasive-species call into a mental-health hit,
+                    # so they are neither stored nor matched. Everything in
+                    # `tags` for an EU call arrives from apply_match.
+                    tags=[],
+                    lang="en",
+                    # CORE searched title + callTitle: the topic's own name and
+                    # its parent call's. WIDE searched the title alone.
+                    search_core=f"{full_title} {call_title}".lower(),
+                    search_wide=full_title.lower(),
+                    # The EU dataset publishes no applicant vocabulary at all.
+                    # Empty is "unknown", which match.py does not filter on —
+                    # not "open to nobody", which would drop the entire feed.
+                    eligible_as=[],
+                    raw={
+                        "identifier": identifier,
+                        "callIdentifier": record.get("callIdentifier"),
+                        "callTitle": call_title,
+                        "status": status,
+                        # Every cutoff, not just the next one. `_eu_deadline`
+                        # keeps the next date ahead because that is what a
+                        # digest line needs; the rest are facts about the call
+                        # and are cheap to keep now that nothing deletes rows.
+                        "deadlines": record.get("deadlineDatesLong"),
+                    },
                 )
             )
-
-    log.info("EU reference dataset: %d matching grant(s) before enrichment", len(calls))
-    for call in calls:
-        enrich_eu_call(session, call, call.call_id.split(":", 1)[1], recorder=recorder)
 
     recorder.funnel(
         "eu",
@@ -1120,11 +1167,78 @@ def fetch_eu_calls(
         grants=grants,
         open_or_forthcoming=open_or_forthcoming,
         deadline_ahead=unexpired,
-        keyword_matched=len(calls),
+        # reason: `keyword_matched` was one organisation's gate and is no longer
+        # applied here. The per-org funnel is recorded where the decision now
+        # happens — see main().
         emitted=len(calls),
     )
-    log.info("EU Funding & Tenders Portal: %d matching calls", len(calls))
+    log.info("EU Funding & Tenders Portal: %d live grant(s) collected", len(calls))
     return calls
+
+
+def enrich_eu_calls(
+    session: requests.Session,
+    calls: list[FundingCall],
+    recorder: Recorder | None = None,
+) -> None:
+    """Ask the search index for a budget and a canonical URL, once per call.
+
+    Driven by what MATCHED rather than by what was collected. Discovery now
+    keeps ~650 live grants where it used to keep 24, and the index is one small
+    POST per topic — so enriching everything would multiply this run's outbound
+    traffic by twenty-seven for data that, for most of those calls, no
+    organisation has asked to see.
+
+    `enrich_eu_call` still never raises: a search-index failure costs a budget
+    line, not a call. That asymmetry is the whole reason discovery and
+    enrichment are separate halves.
+    """
+    for call in calls:
+        enrich_eu_call(session, call, call.call_id.split(":", 1)[1], recorder=recorder)
+
+
+# ---------------------------------------------------------------------------
+# RELEVANCE — the step that used to live inside the two fetchers
+# ---------------------------------------------------------------------------
+
+def apply_profile(
+    calls: list[FundingCall],
+    profile: dict,
+    recorder: Recorder | None = None,
+) -> list[FundingCall]:
+    """Ask one organisation's question of a collected inventory.
+
+    This exists as a named function rather than a block inside `main()` because
+    it is the seam the whole restructure turns on, and a test that re-implements
+    it is a test that can agree with a broken pipeline. Everything above this
+    line collects; nothing above it knows what any organisation cares about.
+
+    Matching runs against `to_warehouse_row()` — the same payload the warehouse
+    receives — so what this returns and what `match.py` later derives from the
+    database cannot disagree about a call.
+
+    Returns the matched calls, each with `apply_match` already applied, in the
+    matcher's order.
+    """
+    by_id = {call.call_id: call for call in calls}
+    matches = match_all([call.to_warehouse_row() for call in calls], profile)
+
+    matched: list[FundingCall] = []
+    for match in matches:
+        call = by_id[match.call_id]
+        call.apply_match(match)
+        matched.append(call)
+
+    if recorder is not None:
+        recorder.funnel(
+            "match",
+            collected=len(calls),
+            matched=len(matched),
+            core=sum(1 for m in matches if m.tier == "core"),
+            wide=sum(1 for m in matches if m.tier == "wide"),
+        )
+    log.info("Export profile matched %d of %d collected call(s)", len(matched), len(calls))
+    return matched
 
 
 # ---------------------------------------------------------------------------
@@ -1315,13 +1429,37 @@ def main() -> None:
         except (requests.RequestException, ValueError, OSError) as exc:
             log.error("EU Funding & Tenders Portal fetch failed: %s", exc)
 
+    # -- relevance, which is now a separate step from collection ------------
+    # Everything above collected calls. Nothing above knows what an
+    # organisation cares about; `all_calls` is ~650 EU grants and ~1,100
+    # Romanian rows, the whole live inventory. This is where one organisation's
+    # question gets asked of it, and the answer drives the digest, the Issue and
+    # calls.json — the three surfaces that belong to that one organisation.
+    #
+    # The profile comes from the warehouse when EXPORT_ORG_ID names an org
+    # there, so editing it in the database changes what this export contains.
+    # SEED_PROFILE is the bootstrap for a machine with no database, not a
+    # second copy that can drift from one.
+    profile = export_profile(warehouse)
+    matched_calls = apply_profile(all_calls, profile, recorder=recorder)
+
+    # Enrichment is driven by what matched, not by what was collected: the
+    # search index is one POST per topic, and asking it about all ~650 live
+    # grants would multiply this run's outbound traffic twenty-sevenfold for
+    # budget lines nobody has asked to see.
+    enrich_eu_calls(
+        session,
+        [call for call in matched_calls if call.source == "eu_sedia"],
+        recorder=recorder,
+    )
+
     seen_ids = set() if args.no_state else load_seen_ids(CONFIG["seen_store_path"])
-    new_calls = [call for call in all_calls if call.call_id not in seen_ids]
+    new_calls = [call for call in matched_calls if call.call_id not in seen_ids]
 
     log.info(
-        "Total fetched: %d | Already seen: %d | New: %d",
-        len(all_calls),
-        len(all_calls) - len(new_calls),
+        "Total matched: %d | Already seen: %d | New: %d",
+        len(matched_calls),
+        len(matched_calls) - len(new_calls),
         len(new_calls),
     )
 
@@ -1338,14 +1476,21 @@ def main() -> None:
         atomic_write_text(output_path, digest_text)
         log.info("Digest written to: %s", output_path)
 
-        save_seen_ids(CONFIG["seen_store_path"], seen_ids | {c.call_id for c in all_calls})
+        # reason: MATCHED ids, not every collected id. The seen store answers
+        # "has the office been told about this call", and the office is only
+        # told about matches. Recording all ~1,750 collected ids here would mean
+        # that widening the export profile later surfaces nothing: every newly
+        # relevant call would already be marked seen and would never appear in a
+        # digest. Under the old single-tenant shape the two sets were identical,
+        # because collection *was* matching.
+        save_seen_ids(CONFIG["seen_store_path"], seen_ids | {c.call_id for c in matched_calls})
 
         # The dashboard feed. Written on every run, including a run with nothing
         # new, so the UI reflects calls dropping off their source as well as
         # appearing. Only sources that succeeded on THIS run are replaced;
         # mipe_watch's rows, and a failed source's rows, survive untouched.
         total = write_source_calls(
-            [call.to_record() for call in all_calls if call.source in succeeded],
+            [call.to_record() for call in matched_calls if call.source in succeeded],
             owned_sources=succeeded,
         )
         log.info("calls.json now holds %d call(s) across all sources", total)
@@ -1359,7 +1504,19 @@ def main() -> None:
     for call in all_calls:
         rows_by_source[call.source] = rows_by_source.get(call.source, 0) + 1
 
-    warehouse.upsert_calls([call.to_record() for call in all_calls])
+    # reason: to_warehouse_row(), not to_record(). The warehouse row carries the
+    # matching surfaces (`lang`, `search_core`, `search_wide`, `eligible_as`)
+    # and the untrimmed `raw`; the calls.json record deliberately does not, so
+    # ~2 MB of eligibility prose stays out of a browser download. Writing
+    # to_record() here lands every row with an empty surface, and match.py then
+    # returns zero matches for every organisation — silently, because an
+    # unmatched call and an unmatchable one look identical from the outside.
+    # test_what_main_upserts_still_matches_after_the_round_trip is the guard.
+    #
+    # ALL collected calls, not just the matched ones. The warehouse is the
+    # organisation-agnostic half; a call this export profile rejected is exactly
+    # what a second organisation is here to find.
+    warehouse.upsert_calls([call.to_warehouse_row() for call in all_calls])
     # reason: `succeeded`, never `attempted`. A failed source returned no rows,
     # so sweeping it would mark its entire live inventory withdrawn while the
     # run still exits 0 — the same silent-green failure `owned_sources` guards
