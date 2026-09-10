@@ -1,19 +1,24 @@
 # Radar Finanțări
 
-Watches Romanian and EU funding sources on behalf of **Vertical Freedom**, an
-NGO supporting cancer patients (complementary and integrative therapies,
-psychotherapy, emotional support, nutrition, prevention), and reports what
-matches by opening a GitHub Issue.
+Watches Romanian and EU funding sources, matches every open call against an
+organisation's configurable profile, and reports what fits by opening a GitHub
+Issue. Scraping is organisation-agnostic; matching is a separate per-profile
+step, so one deployment can serve several organisations.
+
+The first tenant — and the profile the numbers in `CLAUDE.md` are calibrated
+against — is **Vertical Freedom**, an NGO supporting cancer patients
+(complementary and integrative therapies, psychotherapy, emotional support,
+nutrition, prevention). Its profile lives in
+`supabase/migrations/0004_seed_vertical_freedom.sql`, the only file that names it.
 
 Two scheduled GitHub Actions do the watching; a small dashboard reads what they
-found. There is no database, no server and no secret beyond the `GITHUB_TOKEN`
-that Actions provides automatically.
+found.
 
 ## What runs
 
 | | Schedule | What it does |
 |---|---|---|
-| `funding_radar.py` | Mondays 05:00 UTC | Fetches the adieuronest.ro CSV feed and the EU Funding & Tenders (SEDIA) API, filters for calls an oncology NGO could actually apply to, writes a digest and opens an Issue for anything new. |
+| `funding_radar.py` | Mondays 05:00 UTC | Fetches the adieuronest.ro CSV feed and the EU Funding & Tenders (SEDIA) API, matches every open call against the exporting organisation's profile (the seed profile targets an oncology NGO), writes a digest and opens an Issue for anything new. |
 | `mipe_watch.py` | Daily 04:00 UTC | Hashes the visible text of the MIPE call calendar. If it changed, opens an Issue asking a human to look. It deliberately does not parse that page. |
 | `web/` | On push | React dashboard for reading and triaging what was reported. |
 

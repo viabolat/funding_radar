@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Two standalone Python scripts that watch Romanian and EU funding sources on behalf of Vertical Freedom (an NGO supporting cancer patients: complementary/integrative therapies, psychotherapy, emotional support, nutrition, prevention). Both run only as scheduled GitHub Actions and notify **exclusively by opening GitHub Issues** — no Slack, no Telegram, no SMTP. GitHub's own "watching" emails are the entire notification path. Do not add other delivery channels; that is a deliberate design constraint.
+Two standalone Python scripts that watch Romanian and EU funding sources, match every open call against an organisation's configurable profile, and report what fits. Scraping is organisation-agnostic — it collects every live grant; relevance is a separate per-profile step (`match.py`, Phase C). The system is built to serve several organisations from one Supabase warehouse, one `organizations.profile` row each.
+
+The first tenant — and the profile every calibration number in this file is measured against — is Vertical Freedom, an NGO supporting cancer patients (complementary/integrative therapies, psychotherapy, emotional support, nutrition, prevention). Its identity lives in `supabase/migrations/0004_seed_vertical_freedom.sql`, the one file in the repository permitted to name it; nothing else is tenant-specific (`tests/test_detenanting.py` enforces this).
+
+Both scripts run only as scheduled GitHub Actions and notify **exclusively by opening GitHub Issues** — no Slack, no Telegram, no SMTP. GitHub's own "watching" emails are the entire notification path. Do not add other delivery channels; that is a deliberate design constraint.
 
 Neither script is a package or module — each is a self-contained `main()` with a `--create-issue` flag. There is no linter config and no build step; `requirements-dev.txt` covers both runtime deps and pytest.
 

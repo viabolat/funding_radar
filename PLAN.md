@@ -276,7 +276,7 @@ plan says so outright. Manual and mandatory:
 7. Close Phase C's open half while credentials are in hand:
    ```bash
    SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… python3 funding_radar.py --no-state --evidence evidence/all
-   SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… python3 match.py --org vertical-freedom --dry-run
+   SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… python3 match.py --org "Vertical Freedom" --dry-run
    ```
    Expect **58** matched (23 core / 35 wide) — compare **id sets, not totals**.
 

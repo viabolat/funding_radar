@@ -18,10 +18,11 @@ answer *what is already true, what is still open, and what not to redo* in under
 | **B** | `warehouse.py`, both watchers dual-writing, de-tenanted User-Agents | **Committed, pushed** | `ed47498` |
 | **C** | Org-agnostic scraping, `match.py`, docstring de-tenanting | **Committed, pushed** | `e2060a9` |
 | — | `CLAUDE.md` filtering section rewritten (pulled forward from G) | **Committed, pushed** | `71e9ee9` |
+| — | `CLAUDE.md` + `README.md` "What this is" reframed to the product; VF named only as first tenant (pulled forward from G) | **Committed** | `bee7f59` |
 | **D** | `mipe_calendar` source, cross-source dedup, Romanian output, `ai_enrich.py` | **Not started** — zero code | — |
 | **E** | Dashboard on Supabase, signup, vitest infra | **Not started** | — |
 | **F** | `notify.py` / Resend email | **Not started** | — |
-| **G** | `README.md` / `CLAUDE.md` / `FIRST_RUN.md` rewrite | **Not started** (except `71e9ee9` above) | — |
+| **G** | `README.md` / `CLAUDE.md` / `FIRST_RUN.md` rewrite | **Not started** (except the two rows above) | — |
 
 **On disk:** `match.py`, `warehouse.py`, `supabase/migrations/0001`–`0005` exist.
 `notify.py`, `ai_enrich.py`, `web/src/storage/supabase.ts`, `web/vitest.config.ts`,
@@ -60,7 +61,7 @@ Also verified: `cd web && npm run typecheck` clean; `--no-state` leaves `calls.j
 
 | Item | Blocker |
 |---|---|
-| `match.py --org vertical-freedom --dry-run` | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` unset. `match.py` **exits 1** without them by design. |
+| `match.py --org "Vertical Freedom" --dry-run` | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` unset. `match.py` **exits 1** without them by design. |
 | Ingest row counts (`select source, status, count(*)`) | Same. No Supabase project reachable from this environment. |
 | Migrations actually applied (`0001`–`0005`) | Same. Written and committed, never run against a live database. |
 | **RLS policies (plan verification step 4)** | Requires anon key + a real user JWT. Plan states outright this **cannot be tested offline** — it is a manual step and must not be skipped. |
@@ -109,14 +110,15 @@ change-detection-only; a source that failed must never be named in `owned_source
 
 ## 5. Known-stale docs
 
-Both scheduled for **Phase G**:
-
-- `CLAUDE.md` § "What this is" still frames the repo as **Vertical Freedom's** ("two standalone
-  Python scripts … on behalf of Vertical Freedom"). False since Phase C — scraping is
-  org-agnostic. `README.md` has the same framing.
-- The same paragraph still states notification is **"exclusively by opening GitHub Issues — no
-  Slack, no Telegram, no SMTP … Do not add other delivery channels."** The plan deliberately
-  overrides this with Resend email as an *additive* channel.
+- **RESOLVED (identity framing).** `CLAUDE.md` § "What this is" and `README.md` now describe the
+  product — org-agnostic scrape + per-profile match, multi-org warehouse — and name Vertical
+  Freedom only as the first tenant / calibration baseline, pointing at `0004` as the file that
+  holds it. Pulled forward from **Phase G** the same way the filtering section was in `71e9ee9`
+  (see the §1 table).
+- **Still open, Phase G.** The same "What this is" paragraph states notification is
+  **"exclusively by opening GitHub Issues — no Slack, no Telegram, no SMTP … Do not add other
+  delivery channels."** The plan deliberately overrides this with Resend email as an *additive*
+  channel. Left as-is on purpose — Phase F has not shipped, so the constraint is still true.
 
 > ⚠️ **Ordering hazard.** If **Phase F (email) ships before Phase G's doc rewrite**, `CLAUDE.md`
 > becomes *actively wrong* — it will forbid, as a deliberate design constraint, a channel the
@@ -161,7 +163,7 @@ Phase C's gate first — it is cheap and it is the thing currently unproven:
 
 ```bash
 SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… python3 funding_radar.py --no-state --evidence evidence/all
-SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… python3 match.py --org vertical-freedom --dry-run
+SUPABASE_URL=… SUPABASE_SERVICE_ROLE_KEY=… python3 match.py --org "Vertical Freedom" --dry-run
 ```
 
 The service-role key **bypasses RLS entirely** — Actions secrets only. It must never reach
