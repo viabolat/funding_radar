@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build the client-facing Radar Finanțări mockups, one per prospect segment.
+"""Build the client-facing ViaBolat mockups, one per prospect segment.
 
 Each variant is a self-contained HTML file: fonts, React and the icon set are
 embedded, so it renders with no network access. The heavy assets are lifted from
@@ -14,7 +14,7 @@ import io, json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-BASE_BUNDLE = os.path.join(ROOT, "Radar Finanțări - machetă.html")
+BASE_BUNDLE = os.path.join(ROOT, "ViaBolat - machetă.html")
 TEMPLATE_SRC = os.path.join(HERE, "template.src.html")
 OUT_DIR = os.path.join(HERE, "dist")
 
@@ -29,7 +29,7 @@ BRAND = {
     "phone":   "+40 741 716 553",
     "site":    "viabolat.com",
     "cta_label":   "Programați o demonstrație",
-    "cta_subject": "Radar Finanțări — solicitare demonstrație",
+    "cta_subject": "ViaBolat — solicitare demonstrație",
     "next_step":   "Pasul următor: o discuție de 30 de minute în care configurăm profilul organizației dumneavoastră și vă arătăm apelurile reale, deschise în acest moment.",
 }
 
@@ -49,7 +49,7 @@ def call(cid, source, title, prog, budget_short, budget, days, seen_days,
 VARIANTS = {
     # ---------------------------------------------------------------- generic
     "general": {
-        "title": "Radar Finanțări",
+        "title": "ViaBolat",
         "org_type": "Organizație neguvernamentală",
         "profile_terms": ["dezvoltare comunitară", "digitalizare", "formare profesională", "mediu"],
         "subtitle": "Urmărește și triază într-un singur loc apelurile de finanțare din surse europene și naționale, filtrate după profilul organizației dumneavoastră.",
@@ -80,9 +80,42 @@ VARIANTS = {
                  ["regenerare urbană", "mediu", "comunitate"], "new", "—"),
         ],
     },
+    # ------------------------------------------------- health / patient support
+    "sanatate": {
+        "title": "ViaBolat — sănătate și sprijinul pacienților",
+        "org_type": "Organizație neguvernamentală din domeniul sănătății",
+        "profile_terms": ["cancer", "terapii complementare", "psihoterapie", "nutriție"],
+        "subtitle": "Configurat pentru organizațiile din domeniul sănătății: urmărește și triază într-un singur loc apelurile de sprijinire a pacienților, sănătate mintală și prevenție din surse europene și naționale.",
+        "calls": [
+            call("c1", "eu", "Consolidarea programelor de screening pentru cancer și a depistării precoce", "EU4Health",
+                 "6 mil. €", "6.000.000 €", 12, 14,
+                 "Programul EU4Health (EU4H) · Portalul Funding & Tenders",
+                 "Termeni din profilul organizației: „screening”, „cancer” — în titlul apelului.",
+                 ["cancer", "screening", "prevenție"], "new", "Ana M.",
+                 "Se potrivește cu programul nostru de informare — de verificat regulile de cofinanțare."),
+            call("c2", "eu", "Sprijin psihosocial și calitatea vieții pentru supraviețuitorii de cancer", "Orizont Europa — Misiunea Cancer",
+                 "10 mil. €", "10.000.000 €", 46, 18,
+                 "Orizont Europa · Misiunea „Cancer” · Portalul Funding & Tenders",
+                 "Termeni din profilul organizației: „supraviețuitori de cancer”, „sprijin psihosocial” — în titlul apelului.",
+                 ["oncologie", "sprijin psihosocial", "calitatea vieții"], "relevant", "Ana M."),
+            call("c3", "ro", "Dezvoltarea serviciilor de îngrijire paliativă și la domiciliu", "Programul Operațional Sănătate",
+                 "2,5 mil. lei", "2.500.000 lei", 27, 4, "POS · adieuronest.ro",
+                 "Termeni din profilul organizației: „paliativ”, „pacient” — în descrierea apelului.",
+                 ["îngrijire paliativă", "pacienți", "POS"], "review", "—"),
+            call("c4", "ro", "Servicii comunitare de sănătate mintală și sprijin emoțional", "PNRR — Componenta Sănătate",
+                 "800 mii lei", "800.000 lei", 2, 24, "PNRR · adieuronest.ro",
+                 "Categorie eligibilă: sănătate. Termeni din profil: „sănătate mintală”, „sprijin emoțional”.",
+                 ["sănătate mintală", "sprijin emoțional", "PNRR"], "applied", "Dan P.",
+                 "Depus — așteptăm evaluarea."),
+            call("c5", "ro", "Programe de nutriție și terapii complementare pentru pacienți oncologici", "adieuronest",
+                 "1,1 mil. lei", "1.100.000 lei", 6, 13, "adieuronest.ro",
+                 "Termeni din profilul organizației: „nutriție”, „terapii complementare”, „pacienți oncologici”.",
+                 ["nutriție", "terapii complementare", "oncologie"], "new", "—"),
+        ],
+    },
     # ----------------------------------------------------------- municipality
     "primarii": {
-        "title": "Radar Finanțări — administrație publică locală",
+        "title": "ViaBolat — administrație publică locală",
         "org_type": "Autoritate publică locală",
         "profile_terms": ["regenerare urbană", "mobilitate urbană", "eficiență energetică", "infrastructură locală"],
         "subtitle": "Configurat pentru administrația publică locală: urmărește și triază într-un singur loc apelurile de regenerare urbană, mobilitate și infrastructură din surse europene și naționale.",
@@ -115,7 +148,7 @@ VARIANTS = {
     },
     # ------------------------------------------------------------ universities
     "universitati": {
-        "title": "Radar Finanțări — învățământ superior",
+        "title": "ViaBolat — învățământ superior",
         "org_type": "Instituție de învățământ superior",
         "profile_terms": ["Erasmus+", "mobilități", "cooperare internațională", "cercetare"],
         "subtitle": "Configurat pentru învățământul superior: urmărește și triază într-un singur loc apelurile Erasmus+, de cercetare și de infrastructură educațională din surse europene și naționale.",
@@ -245,7 +278,7 @@ def main():
     for name, variant in sorted(VARIANTS.items()):
         page = substitute(tpl_src, variant)
         out = bundle[:m.start(2)] + encode_template(page) + bundle[m.end(2):]
-        path = os.path.join(OUT_DIR, "Radar Finanțări - %s.html" % name)
+        path = os.path.join(OUT_DIR, "ViaBolat - %s.html" % name)
         io.open(path, "w", encoding="utf-8").write(out)
         print("  %-13s -> %s (%.1f MB)" % (name, os.path.basename(path),
                                            os.path.getsize(path) / 1e6))

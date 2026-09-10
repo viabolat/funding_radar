@@ -31,4 +31,4 @@ evidence/
 # asset, not product source, and not worth carrying in every clone forever. It
 # has to be present at the repo root to build; see mockup/README.md.
 mockup/dist/
-/Radar Finanțări - machetă.html
+/ViaBolat - machetă.html

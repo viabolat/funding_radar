@@ -29,7 +29,7 @@ export function MobileInbox(props: Props) {
     <div className="fr-m">
       <div className="fr-m-head">
         <BrandMark size={28} />
-        <span className="fr-m-title">Radar Finanțări</span>
+        <span className="fr-m-title">ViaBolat</span>
         <button
           type="button"
           className="fr-iconbtn"

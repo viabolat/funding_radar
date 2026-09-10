@@ -32,7 +32,7 @@ export function DesktopWorkspace(props: Props) {
       <header className="fr-nav">
         <div className="fr-brand">
           <BrandMark />
-          Radar Finanțări
+          ViaBolat
         </div>
         <a className="fr-navlink" href="#apeluri" aria-current="page">
           Apeluri

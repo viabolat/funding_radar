@@ -1,6 +1,6 @@
 # Mockups for prospects
 
-Client-facing demo of the Radar Finanțări dashboard, one file per prospect segment.
+Client-facing demo of the ViaBolat dashboard, one file per prospect segment.
 Not part of the watchers — nothing here is imported by `funding_radar.py` or the tests.
 
 ```
@@ -16,7 +16,7 @@ mockup/
 1. Fill in `BRAND` at the top of `build_variants.py`. Placeholders are written in
    `[square brackets]` and the build warns about any left unfilled.
 2. `python3 mockup/build_variants.py`
-3. Send `dist/Radar Finanțări - <segment>.html`.
+3. Send `dist/ViaBolat - <segment>.html`.
 
 Each file is self-contained — fonts, React and the icon set are embedded, so it opens
 with no network access. It needs JavaScript.
@@ -38,7 +38,7 @@ prima dată". Nothing needs re-running to stay current.
 ## Assets
 
 `build_variants.py` copies the fonts and libraries out of the base bundle
-(`../Radar Finanțări - machetă.html`) and only swaps the template block, so that file
+(`../ViaBolat - machetă.html`) and only swaps the template block, so that file
 has to stay put. It is the asset donor, not an output — edit `template.src.html`.
 
 That bundle is **gitignored** — 6.9 MB of embedded fonts and React is not worth carrying

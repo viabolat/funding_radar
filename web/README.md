@@ -1,4 +1,4 @@
-# web/ — Radar Finanțări dashboard
+# web/ — ViaBolat dashboard
 
 The staff-facing UI for the calls the two Python watchers surface. React + Vite
 + TypeScript, no CSS framework, no backend. Built from the design handoff

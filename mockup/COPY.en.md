@@ -12,7 +12,7 @@ the English here in the same edit, or this file quietly becomes a lie.**
 | ViaBolat | — |
 | Urmărim automat sursele de finanțare europene și naționale și vă semnalăm doar apelurile care se potrivesc organizației dumneavoastră. | "We automatically track European and national funding sources and flag only the calls that match your organisation." |
 | Programați o demonstrație | "Book a demonstration" (the CTA button) |
-| Radar Finanțări — solicitare demonstrație | "Funding Radar — demonstration request" (the email subject the button composes) |
+| ViaBolat — solicitare demonstrație | "ViaBolat — demonstration request" (the email subject the button composes) |
 | Pasul următor: o discuție de 30 de minute în care configurăm profilul organizației dumneavoastră și vă arătăm apelurile reale, deschise în acest moment. | "Next step: a 30-minute conversation in which we configure your organisation's profile and show you the real calls open right now." |
 
 These commit you to two things: that tracking is **automatic**, and that a 30-minute call
@@ -41,7 +41,8 @@ This is the sentence that keeps the demo honest. Do not remove it.
 
 | Romanian | English |
 |---|---|
-| Radar Finanțări | "Funding Radar" (product name) |
+| ViaBolat | the product name (header h1 and app nav) |
+| radar de finanțări nerambursabile | "non-reimbursable funding radar" (lowercase descriptor under the name) |
 | Machetă · date fictive | "Mockup · fictitious data" (badge, top right) |
 | Profilul organizației | "The organisation's profile" |
 | profil configurabil | "configurable profile" |
@@ -110,6 +111,17 @@ in one place the funding calls from European and national sources, filtered agai
 organisation's profile." Sample calls: digitalisation of local public services; vocational
 training and green skills; social economy and active inclusion; support for NGOs and
 community initiatives; urban regeneration and green public spaces.
+
+**sanatate** — profile "Organizație neguvernamentală din domeniul sănătății" (health-sector
+NGO), profile bar terms "cancer · terapii complementare · psihoterapie · nutriție".
+Subtitle: "Configured for health-sector organisations: tracks and triages in one place the
+patient-support, mental-health and prevention calls from European and national sources."
+Sample calls: strengthening cancer screening and early detection (EU4Health); psychosocial
+support and quality of life for cancer survivors (Horizon Europe Cancer Mission);
+development of palliative and home-care services (Programul Operațional Sănătate);
+community mental-health and emotional-support services (PNRR); nutrition and complementary
+therapy programmes for oncology patients (adieuronest). Terms are drawn from
+`funding_radar.SEED_PROFILE` so the demo matches what the matcher actually does.
 
 **primarii** — profile "Autoritate publică locală" (local public authority). Subtitle:
 "Configured for local public administration: tracks and triages in one place the urban
