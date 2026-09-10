@@ -18,7 +18,7 @@ answer *what is already true, what is still open, and what not to redo* in under
 | **B** | `warehouse.py`, both watchers dual-writing, de-tenanted User-Agents | **Committed, pushed** | `ed47498` |
 | **C** | Org-agnostic scraping, `match.py`, docstring de-tenanting | **Committed, pushed** | `e2060a9` |
 | — | `CLAUDE.md` filtering section rewritten (pulled forward from G) | **Committed, pushed** | `71e9ee9` |
-| — | `CLAUDE.md` + `README.md` "What this is" reframed to the product; VF named only as first tenant (pulled forward from G) | **Committed** | `bee7f59` |
+| — | `CLAUDE.md` + `README.md` "What this is" reframed to the product; VF named only as first tenant (pulled forward from G) | **Committed** | `5161c2f` |
 | **D** | `mipe_calendar` source, cross-source dedup, Romanian output, `ai_enrich.py` | **Not started** — zero code | — |
 | **E** | Dashboard on Supabase, signup, vitest infra | **Not started** | — |
 | **F** | `notify.py` / Resend email | **Not started** | — |
