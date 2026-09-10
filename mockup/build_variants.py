@@ -179,6 +179,52 @@ VARIANTS = {
                  ["laboratoare", "cercetare", "infrastructură educațională"], "new", "—"),
         ],
     },
+    # -------------------------------------------------------- funding consultancy
+    # Sold to a firm that pursues grants on behalf of many clients. The "profile"
+    # is the client portfolio; each row is annotated with the client it fits and
+    # the business-development next step, not an internal strategy note.
+    "consultanta": {
+        "title": "ViaBolat — pentru firme de consultanță",
+        "org_type": "Firmă de consultanță · 5 profiluri de client active",
+        "profile_label": "Portofoliu de clienți",
+        "profile_note": "profiluri gestionate din aplicație",
+        "footnote_profile": "profilul fiecărui client",
+        "brand": {
+            "tagline": "Urmărim automat sursele de finanțare europene și naționale și repartizăm fiecare apel pe clientul din portofoliul dumneavoastră care se califică.",
+            "next_step": "Pasul următor: o discuție de 30 de minute în care configurăm un profil pentru câțiva dintre clienții dumneavoastră și vă arătăm apelurile reale, deschise în acest moment, care li se potrivesc.",
+        },
+        "profile_terms": ["ONG sănătate", "Primărie orășenească", "Universitate", "IMM producție", "Cooperativă agricolă"],
+        "subtitle": "Configurat pentru firmele de consultanță: un profil pentru fiecare client, apelurile europene și naționale monitorizate automat și repartizate pe clientul care se califică — pipeline de dezvoltare, nu doar o listă.",
+        "calls": [
+            call("c1", "eu", "Digitalizarea IMM-urilor și adoptarea inteligenței artificiale", "Europa Digitală",
+                 "12 mil. €", "12.000.000 €", 12, 3,
+                 "Programul Europa Digitală · Portalul Funding & Tenders",
+                 "Se potrivește profilului de client „IMM producție”: termenii „digitalizare”, „inteligență artificială” — în titlul apelului.",
+                 ["client: IMM producție", "digitalizare", "inteligență artificială"], "new", "Ana M.",
+                 "De trimis oferta către Metalica SRL — eligibil, cofinanțare 25%, termen strâns."),
+            call("c2", "eu", "Sprijin psihosocial și calitatea vieții pentru supraviețuitorii de cancer", "Orizont Europa — Misiunea Cancer",
+                 "10 mil. €", "10.000.000 €", 46, 12,
+                 "Orizont Europa · Misiunea „Cancer” · Portalul Funding & Tenders",
+                 "Se potrivește profilului de client „ONG sănătate”: termenii „supraviețuitori de cancer”, „sprijin psihosocial” — în titlul apelului.",
+                 ["client: ONG sănătate", "oncologie", "sprijin psihosocial"], "relevant", "Ana M.",
+                 "Fundația Renașterea a confirmat interesul — de pregătit consorțiul."),
+            call("c3", "ro", "Modernizarea rețelelor de apă și canalizare", "POR",
+                 "3 mil. lei", "3.000.000 lei", 27, 6, "POR · adieuronest.ro",
+                 "Se potrivește profilului de client „Primărie orășenească”: termenul „infrastructură locală” — în titlul apelului.",
+                 ["client: Primărie orășenească", "infrastructură locală", "POR"], "review", "Dan P.",
+                 "De verificat dacă UAT-ul are studiul de fezabilitate actualizat înainte de a propune mandatul."),
+            call("c4", "ro", "Burse și sprijin pentru cercetarea doctorală", "PNRR",
+                 "850 mii lei", "850.000 lei", 2, 21, "PNRR · adieuronest.ro",
+                 "Se potrivește profilului de client „Universitate”: categorie eligibilă „universități”, termenul „cercetare”.",
+                 ["client: Universitate", "cercetare", "doctorat"], "applied", "Dan P.",
+                 "Depus în numele universității — mandat de consultanță semnat, onorariu de succes 4%."),
+            call("c5", "ro", "Investiții în ferme mici și lanțuri scurte de aprovizionare", "Planul Strategic PAC",
+                 "600 mii lei", "600.000 lei", 6, 2, "PS PAC · adieuronest.ro",
+                 "Se potrivește profilului de client „Cooperativă agricolă”: termenii „ferme mici”, „lanțuri scurte” — în titlul apelului.",
+                 ["client: Cooperativă agricolă", "agricultură", "lanțuri scurte"], "new", "—",
+                 "Client nou, fără responsabil alocat — de repartizat."),
+        ],
+    },
 }
 
 
@@ -211,18 +257,22 @@ def render_profile_bar(v):
     chips = "".join(
         '<span class="tag tag-neutral" style="font-size:11px">%s</span>' % t
         for t in v["profile_terms"])
+    # A consultancy tracks a client portfolio, not one org profile; the label and
+    # the trailing note switch with it. Defaults keep every other variant identical.
+    label = v.get("profile_label", "Profilul organizației")
+    note = v.get("profile_note", "profil configurabil")
     return (
         '\n  <div id="profil" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;'
         'background:var(--color-surface);border:1px solid var(--color-divider);border-radius:10px;'
         'padding:11px 14px;margin-bottom:16px">\n'
         '    <span style="display:inline-flex;align-items:center;gap:6px;font-size:10.5px;'
         'letter-spacing:.08em;text-transform:uppercase;color:%s">'
-        '<i class="ph ph-sliders-horizontal"></i>Profilul organizației</span>\n'
+        '<i class="ph ph-sliders-horizontal"></i>%s</span>\n'
         '    <span style="font-size:13px;font-weight:500">%s</span>\n'
         '    <span style="width:1px;height:14px;background:var(--color-divider)"></span>\n'
         '    %s\n'
-        '    <span style="margin-left:auto;font-size:11.5px;color:%s">profil configurabil</span>\n'
-        '  </div>\n' % (MUTED, v["org_type"], chips, MUTED))
+        '    <span style="margin-left:auto;font-size:11.5px;color:%s">%s</span>\n'
+        '  </div>\n' % (MUTED, label, v["org_type"], chips, MUTED, note))
 
 
 def substitute(tpl, variant):
@@ -239,12 +289,22 @@ def substitute(tpl, variant):
     sub(r'<p class="sub">.*?</p>', '<p class="sub">%s</p>' % variant["subtitle"], "subtitle")
     sub(r'\n  <div id="profil".*?\n  </div>\n', render_profile_bar(variant), "profile bar")
     sub(r"(?<=BASE\(\)\{\n    return \[).*?(?=\];)", render_calls(variant["calls"]), "calls")
+    # The "date fictive" footnote also says the list is filtered by the org profile;
+    # for the consultancy that is per-client. The subtitle <p> above has already been
+    # replaced, so the phrase now survives only in the footnote. Default = no change.
+    sub(r"profilul organizației dumneavoastră",
+        variant.get("footnote_profile", "profilul organizației dumneavoastră"),
+        "footnote profile phrase")
 
+    # A variant may override a BRAND string where the seed copy is org-centric and the
+    # segment is not (the consultancy's footer tagline and next-step line). Absent an
+    # override the seed BRAND value is used, so every other variant is unchanged.
+    brand = dict(BRAND, **variant.get("brand", {}))
     for key, token in [("name", "__BRAND_NAME__"), ("tagline", "__BRAND_TAGLINE__"),
                        ("email", "__BRAND_EMAIL__"), ("phone", "__BRAND_PHONE__"),
                        ("site", "__BRAND_SITE__"), ("cta_label", "__CTA_LABEL__"),
                        ("next_step", "__NEXT_STEP__")]:
-        out = out.replace(token, BRAND[key])
+        out = out.replace(token, brand[key])
     # The subject rides in a mailto URL, so it needs percent-encoding, not raw text.
     try:
         from urllib.parse import quote

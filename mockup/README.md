@@ -24,9 +24,15 @@ with no network access. It needs JavaScript.
 ## Adding a segment
 
 Add an entry to `VARIANTS`: `org_type` and `profile_terms` drive the profile bar,
-`subtitle` the header, `calls` the five sample rows. Segments are written to be sent to
-*many* organisations of one kind — keep the copy about the category, never one named
-institution.
+`subtitle` the header, `calls` the five sample rows. Optional `profile_label` and
+`profile_note` relabel the profile bar when the recipient is not a single beneficiary —
+the `consultanta` segment uses them to read "Portofoliu de clienți" instead of "Profilul
+organizației". Segments are written to be sent to *many* organisations of one kind — keep
+the copy about the category, never one named institution.
+
+Current segments: `general`, `sanatate`, `primarii`, `universitati` (one beneficiary each),
+and `consultanta` (a firm pursuing grants for a portfolio of clients — the profile bar is
+the client list and each call is routed to the client it fits).
 
 ## Why deadlines are offsets
 

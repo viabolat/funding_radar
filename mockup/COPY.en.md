@@ -137,6 +137,22 @@ sources." Sample calls: higher education cooperation partnerships; international
 for students and teaching staff; digital infrastructure for university research; doctoral
 research grants; equipping teaching and research laboratories.
 
+**consultanta** — sold to a funding consultancy that pursues grants on behalf of many
+clients, not to one beneficiary. The profile bar is relabelled "Portofoliu de clienți"
+(client portfolio); its chips are client archetypes — "ONG sănătate · Primărie orășenească
+· Universitate · IMM producție · Cooperativă agricolă" — and its org line reads "Firmă de
+consultanță · 5 profiluri de client active". Subtitle: "Configured for consultancies: one
+profile per client, European and national calls monitored automatically and routed to the
+client that qualifies — a development pipeline, not just a list." Each sample call's match
+reason names the client profile it fits ("Se potrivește profilului de client «…»") and the
+note is a business-development next step (send the offer, confirm the mandate, assign an
+owner) rather than an internal strategy note. Sample calls: SME digitalisation and AI
+adoption (Europa Digitală → IMM producție); psychosocial support for cancer survivors
+(Horizon Europe Cancer Mission → ONG sănătate); water and sewerage modernisation (POR →
+Primărie); doctoral research grants (PNRR → Universitate); investment in small farms and
+short supply chains (Planul Strategic PAC → Cooperativă agricolă). The two success-fee /
+mandate references in the notes are the only place the demo names a commercial model.
+
 ## Two names appear in the demo data
 
 "Ana M." and "Dan P." are fictional colleagues shown as assignees, and "AM" is the avatar
