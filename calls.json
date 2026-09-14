@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-07T09:59:20",
+  "generated_at": "2026-09-14T10:22:27",
   "calls": [
     {
       "call_id": "adieuronest:asistenta-si-suport-in-luarea-deciziei-pentru-persoane-cu-ca",
@@ -22,11 +22,11 @@
     {
       "call_id": "adieuronest:beactive-eu-sport-awards-incluziune",
       "source": "adieuronest",
-      "title": "#BeActive-EU-SPORT-AWARDS – Incluziune",
+      "title": "#BeActive — Premiile UE pentru sport: categoria Incluziune",
       "programme": "Tineret Educație și formare Acțiunile Jean Monnet Programul Erasmus+",
       "deadline": "2026-09-17",
       "announced": false,
-      "budget": "25.000 € — bugetul indicativ al apelului, premiu",
+      "budget": "5.000 € – 15.000 € / project (total 125.000 € (bugetul total al concursului, pentru toate cele cinci categorii))",
       "tags": [
         "autoritati",
         "incluziune",
@@ -148,25 +148,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „incluziune”.",
       "link": "https://eeagrants.org/ro/eea-civil-society-fund-romania/calls/call-5-roma-inclusion-and-empowerment-through-development-interethnic-communities",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:erasmus-beactive-eu-sport-awards-inclusion-incluziune-prin-s",
-      "source": "adieuronest",
-      "title": "Erasmus+ – #BeActive EU Sport Awards – Inclusion (incluziune prin sport)",
-      "programme": "Programul Erasmus+",
-      "deadline": "2026-09-17",
-      "announced": false,
-      "budget": "5.000 € – 15.000 € / project (total 125.000 € (bugetul total al concursului, pentru toate cele cinci categorii))",
-      "tags": [
-        "autoritati",
-        "companii",
-        "incluziune",
-        "ong",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://sport.ec.europa.eu/whats-new/news/beactive-eu-sport-awards-2026-apply-now",
       "first_seen": "2026-09-07"
     },
     {
@@ -384,21 +365,6 @@
       ],
       "match_reason": "Cuvinte cheie potrivite „sănătate”, „medical”.",
       "link": "https://oportunitati-ue.gov.ro/apel/investitii-in-infrastructura-publica-a-cabinetelor-medicale-scolare-inclusiv-a-cabinetelor-medicale-stomatologice-din-cadrul-unitatilor-de-invatamant-publice-pentru-asigurarea-accesului-copiilor-si/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:life-2026-ngo-og-fpa",
-      "source": "adieuronest",
-      "title": "LIFE — Acorduri-cadru de parteneriat pentru granturi de funcționare acordate ONG-urilor",
-      "programme": "Programul LIFE 2021-2027, granturi de funcționare",
-      "deadline": "2026-09-08",
-      "announced": false,
-      "budget": "700.000 EUR per exercițiu financiar / project (total 14.500.000 EUR pe an (se estimează 30-35 de parteneriate-cadru))",
-      "tags": [
-        "ong"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „ong”.",
-      "link": "https://cinea.ec.europa.eu/funding-opportunities/calls-proposals/framework-partnership-agreements-fpa-og-0_en",
       "first_seen": "2026-09-07"
     },
     {
@@ -743,21 +709,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „mental health”.",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2027-02-TRANSFO-09-two-stage",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-CL4-2023-HUMAN-01-04",
-      "source": "eu_sedia",
-      "title": "Open innovation: Addressing Grand challenges in AI (AI Data and Robotics Partnership) (CSA)",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-08",
-      "announced": false,
-      "budget": "",
-      "tags": [
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/45635689",
       "first_seen": "2026-09-07"
     },
     {
