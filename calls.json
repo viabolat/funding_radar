@@ -1,42 +1,7 @@
 {
   "version": 1,
-  "generated_at": "2026-09-14T10:22:27",
+  "generated_at": "2026-09-21T10:26:47",
   "calls": [
-    {
-      "call_id": "adieuronest:asistenta-si-suport-in-luarea-deciziei-pentru-persoane-cu-ca",
-      "source": "adieuronest",
-      "title": "Asistență și suport în luarea deciziei pentru persoane cu capacitate restrânsă de exercițiu",
-      "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "11.804.343 €",
-      "tags": [
-        "autoritati",
-        "incluziune",
-        "ong"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://oportunitati-ue.gov.ro/apel/ghidul-solicitantului-servicii-de-asistenta-si-suport-in-luarea-deciziei-pentru-persoane-fara-sau-cu-capacitate-restransa-de-exercitiu/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:beactive-eu-sport-awards-incluziune",
-      "source": "adieuronest",
-      "title": "#BeActive — Premiile UE pentru sport: categoria Incluziune",
-      "programme": "Tineret Educație și formare Acțiunile Jean Monnet Programul Erasmus+",
-      "deadline": "2026-09-17",
-      "announced": false,
-      "budget": "5.000 € – 15.000 € / project (total 125.000 € (bugetul total al concursului, pentru toate cele cinci categorii))",
-      "tags": [
-        "autoritati",
-        "incluziune",
-        "ong",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/erasmus-sport-2026-eu-awards-inclusion",
-      "first_seen": "2026-09-07"
-    },
     {
       "call_id": "adieuronest:burse-amu-pentru-stagiul-de-master-2-biologie-si-sanatate-sp",
       "source": "adieuronest",
@@ -298,7 +263,7 @@
       "source": "adieuronest",
       "title": "Ghidul Solicitantului ,,Măsuri integrate de sprijin pentru familiile monoparentale vulnerabile din România”",
       "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-09-15",
+      "deadline": "2026-10-15",
       "announced": false,
       "budget": "Bugetul total alocat pentru prezentul apel este de 65.349.654 euro, din care 48.812.778 euro contribuție UE FEDR și FSE+, iar",
       "tags": [
@@ -372,7 +337,7 @@
       "source": "adieuronest",
       "title": "Măsuri integrate de sprijin pentru familiile monoparentale vulnerabile din România",
       "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-09-15",
+      "deadline": "2026-10-15",
       "announced": false,
       "budget": "65.349.654 €",
       "tags": [
@@ -383,28 +348,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „incluziune”.",
       "link": "https://mfe.gov.ro/ghiduri_pids/masuri-integrate-de-sprijin-pentru-familiile-monoparentale-vulnerabile-din-romania/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:misiunea-cancer-orizont-europa-apelurile-2026",
-      "source": "adieuronest",
-      "title": "Misiunea Cancer a Orizont Europa – apelurile 2026",
-      "programme": "Orizont Europa, Misiunea „Combaterea cancerului”",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "",
-      "tags": [
-        "autoritati",
-        "cancer",
-        "companii",
-        "oncolog",
-        "ong",
-        "paliativ",
-        "sănătate mintal",
-        "universitati"
-      ],
-      "match_reason": "Cuvinte cheie potrivite „cancer”, „oncolog”, „paliativ”, „sănătate mintal”.",
-      "link": "https://hadea.ec.europa.eu/calls-proposals/cancer-mission-calls-2026_en",
       "first_seen": "2026-09-07"
     },
     {
@@ -497,21 +440,23 @@
       "first_seen": "2026-09-07"
     },
     {
-      "call_id": "adieuronest:servicii-de-asistenta-si-suport-in-luarea-deciziei-pentru-pe",
+      "call_id": "adieuronest:ps-competente-esentiale-step-genomica-transplant-2026",
       "source": "adieuronest",
-      "title": "Servicii de asistență și suport în luarea deciziei pentru persoane cu capacitate restrânsă de exercițiu",
-      "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-09-15",
+      "title": "Dezvoltarea competențelor esențiale compatibile STEP — genomică, vaccinuri, tratamentul cancerului și coordonarea transplantului (apel relansat)",
+      "programme": "Programul Sănătate 2021-2027, Prioritatea 8, Acțiunile A și B, FSE+",
+      "deadline": "2026-10-05",
       "announced": false,
-      "budget": "11.804.343 €",
+      "budget": "",
       "tags": [
         "autoritati",
-        "incluziune",
-        "ong"
+        "cancer",
+        "sanatate",
+        "sănătate",
+        "universitati"
       ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://mfe.gov.ro/ghiduri_pids/servicii-de-asistenta-si-suport-in-luarea-deciziei-pentru-persoane-fara-sau-cu-capacitate-restransa-de-exercitiu/",
-      "first_seen": "2026-09-07"
+      "match_reason": "Cuvinte cheie potrivite „cancer”, „sănătate”.",
+      "link": "https://mfe.gov.ro/ghiduri-ms/",
+      "first_seen": "2026-09-21"
     },
     {
       "call_id": "adieuronest:sprijin-pentru-familii-monoparentale-iti-microregiunea-tara-",
@@ -712,27 +657,6 @@
       "first_seen": "2026-09-07"
     },
     {
-      "call_id": "eu_sedia:HORIZON-HLTH-2026-02-DISEASE-12",
-      "source": "eu_sedia",
-      "title": "European Partnership on Rare Diseases (ERDERA) (Phase 2)",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 91 300 000 (1 grant(s) expected)",
-      "tags": [
-        "Anticancer therapy",
-        "Biobanks",
-        "Biomarkers",
-        "Cancer and its biological basis",
-        "Cardiac and Cardiovascular systems",
-        "Child health",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2026-02-DISEASE-12",
-      "first_seen": "2026-09-07"
-    },
-    {
       "call_id": "eu_sedia:HORIZON-HLTH-2027-01-DISEASE-10",
       "source": "eu_sedia",
       "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)",
@@ -751,142 +675,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „oncology”.",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-HLTH-2027-01-DISEASE-10",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-01",
-      "source": "eu_sedia",
-      "title": "Virtual Human Twin (VHT) Models for Cancer Research",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 8 000 000 – 9 000 000 (4 grant(s) expected)",
-      "tags": [
-        "Cancer and its biological basis",
-        "Medical engineering and technology",
-        "Quantitative genetics",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-01",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-02",
-      "source": "eu_sedia",
-      "title": "Microbiome for early cancer prediction before the onset of disease",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 15 000 000 (1 grant(s) expected)",
-      "tags": [
-        "Diagnostics",
-        "Oncology",
-        "Personalised prevention",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-02",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-03",
-      "source": "eu_sedia",
-      "title": "Pragmatic clinical trials to optimise immunotherapeutic interventions for patients with refractory cancers",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 7 000 000 – 8 000 000 (3 grant(s) expected)",
-      "tags": [
-        "Anticancer therapy",
-        "Diagnostic tools (e.g. genetic, imaging)",
-        "Haematology",
-        "Medical devices",
-        "Paediatrics",
-        "Pharmacogenomics",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-03",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-04",
-      "source": "eu_sedia",
-      "title": "Earlier and more precise palliative care",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 5 000 000 (3 grant(s) expected)",
-      "tags": [
-        "Oncology",
-        "Public health",
-        "Quality-of-life",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-04",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-05",
-      "source": "eu_sedia",
-      "title": "Boosting mental health of young cancer survivors through the European Cancer Patient Digital Centre (ECPDC)",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 7 000 000 (1 grant(s) expected)",
-      "tags": [
-        "Man-machine-interfaces",
-        "Mental health",
-        "Patient care",
-        "Quality-of-life",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-05",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-06",
-      "source": "eu_sedia",
-      "title": "Development of a research capacity building programme on cancer with and for Ukraine",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 5 000 000 (1 grant(s) expected)",
-      "tags": [
-        "Gender in health sciences",
-        "Health care",
-        "Health education",
-        "Health policies",
-        "Health services, health care research",
-        "Network infrastructures",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-06",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-MISS-2026-02-CANCER-07",
-      "source": "eu_sedia",
-      "title": "Improve the Quality of Life of older cancer patients",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-15",
-      "announced": false,
-      "budget": "EUR 5 000 000 – 6 000 000 (5 grant(s) expected)",
-      "tags": [
-        "Comparative effectiveness research",
-        "Homecare",
-        "Integrated care",
-        "Mechanisms of pain",
-        "Mental health",
-        "Patient care",
-        "cancer"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „cancer”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-MISS-2026-02-CANCER-07",
       "first_seen": "2026-09-07"
     },
     {
