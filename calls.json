@@ -1,7 +1,27 @@
 {
   "version": 1,
-  "generated_at": "2026-09-21T10:26:47",
+  "generated_at": "2026-09-28T11:30:29",
   "calls": [
+    {
+      "call_id": "adieuronest:am11i-asistenta-medicala-si-psihologica-solicitanti-azil",
+      "source": "adieuronest",
+      "title": "AM11I — Asistență medicală și psihologică pentru solicitanții de azil",
+      "programme": "Programul Național 2021-2027 Azil, Migrație și Integrare (FAMI)",
+      "deadline": "2026-10-16",
+      "announced": false,
+      "budget": "7.000.000 lei / project (total 5.250.000 lei)",
+      "tags": [
+        "autoritati",
+        "medical",
+        "ong",
+        "psiholog",
+        "psihoterapie",
+        "sanatate"
+      ],
+      "match_reason": "Cuvinte cheie potrivite „psihoterapie”, „medical”, „psiholog”.",
+      "link": "https://fed.mai.gov.ro/",
+      "first_seen": "2026-09-28"
+    },
     {
       "call_id": "adieuronest:burse-amu-pentru-stagiul-de-master-2-biologie-si-sanatate-sp",
       "source": "adieuronest",
@@ -556,22 +576,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „ong”.",
       "link": "https://www.unitedway.ro/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "eu_sedia:HORIZON-CL2-2026-01-TRANSFO-04",
-      "source": "eu_sedia",
-      "title": "The impact of the use of digital tools outside school and for communication on educational outcomes and mental health",
-      "programme": "Horizon Europe",
-      "deadline": "2026-09-23",
-      "announced": false,
-      "budget": "EUR 3 000 000 – 4 000 000 (3 grant(s) expected)",
-      "tags": [
-        "Education, general (including training, pedagogy, didactics)",
-        "mental health"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „mental health”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-CL2-2026-01-TRANSFO-04",
       "first_seen": "2026-09-07"
     },
     {
