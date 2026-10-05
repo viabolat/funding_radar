@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-28T11:30:29",
+  "generated_at": "2026-10-05T12:05:29",
   "calls": [
     {
       "call_id": "adieuronest:am11i-asistenta-medicala-si-psihologica-solicitanti-azil",
@@ -40,63 +40,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „sănătate”.",
       "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/competitive-calls-cs/11268",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:competente-digitale-avansate-pentru-adoptarea-inteligentei-a",
-      "source": "adieuronest",
-      "title": "Competențe digitale avansate pentru adoptarea inteligenței artificiale în sănătate",
-      "programme": "Programul Europa Digitală",
-      "deadline": "2026-10-01",
-      "announced": false,
-      "budget": "12.500.000 € — bugetul indicativ al apelului, grant cu sumă forfetară (lump sum)",
-      "tags": [
-        "autoritati",
-        "companii",
-        "ong",
-        "sănătate",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-skills-10-digital-health-step",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:competente-pentru-incluziune-formarea-personalului-din-educa",
-      "source": "adieuronest",
-      "title": "Competențe pentru incluziune — formarea personalului din educație",
-      "programme": "Programul Educație și Ocupare",
-      "deadline": "2026-09-30",
-      "announced": false,
-      "budget": "16.852.941 € (13.562.130 € contribuție UE + 3.290.811 € contribuție națională)",
-      "tags": [
-        "autoritati",
-        "incluziune",
-        "ong",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://oportunitati-ue.gov.ro/apel/competente-pentru-incluziune-profesionalizarea-personalului-din-educatie-in-sprijinul-educatiei-incluzive/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:consolidarea-capacitatii-de-implementare-a-eehrxf-si-a-servi",
-      "source": "adieuronest",
-      "title": "Consolidarea capacității de implementare a EEHRxF și a serviciilor și sistemelor digitale de sănătate pentru a sprijini drepturile cetățenilor și reutilizarea datelor medicale în cadrul EHDS",
-      "programme": "Programul Europa Digitală",
-      "deadline": "2026-10-01",
-      "announced": false,
-      "budget": "24.400.000 € — bugetul indicativ al apelului, sprijin financiar către terți (cascade funding)",
-      "tags": [
-        "autoritati",
-        "companii",
-        "medical",
-        "ong",
-        "sănătate",
-        "universitati"
-      ],
-      "match_reason": "Cuvinte cheie potrivite „sănătate”, „medical”.",
-      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/digital-2026-bestuse-10-ehds",
       "first_seen": "2026-09-07"
     },
     {
@@ -186,41 +129,6 @@
       ],
       "match_reason": "Cuvinte cheie potrivite „psihoterapie”, „sănătate mintal”.",
       "link": "https://fundatia-vodafone.ro/finantare/fondul-pentru-fapte-bune/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:formarea-profesionala-a-specialistilor-care-lucreaza-cu-grup",
-      "source": "adieuronest",
-      "title": "Formarea profesională a specialiștilor care lucrează cu grupuri vulnerabile",
-      "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-09-30",
-      "announced": false,
-      "budget": "201.000 € (valoare totală eligibilă a proiectului) – 343.882 € (valoare totală eligibilă a proiectului) / project (total 2.407.172 € (2.046…",
-      "tags": [
-        "autoritati",
-        "companii",
-        "incluziune",
-        "ong"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://mfe.gov.ro/poids-ghidul-solictantului-formarea-profesionala-a-specialistilor-care-lucreaza-cu-grupuri-vulnerabile/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:formarea-specialistilor-care-lucreaza-cu-grupuri-vulnerabile",
-      "source": "adieuronest",
-      "title": "Formarea specialiștilor care lucrează cu grupuri vulnerabile",
-      "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-09-30",
-      "announced": false,
-      "budget": "201.000 € – 343.882 € / project (total 2.407.172 € (2.046.096 € FSE+ și 361.076 € contribuție națională))",
-      "tags": [
-        "autoritati",
-        "incluziune",
-        "ong"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://mfe.gov.ro/ghiduri_pids/ghidul-solicitantului-formarea-profesionala-a-specialistilor-care-lucreaza-cu-grupuri-vulnerabile/",
       "first_seen": "2026-09-07"
     },
     {
@@ -314,25 +222,6 @@
       "first_seen": "2026-09-07"
     },
     {
-      "call_id": "adieuronest:investitii-in-centrele-de-transfuzie-sanguina-desemnate-coor",
-      "source": "adieuronest",
-      "title": "Investiții în centrele de transfuzie sanguină desemnate coordonator regional/centrele județene de transfuzie sanguină",
-      "programme": "Programul Sănătate",
-      "deadline": "2026-09-30",
-      "announced": false,
-      "budget": "Bugetul total alocat prin Programul Sănătate este de 10.500.00 euro",
-      "tags": [
-        "autoritati",
-        "companii",
-        "ong",
-        "sănătate",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
-      "link": "https://oportunitati-ue.gov.ro/apel/investitii-in-centrele-de-transfuzie-sanguina-desemnate-coordonator-regional-centrele-judetene-de-transfuzie-sanguina/",
-      "first_seen": "2026-09-07"
-    },
-    {
       "call_id": "adieuronest:investitii-in-infrastructura-publica-a-cabinetelor-medicale-",
       "source": "adieuronest",
       "title": "Investiții în infrastructura publică a cabinetelor medicale școlare, inclusiv a cabinetelor medicale stomatologice din cadrul unităților de învățământ publice pentru asigurarea accesului copiilor și tinerilor care urmează o formă de învățământ la servicii de calitate (reabilitare/modernizare/dotare)",
@@ -368,22 +257,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „incluziune”.",
       "link": "https://mfe.gov.ro/ghiduri_pids/masuri-integrate-de-sprijin-pentru-familiile-monoparentale-vulnerabile-din-romania/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:pids-implementarea-pactului-de-integritate",
-      "source": "adieuronest",
-      "title": "Implementarea pactului de integritate — Programul Incluziune și Demnitate Socială",
-      "programme": "Programul Incluziune și Demnitate Socială, Prioritatea 11 – Asistență Tehnică",
-      "deadline": "2026-09-30",
-      "announced": false,
-      "budget": "300.000 € (75.000 € FSE+ și 225.000 € contribuție națională)",
-      "tags": [
-        "incluziune",
-        "ong"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://oportunitati-ue.gov.ro/apel/ghidul-solicitantului-implementarea-pactului-de-integritate/",
       "first_seen": "2026-09-07"
     },
     {
@@ -562,6 +435,25 @@
       "first_seen": "2026-09-07"
     },
     {
+      "call_id": "adieuronest:systemeu-sprijin-terte-parti-inovare-interregionala-2026",
+      "source": "adieuronest",
+      "title": "SYSTEMEU — sprijin financiar pentru terțe părți: inovare interregională în sănătate, energie și mobilitate",
+      "programme": "Proiectul SYSTEMEU (finanțare în cascadă)",
+      "deadline": "2026-11-16",
+      "announced": false,
+      "budget": "750.000 € proiecte mici; 1.100.000 € proiecte de nivel mediu; 2.200.000 € proiecte flagship; maximum 600.000 € cumulat pe organizație / pro…",
+      "tags": [
+        "autoritati",
+        "companii",
+        "ong",
+        "sănătate",
+        "universitati"
+      ],
+      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
+      "link": "https://www.fonduri-structurale.ro/finantari",
+      "first_seen": "2026-10-05"
+    },
+    {
       "call_id": "adieuronest:united-way-romania-selectie-parteneri-ong",
       "source": "adieuronest",
       "title": "United Way România — selecție de parteneri ONG pentru programele proprii",
@@ -665,7 +557,7 @@
       "source": "eu_sedia",
       "title": "Prevention and management of chronic non-communicable diseases in children and young people (GACD)",
       "programme": "Horizon Europe",
-      "deadline": "2027-04-13",
+      "deadline": "2027-02-17",
       "announced": false,
       "budget": "EUR 3 000 000 – 4 000 000 (3 grant(s) expected)",
       "tags": [
@@ -686,7 +578,7 @@
       "source": "eu_sedia",
       "title": "Leveraging functional genomics to reveal novel targets for cancer treatment",
       "programme": "Horizon Europe",
-      "deadline": "2027-09-21",
+      "deadline": "2027-09-16",
       "announced": false,
       "budget": "EUR 7 000 000 – 8 000 000 (4 grant(s) expected)",
       "tags": [
@@ -705,7 +597,7 @@
       "source": "eu_sedia",
       "title": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers",
       "programme": "Horizon Europe",
-      "deadline": "2027-09-21",
+      "deadline": "2027-09-16",
       "announced": false,
       "budget": "EUR 7 000 000 – 10 000 000 (3 grant(s) expected)",
       "tags": [
@@ -726,7 +618,7 @@
       "source": "eu_sedia",
       "title": "Phase 1 including first-in-human clinical trials to test biomarker-guided medicines or multi-modal treatment interventions for patients with rare or very rare cancers or cancer subtypes",
       "programme": "Horizon Europe",
-      "deadline": "2027-09-21",
+      "deadline": "2027-09-16",
       "announced": false,
       "budget": "EUR 7 000 000 – 9 000 000 (3 grant(s) expected)",
       "tags": [
@@ -747,7 +639,7 @@
       "source": "eu_sedia",
       "title": "Improving equitable health outcomes and added value for and with cancer patients through health-economics research, health systems research and outcomes research",
       "programme": "Horizon Europe",
-      "deadline": "2027-09-21",
+      "deadline": "2027-09-16",
       "announced": false,
       "budget": "EUR 5 000 000 – 7 000 000 (3 grant(s) expected)",
       "tags": [
@@ -768,7 +660,7 @@
       "source": "eu_sedia",
       "title": "Pre-commercial procurement of affordable solutions for healthcare systems in the areas of cancer technologies, cancer medical devices, or cancer medicines",
       "programme": "Horizon Europe",
-      "deadline": "2027-09-21",
+      "deadline": "2027-09-16",
       "announced": false,
       "budget": "EUR 8 000 000 – 10 000 000 (3 grant(s) expected)",
       "tags": [
@@ -783,7 +675,7 @@
       "source": "eu_sedia",
       "title": "Support a Young Cancer Survivor Quality of Life (QoL) research programme by cancer charities and funding agencies",
       "programme": "Horizon Europe",
-      "deadline": "2027-09-21",
+      "deadline": "2027-09-16",
       "announced": false,
       "budget": "EUR 3 000 000 (1 grant(s) expected)",
       "tags": [
