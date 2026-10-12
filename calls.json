@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-05T12:05:29",
+  "generated_at": "2026-10-12T12:49:51",
   "calls": [
     {
       "call_id": "adieuronest:am11i-asistenta-medicala-si-psihologica-solicitanti-azil",
@@ -57,25 +57,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „incluziune”.",
       "link": "https://mfe.gov.ro/ghiduri_pids/poids-ghidul-solicitantului-conditii-specifice-pentru-introducerea-in-mysmis2021-a-fiselor-de-proiecte-selectate-de-grupurile-de-actiune-locala-etapa-a-iii-a-a-mecanismului-dlrc/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:eea-civil-society-fund-incluziunea-si-cresterea-capacitatii-",
-      "source": "adieuronest",
-      "title": "EEA Civil Society Fund – Incluziunea și creșterea capacității romilor prin dezvoltarea comunităților interetnice",
-      "programme": "Granturile SEE și Norvegiene",
-      "deadline": "2026-10-08",
-      "announced": false,
-      "budget": "15.000 € – 350.000 € / project (total 6.500.000 €)",
-      "tags": [
-        "autoritati",
-        "companii",
-        "incluziune",
-        "ong",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://eeagrants.org/ro/eea-civil-society-fund-romania/calls/call-5-roma-inclusion-and-empowerment-through-development-interethnic-communities",
       "first_seen": "2026-09-07"
     },
     {
@@ -222,6 +203,25 @@
       "first_seen": "2026-09-07"
     },
     {
+      "call_id": "adieuronest:investitii-in-centrele-de-transfuzie-sanguina-desemnate-coor",
+      "source": "adieuronest",
+      "title": "Investiții în centrele de transfuzie sanguină desemnate coordonator regional/centrele județene de transfuzie sanguină",
+      "programme": "Programul Sănătate",
+      "deadline": "2026-11-30",
+      "announced": false,
+      "budget": "Bugetul total alocat prin Programul Sănătate este de 10.500.00 euro",
+      "tags": [
+        "autoritati",
+        "companii",
+        "ong",
+        "sănătate",
+        "universitati"
+      ],
+      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
+      "link": "https://oportunitati-ue.gov.ro/apel/investitii-in-centrele-de-transfuzie-sanguina-desemnate-coordonator-regional-centrele-judetene-de-transfuzie-sanguina/",
+      "first_seen": "2026-10-12"
+    },
+    {
       "call_id": "adieuronest:investitii-in-infrastructura-publica-a-cabinetelor-medicale-",
       "source": "adieuronest",
       "title": "Investiții în infrastructura publică a cabinetelor medicale școlare, inclusiv a cabinetelor medicale stomatologice din cadrul unităților de învățământ publice pentru asigurarea accesului copiilor și tinerilor care urmează o formă de învățământ la servicii de calitate (reabilitare/modernizare/dotare)",
@@ -331,25 +331,6 @@
       "match_reason": "Cuvânt cheie potrivit „sănătate”.",
       "link": "https://mfe.gov.ro/ghiduri-ms/",
       "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:ps-competente-esentiale-step-genomica-transplant-2026",
-      "source": "adieuronest",
-      "title": "Dezvoltarea competențelor esențiale compatibile STEP — genomică, vaccinuri, tratamentul cancerului și coordonarea transplantului (apel relansat)",
-      "programme": "Programul Sănătate 2021-2027, Prioritatea 8, Acțiunile A și B, FSE+",
-      "deadline": "2026-10-05",
-      "announced": false,
-      "budget": "",
-      "tags": [
-        "autoritati",
-        "cancer",
-        "sanatate",
-        "sănătate",
-        "universitati"
-      ],
-      "match_reason": "Cuvinte cheie potrivite „cancer”, „sănătate”.",
-      "link": "https://mfe.gov.ro/ghiduri-ms/",
-      "first_seen": "2026-09-21"
     },
     {
       "call_id": "adieuronest:sprijin-pentru-familii-monoparentale-iti-microregiunea-tara-",
