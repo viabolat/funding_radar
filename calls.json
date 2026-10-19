@@ -1,27 +1,7 @@
 {
   "version": 1,
-  "generated_at": "2026-10-12T12:49:51",
+  "generated_at": "2026-10-19T10:33:41",
   "calls": [
-    {
-      "call_id": "adieuronest:am11i-asistenta-medicala-si-psihologica-solicitanti-azil",
-      "source": "adieuronest",
-      "title": "AM11I — Asistență medicală și psihologică pentru solicitanții de azil",
-      "programme": "Programul Național 2021-2027 Azil, Migrație și Integrare (FAMI)",
-      "deadline": "2026-10-16",
-      "announced": false,
-      "budget": "7.000.000 lei / project (total 5.250.000 lei)",
-      "tags": [
-        "autoritati",
-        "medical",
-        "ong",
-        "psiholog",
-        "psihoterapie",
-        "sanatate"
-      ],
-      "match_reason": "Cuvinte cheie potrivite „psihoterapie”, „medical”, „psiholog”.",
-      "link": "https://fed.mai.gov.ro/",
-      "first_seen": "2026-09-28"
-    },
     {
       "call_id": "adieuronest:burse-amu-pentru-stagiul-de-master-2-biologie-si-sanatate-sp",
       "source": "adieuronest",
@@ -168,25 +148,6 @@
       "first_seen": "2026-09-07"
     },
     {
-      "call_id": "adieuronest:ghidul-solicitantului-masuri-integrate-de-sprijin-pentru-fam",
-      "source": "adieuronest",
-      "title": "Ghidul Solicitantului ,,Măsuri integrate de sprijin pentru familiile monoparentale vulnerabile din România”",
-      "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-10-15",
-      "announced": false,
-      "budget": "Bugetul total alocat pentru prezentul apel este de 65.349.654 euro, din care 48.812.778 euro contribuție UE FEDR și FSE+, iar",
-      "tags": [
-        "autoritati",
-        "companii",
-        "incluziune",
-        "ong",
-        "universitati"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://oportunitati-ue.gov.ro/apel/ghidul-solicitantului-masuri-integrate-de-sprijin-pentru-familiile-monoparentale-vulnerabile-din-romania/",
-      "first_seen": "2026-09-07"
-    },
-    {
       "call_id": "adieuronest:in-stare-de-bine-granturi-kaufland-romania-pentru-ong-uri",
       "source": "adieuronest",
       "title": "În stare de bine – granturi Kaufland România pentru ONG-uri",
@@ -242,22 +203,20 @@
       "first_seen": "2026-09-07"
     },
     {
-      "call_id": "adieuronest:masuri-integrate-de-sprijin-pentru-familiile-monoparentale-v",
+      "call_id": "adieuronest:md-fee-incluziunea-romilor-2026",
       "source": "adieuronest",
-      "title": "Măsuri integrate de sprijin pentru familiile monoparentale vulnerabile din România",
-      "programme": "Programul Incluziune și Demnitate Socială",
-      "deadline": "2026-10-15",
+      "title": "Granturi pentru organizațiile societății civile care promovează incluziunea romilor",
+      "programme": "Fundația Est-Europeană, proiectul „Implicare Civică pentru Guvernare Democratică și Coeziune Socială\", finanțat de Norvegia",
+      "deadline": "2026-10-23",
       "announced": false,
-      "budget": "65.349.654 €",
+      "budget": "30.000 € (din care până la 5.000 € pentru dezvoltare organizațională) / project (total 60.000 €, pentru cel puțin 2 granturi)",
       "tags": [
-        "autoritati",
-        "companii",
         "incluziune",
         "ong"
       ],
       "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://mfe.gov.ro/ghiduri_pids/masuri-integrate-de-sprijin-pentru-familiile-monoparentale-vulnerabile-din-romania/",
-      "first_seen": "2026-09-07"
+      "link": "https://eef.md/ro/granturi-pentru-organizatiile-societatii-civile-care-promoveaza-incluziunea-romilor/333",
+      "first_seen": "2026-10-19"
     },
     {
       "call_id": "adieuronest:poids-ghidul-solicitantului-aferent-apelului-asistenta-tehni",
