@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-19T10:33:41",
+  "generated_at": "2026-10-26T10:48:39",
   "calls": [
     {
       "call_id": "adieuronest:burse-amu-pentru-stagiul-de-master-2-biologie-si-sanatate-sp",
@@ -203,20 +203,23 @@
       "first_seen": "2026-09-07"
     },
     {
-      "call_id": "adieuronest:md-fee-incluziunea-romilor-2026",
+      "call_id": "adieuronest:masuri-integrate-de-sprijin-pentru-familiile-monoparentale-v",
       "source": "adieuronest",
-      "title": "Granturi pentru organizațiile societății civile care promovează incluziunea romilor",
-      "programme": "Fundația Est-Europeană, proiectul „Implicare Civică pentru Guvernare Democratică și Coeziune Socială\", finanțat de Norvegia",
-      "deadline": "2026-10-23",
+      "title": "Măsuri integrate de sprijin pentru familiile monoparentale vulnerabile din România",
+      "programme": "Programul Incluziune și Demnitate Socială",
+      "deadline": "2026-11-16",
       "announced": false,
-      "budget": "30.000 € (din care până la 5.000 € pentru dezvoltare organizațională) / project (total 60.000 €, pentru cel puțin 2 granturi)",
+      "budget": "65.349.654 €",
       "tags": [
+        "autoritati",
+        "companii",
         "incluziune",
-        "ong"
+        "ong",
+        "universitati"
       ],
       "match_reason": "Cuvânt cheie potrivit „incluziune”.",
-      "link": "https://eef.md/ro/granturi-pentru-organizatiile-societatii-civile-care-promoveaza-incluziunea-romilor/333",
-      "first_seen": "2026-10-19"
+      "link": "https://mfe.gov.ro/ghiduri_pids/masuri-integrate-de-sprijin-pentru-familiile-monoparentale-vulnerabile-din-romania/",
+      "first_seen": "2026-10-26"
     },
     {
       "call_id": "adieuronest:poids-ghidul-solicitantului-aferent-apelului-asistenta-tehni",
@@ -409,6 +412,27 @@
       "match_reason": "Cuvânt cheie potrivit „ong”.",
       "link": "https://www.unitedway.ro/",
       "first_seen": "2026-09-07"
+    },
+    {
+      "call_id": "eu_sedia:HORIZON-BRIDGING-2027-02-05",
+      "source": "eu_sedia",
+      "title": "Advancing promising results from Pillar II collaborative research through the innovation journey",
+      "programme": "Horizon Europe",
+      "deadline": "2027-01-28",
+      "announced": false,
+      "budget": "EUR 2 500 000 (13 grant(s) expected)",
+      "tags": [
+        "Aeronautics",
+        "Agricultural biotechnology",
+        "Agricultural engineering, food safety",
+        "Agriculture related to crop production, soil biology and cultivation, applied plant biology",
+        "Agriculture, Forestry, and Fisheries",
+        "Agro-forestry",
+        "oncology"
+      ],
+      "match_reason": "Cuvânt cheie potrivit „oncology”.",
+      "link": "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/HORIZON-BRIDGING-2027-02-05",
+      "first_seen": "2026-10-26"
     },
     {
       "call_id": "eu_sedia:HORIZON-CL2-2027-01-DEMOCRACY-04",
