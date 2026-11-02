@@ -1,7 +1,26 @@
 {
   "version": 1,
-  "generated_at": "2026-10-26T10:48:39",
+  "generated_at": "2026-11-02T13:11:45",
   "calls": [
+    {
+      "call_id": "adieuronest:apeluri-orizont-europa-2027-clusterul-1-sanatate-14-topicuri",
+      "source": "adieuronest",
+      "title": "Apeluri Orizont Europa 2027, Clusterul 1 „Sănătate\" — 14 topicuri",
+      "programme": "Orizont Europa, Clusterul 1 Sănătate, Programul de lucru 2026-2027",
+      "deadline": "2027-02-17",
+      "announced": false,
+      "budget": "",
+      "tags": [
+        "companii",
+        "ong",
+        "sanatate",
+        "sănătate",
+        "universitati"
+      ],
+      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
+      "link": "https://hadea.ec.europa.eu/news/2027-horizon-europe-health-calls-are-open-proposals-2026-10-29_en",
+      "first_seen": "2026-11-02"
+    },
     {
       "call_id": "adieuronest:burse-amu-pentru-stagiul-de-master-2-biologie-si-sanatate-sp",
       "source": "adieuronest",
@@ -203,6 +222,24 @@
       "first_seen": "2026-09-07"
     },
     {
+      "call_id": "adieuronest:investitii-in-infrastructura-publica-a-laboratoarelor-hla-ac",
+      "source": "adieuronest",
+      "title": "Investiții în infrastructura publică a laboratoarelor HLA acreditate — dotare",
+      "programme": "Programul Sănătate 2021-2027",
+      "deadline": "2026-11-05",
+      "announced": true,
+      "budget": "",
+      "tags": [
+        "autoritati",
+        "sanatate",
+        "sănătate",
+        "anunțat"
+      ],
+      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
+      "link": "https://adrvest.ro/programul-sanatate-ghiduri-in-consultare-publica/",
+      "first_seen": "2026-11-02"
+    },
+    {
       "call_id": "adieuronest:masuri-integrate-de-sprijin-pentru-familiile-monoparentale-v",
       "source": "adieuronest",
       "title": "Măsuri integrate de sprijin pentru familiile monoparentale vulnerabile din România",
@@ -275,23 +312,6 @@
       ],
       "match_reason": "Cuvânt cheie potrivit „spital”.",
       "link": "https://oportunitati-ue.gov.ro/apel/programul-national-de-investitii-in-infrastructura-unitatilor-spitalicesti-apel-tip-c-2/",
-      "first_seen": "2026-09-07"
-    },
-    {
-      "call_id": "adieuronest:ps-centre-arsi-dotare-2026",
-      "source": "adieuronest",
-      "title": "Investiții în infrastructura publică a centrelor de arși și mari arși — dotare",
-      "programme": "Programul Sănătate 2021-2027",
-      "deadline": "2026-10-30",
-      "announced": false,
-      "budget": "185.000.000 € (buget total al apelului)",
-      "tags": [
-        "autoritati",
-        "sanatate",
-        "sănătate"
-      ],
-      "match_reason": "Cuvânt cheie potrivit „sănătate”.",
-      "link": "https://mfe.gov.ro/ghiduri-ms/",
       "first_seen": "2026-09-07"
     },
     {
